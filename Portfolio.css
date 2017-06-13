@@ -1,13 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:light, thin');
 
 body {
-   /* #212121 */
-   /* #263238 */
-   /* #001020 */
-   /* #283593 */
-   /* #c5cae9 */
-   /* #e8eaf6 */
-
    background-color: #263238;
    color: #e8eaf6;
    font-family: 'Roboto', sans-serif;
@@ -44,7 +37,7 @@ nav {
 
 #home {
    background-color: #212121;
-   background: url("https://raw.githubusercontent.com/NearHuscarl/FCC-Exercise-Archive/master/4.%20Basic%20Font%20End%20Development%20Project/2)%20Portolio/Images/Home%20Background.jpg");
+   background: url("https://goo.gl/9gD57a");
    margin: 0;
    background-size: cover;
    background-attachment: fixed;
@@ -80,6 +73,10 @@ h2 {
 #about-me > .container {
    padding: 3em 11em 3em 5em;
    text-align: justify;
+}
+
+#text {
+   font-size: 1.15em;
 }
 
 hr {
