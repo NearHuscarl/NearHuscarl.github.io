@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:light, thin');
+
+body {
+   /* #212121 */
+   /* #263238 */
+   /* #001020 */
+   /* #283593 */
+   /* #c5cae9 */
+   /* #e8eaf6 */
+
+   background-color: #263238;
+   color: #e8eaf6;
+   font-family: 'Roboto', sans-serif;
+   font-weight: 100;
+}
+
+nav {
+   opacity: 0.8;
+   /* box-shadow: 0 2px 4px black; */
+   border-bottom: 1px solid #001020 !important;
+   background-color: #001020 !important;
+}
+
+.logo {
+   max-width: 140px;
+}
+
+#main-navbar li.active > a {
+   border-bottom: 2px solid #080808;
+}
+
+#main-navbar a {
+   transition: all 0.2s;
+   border-bottom: 2px solid #001020;
+}
+
+#main-navbar a:hover {
+   border-bottom: 2px solid #c5cae9;
+}
+
+#main-navbar a:focus {
+   border-bottom: 2px solid #c5cae9;
+}
+
+#home {
+   background-color: #212121;
+   background: url(https://raw.githubusercontent.com/NearHuscarl/FCC-Exercise-Archive/master/4.%20Basic%20Font%20End%20Development%20Project/Portolio/Images/Home%20Background.jpg);
+   margin: 0;
+   background-size: cover;
+   background-attachment: fixed;
+   overflow-x: hidden;
+   box-shadow: inset 0 0 0 1000px #002851; /* fall back safeguard */
+   box-shadow: inset 0 0 0 1000px rgba(0, 40, 81, 0.8);
+   color: #e8eaf6;
+}
+
+#home-nickname {
+   text-align: right;
+   margin-top: 5.5em;
+   margin-bottom: 1em;
+   text-transform: uppercase;
+}
+
+#home-title {
+   text-align: right;
+   margin-top: 1em;
+   margin-bottom: 24em;
+   text-transform: uppercase;
+}
+
+h2 {
+   text-transform: uppercase;
+}
+
+#about-me {
+   background-color: #e8eaf6;
+   color: #002851;
+}
+
+#about-me > .container {
+   padding: 3em 11em 3em 5em;
+   text-align: justify;
+}
+
+hr {
+   display: block;
+   margin-top: 0.5em;
+   margin-bottom: 2em;
+   border: solid 1px;
+}
+
+.hr-blue {
+   border-color: #002851;
+}
+
+.hr-light-blue {
+   border-color: #c5cae9;
+}
+
+.hr-white {
+   border-color: #e8eaf6;
+}
+
+.img-avatar {
+   border-radius: 50%;
+}
+
+#project {
+   background-color: #002851;
+   color: #c5cae9;
+}
+
+#project > .container {
+   padding: 3em 5em 3em 5em;
+}
+
+.wrapper {
+   position: relative;
+   transition: all 0.2s ease-out;
+}
+
+.wrapper:hover {
+   transform: scale(1.05);
+   box-shadow: 0 0 10px 5px #001020;
+}
+
+.project-img {
+   margin-top: 1em;
+   margin-bottom: 1em;
+   border: solid 4px #c5cae9;
+   border-bottom-color: #001020;
+}
+
+.caption {
+   opacity: 0.8;
+   padding-top: 1em;
+   padding-bottom: 0.25em;
+
+   background-color: #001020;
+   color: #c5cae9;
+
+   position: absolute;
+   bottom: 0;
+   left: 0;
+   width: 100%;
+}
+
+#contact {
+   background-color: #263238;
+   color: #e8eaf6;
+}
+
+#contact > .container {
+   padding: 3em 5em 3em 5em;
+}
+
+#contact-title {
+   text-align: right;
+}
+
+.contact-description {
+   text-align: justify;
+   margin-bottom: 2em;
+}
+
+a > code {
+   background-color: #263238;
+   color: #e8eaf6;
+   transition: all 0.2s;
+}
+
+a > code:hover {
+   background-color: #000000;
+   color: #d44e50;
+}
+
+input.form-control {
+   background-color: #e8eaf6;
+}
+
+textarea.form-control {
+   background-color: #e8eaf6;
+}
+
+form i {
+   width: 1.5em;
+}
+
+.input-example {
+   width: 9em;
+}
+
+.btn-send {
+   width: 7em;
+   background-color: #e8eaf6;
+   color: #263238;
+   transition: all 0.2s;
+}
+
+.btn-send:hover {
+   background-color: #283593;
+   color: #e8eaf6;
+}
+
+#footer {
+   text-align: center;
+   background-color: #e8eaf6;
+   color: #002851;
+}
+
+#footer > .container {
+   padding: 2em 5em 0.5em 5em;
+}
+
+.btn-social i {
+   margin: 0.25em 0.25em 0.5em 0.25em;
+
+   color: #002851;
+   border: solid 3px #002851;
+   border-radius: 50%;
+   width: 2em;
+   height: 2em;
+   line-height: 2em;
+   font-size: 3em;
+   -webkit-transition: all .3s ease-in-out;
+   transition: all .3s ease-in-out;
+}
+
+.btn-social i.fa-facebook:hover {
+   border-color: #3b5998;
+   background-color: #3b5998;
+   color: #e8eaf6;
+}
+
+.btn-social i.fa-twitter:hover {
+   border-color: white;
+   background-color: white; 
+   color: #1da1f2;
+}
+
+.btn-social i.fa-reddit-alien:hover {
+   border-color: #ff4500;
+   background-color: #ff4500;
+   color: #e8eaf6;
+}
+
+.btn-social i.fa-free-code-camp:hover {
+   border-color: #006400;
+   background-color: #006400;
+   color: #e8eaf6;
+}
+
+.btn-social i.fa-github:hover {
+   border-color: white;
+   background-color: white;
+   color: #171515;
+}
+
+.copyright {
+   font-size: 0.75em;
+   margin-bottom: 0;
+}
+
+a:hover {
+   text-decoration: none;
+}
