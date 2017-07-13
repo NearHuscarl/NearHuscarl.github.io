@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2:extra-light, medium');
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+body {
+   margin: 50px 40px 50px 40px;
+   background-color: #848484;
+}
+
+div.container {
+   background-color: #d4d4d4;
+   border: solid 0.3em;
+   border-color: #f0ad4e #d89b46 #d89b46 #f0ad4e;
+   /* box-shadow: 3px 3px 5px #424242; */
+   border-radius: 15px;
+   padding: 30px 30px 30px 30px;
+   margin-bottom: -1em;
+}
+
+h1 {
+   font-family: 'Exo 2', sans-serif;
+   font-size: 7em;
+   font-weight: 100;
+   color: #848484;
+} 
+
+h5 {
+   font-family: 'Exo 2', monospace;
+   font-size: 1.5em;
+   font-weight: 100;
+   color: #848484;
+}
+
+p {
+   font-size: 17px;
+   color: #848484;
+   margin-top: 1em;
+   margin-bottom: 1em;
+}
+
+dl {
+   color: #848484;
+}
+
+blockquote {
+   background-color: #f1f1f1;
+   margin-top: 20px;
+   font-family: 'Exo 2', monospace;
+}
+
+#quote {
+   margin-left: 35px;
+   margin-right: 35px;
+   border-left-color: #f0ad4e;
+}
+
+.header3 {
+   background-color: #848484;
+   color: #eeeeee;
+
+   margin-top: 2em;
+   margin-bottom: 2em;
+
+   padding: 0.1em 1em 0.25em 1em;
+   border-radius: 0.5em;
+
+   font-family: 'Orbitron', sans-serif;
+}
+
+.biography {
+   text-align: justify;
+   margin-left: 35px;
+   margin-right: 35px;
+   font-size: 1em;
+}
+
+.pic-caption {
+   font-family: 'Exo 2', monospace;
+   color: #848484;
+   font-size: 1em;
+   font-weight: 400;
+   margin-bottom: 1em;
+}
+
+dt {
+   float: left;
+   width: 8%;
+}
+
+dd {
+   float: left;
+   width: 92%;
+}
+
+.img-bg {
+   background-color: #e1e1e1;
+   border-radius: 10px;
+   border: solid #848484;
+   margin: 1em 1em 1em 1em;
+   padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+.about-me {
+   font-family: 'Exo 2', monospace;
+   color: #eeeeee;
+   font-size: 1em;
+   font-weight: 100;
+}
+
+a:link, a:visited {
+   color: #b0e0e6;
+}
+
+a:hover, a:active {
+   color: #f0ad4e;
+}
+
+.img-bg {
+   transition: all 0.2s;
+}
+
+.img-bg > a {
+   color: #848484;
+}
+
+.img-bg:hover {
+   background-color: #fff3e0;
+   border-color: #f0ad4e;
+}
+
+.img-bg:active {
+   background-color: #ffe9c7;
+   border-color: #eea236;
+}
+
+blockquote:hover{
+   background-color: #fff3e0;
+}
