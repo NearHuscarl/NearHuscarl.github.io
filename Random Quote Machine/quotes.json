@@ -1,512 +1,512 @@
 [
    {
-      id: 0,
-      quote: "Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.",
-      author: "Dalai Lama"
+      "id": 0,
+      "quote": "Our prime purpose in this life is to help others. And if you can't help them, at least don't hurt them.",
+      "author": "Dalai Lama"
    },
    {
-      id: 1,
-      quote: "If you see fraud and do not say fraud, you are a fraud.",
-      author: "Nassim Taleb"
+      "id": 1,
+      "quote": "If you see fraud and do not say fraud, you are a fraud.",
+      "author": "Nassim Taleb"
    },
    {
-      id: 2,
-      quote: "Some lack the fickleness to live as they wish and just live as they have begun.",
-      author: "Seneca"
+      "id": 2,
+      "quote": "Some lack the fickleness to live as they wish and just live as they have begun.",
+      "author": "Seneca"
    },
    {
-      id: 3,
-      quote: "Tell me with whom you consort with and I will tell you who you are.",
-      author: "Goethe"
+      "id": 3,
+      "quote": "Tell me with whom you consort with and I will tell you who you are.",
+      "author": "Goethe"
    },
    {
-      id: 4,
-      quote: "Character is fate.",
-      author: "Heraclitus"
+      "id": 4,
+      "quote": "Character is fate.",
+      "author": "Heraclitus"
    },
    {
-      id: 5,
-      quote: "To understand is to forgive.",
-      author: "Pascal"
+      "id": 5,
+      "quote": "To understand is to forgive.",
+      "author": "Pascal"
    },
    {
-      id: 6,
-      quote: "It is much easier to follow a script than to develop the awareness and flexibility to be your own person.",
-      author: "Daniele Bolelli"
+      "id": 6,
+      "quote": "It is much easier to follow a script than to develop the awareness and flexibility to be your own person.",
+      "author": "Daniele Bolelli"
    },
    {
-      id: 7,
-      quote: "We read to know that we are not alone.",
-      author: "C.S. Lewis"
+      "id": 7,
+      "quote": "We read to know that we are not alone.",
+      "author": "C.S. Lewis"
    },
    {
-      id: 8,
-      quote: "Reading brings us unknown friends.",
-      author: "Honoré de Balzac"
+      "id": 8,
+      "quote": "Reading brings us unknown friends.",
+      "author": "Honoré de Balzac"
    },
    {
-      id: 9,
-      quote: "Accept responsibility for your life. Know that it is you who will get you where you want to go, no one else.",
-      author: "Les Brown"
+      "id": 9,
+      "quote": "Accept responsibility for your life. Know that it is you who will get you where you want to go, no one else.",
+      "author": "Les Brown"
    },
    {
-      id: 10,
-      quote: "I don’t regret the things I’ve done, I regret the things I didn’t do when I had the chance.",
-      author: "Unknown"
+      "id": 10,
+      "quote": "I don’t regret the things I’ve done, I regret the things I didn’t do when I had the chance.",
+      "author": "Unknown"
    },
    {
-      id: 11,
-      quote: "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
-      author: "Joshua J. Marine"
+      "id": 11,
+      "quote": "Challenges are what make life interesting and overcoming them is what makes life meaningful.",
+      "author": "Joshua J. Marine"
    },
    {
-      id: 12,
-      quote: "One of the most important keys to Success is having the discipline to do what you know you should do, even when you dont feel like doing it.",
-      author: "Unknown"
+      "id": 12,
+      "quote": "One of the most important keys to Success is having the discipline to do what you know you should do, even when you dont feel like doing it.",
+      "author": "Unknown"
    },
    {
-      id: 13,
-      quote: "Good things come to those who wait… greater things come to those who get off their ass and do anything to make it happen.",
-      author: "Unknown"
+      "id": 13,
+      "quote": "Good things come to those who wait… greater things come to those who get off their ass and do anything to make it happen.",
+      "author": "Unknown"
    },
    {
-      id: 14,
-      quote: "Happiness cannot be traveled to, owned, earned, or worn. It is the spiritual experience of living every minute with love, grace & gratitude.",
-      author: "Denis Waitley"
+      "id": 14,
+      "quote": "Happiness cannot be traveled to, owned, earned, or worn. It is the spiritual experience of living every minute with love, grace & gratitude.",
+      "author": "Denis Waitley"
    },
    {
-      id: 15,
-      quote: "In order to succeed, your desire for success should be greater than your fear of failure.",
-      author: "Bill Cosby"
+      "id": 15,
+      "quote": "In order to succeed, your desire for success should be greater than your fear of failure.",
+      "author": "Bill Cosby"
    },
    {
-      id: 16,
-      quote: "Go where you are celebrated – not tolerated. If they can’t see the real value of you, it’s time for a new start.",
-      author: "Unknown"
+      "id": 16,
+      "quote": "Go where you are celebrated – not tolerated. If they can’t see the real value of you, it’s time for a new start.",
+      "author": "Unknown"
    },
    {
-      id: 17,
-      quote: "Dont be afraid to stand for what you believe in, even if that means standing alone.",
-      author: "Unknown"
+      "id": 17,
+      "quote": "Dont be afraid to stand for what you believe in, even if that means standing alone.",
+      "author": "Unknown"
    },
    {
-      id: 18,
-      quote: "The best revenge is massive success.",
-      author: "Frank Sinatra"
+      "id": 18,
+      "quote": "The best revenge is massive success.",
+      "author": "Frank Sinatra"
    },
    {
-      id: 19,
-      quote: "Forget all the reasons it won’t work and believe the one reason that it will.",
-      author: "Unknown"
+      "id": 19,
+      "quote": "Forget all the reasons it won’t work and believe the one reason that it will.",
+      "author": "Unknown"
    },
    {
-      id: 20,
-      quote: "I am thankful for all of those who said NO to me. Its because of them I’m doing it myself.",
-      author: "Albert Einstein"
+      "id": 20,
+      "quote": "I am thankful for all of those who said NO to me. Its because of them I’m doing it myself.",
+      "author": "Albert Einstein"
    },
    {
-      id: 21,
-      quote: "The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.",
-      author: "Steve Jobs"
+      "id": 21,
+      "quote": "The only way to do great work is to love what you do. If you haven’t found it yet, keep looking. Don’t settle.",
+      "author": "Steve Jobs"
    },
    {
-      id: 22,
-      quote: "Life is short, live it. Love is rare, grab it. Anger is bad, dump it. Fear is awful, face it. Memories are sweet, cherish it.",
-      author: "Unknown"
+      "id": 22,
+      "quote": "Life is short, live it. Love is rare, grab it. Anger is bad, dump it. Fear is awful, face it. Memories are sweet, cherish it.",
+      "author": "Unknown"
    },
    {
-      id: 23,
-      quote: "Life is like photography. You need the negatives to develop.",
-      author: "Unknown"
+      "id": 23,
+      "quote": "Life is like photography. You need the negatives to develop.",
+      "author": "Unknown"
    },
    {
-      id: 24,
-      quote: "Don’t worry about failures, worry about the chances you miss when you don’t even try.",
-      author: "Jack Canfield"
+      "id": 24,
+      "quote": "Don’t worry about failures, worry about the chances you miss when you don’t even try.",
+      "author": "Jack Canfield"
    },
    {
-      id: 25,
-      quote: "The pain you feel today is the strength you feel tomorrow. For every challenge encountered there is opportunity for growth.",
-      author: "Unknown"
+      "id": 25,
+      "quote": "The pain you feel today is the strength you feel tomorrow. For every challenge encountered there is opportunity for growth.",
+      "author": "Unknown"
    },
    {
-      id: 26,
-      quote: "Build your own dreams, or someone else will hire you to build theirs.",
-      author: "Farrah Gray"
+      "id": 26,
+      "quote": "Build your own dreams, or someone else will hire you to build theirs.",
+      "author": "Farrah Gray"
    },
    {
-      id: 27,
-      quote: "The only thing that stands between you and your dream is the will to try and the belief that it is actually possible.",
-      author: "Joel Brown"
+      "id": 27,
+      "quote": "The only thing that stands between you and your dream is the will to try and the belief that it is actually possible.",
+      "author": "Joel Brown"
    },
    {
-      id: 28,
-      quote: "We learn something from everyone who passes through our lives.. Some lessons are painful, some are painless.. but, all are priceless.",
-      author: "Unknown"
+      "id": 28,
+      "quote": "We learn something from everyone who passes through our lives.. Some lessons are painful, some are painless.. but, all are priceless.",
+      "author": "Unknown"
    },
    {
-      id: 29,
-      quote: "Being happy doesn't mean that everything is perfect. it means that you’ve decided to look beyond the imperfections.",
-      author: "Unknown"
+      "id": 29,
+      "quote": "Being happy doesn't mean that everything is perfect. it means that you’ve decided to look beyond the imperfections.",
+      "author": "Unknown"
    },
    {
-      id: 30,
-      quote: "Nobody ever wrote down a plan to be broke, fat, lazy, or stupid. Those things are what happen when you don’t have a plan.",
-      author: "Larry Winget"
+      "id": 30,
+      "quote": "Nobody ever wrote down a plan to be broke, fat, lazy, or stupid. Those things are what happen when you don’t have a plan.",
+      "author": "Larry Winget"
    },
    {
-      id: 31,
-      quote: "Three things you cannot recover in life: the WORD after it’s said, the MOMENT after it’s missed and the TIME after it’s gone. Be Careful!",
-      author: "Unknown"
+      "id": 31,
+      "quote": "Three things you cannot recover in life: the WORD after it’s said, the MOMENT after it’s missed and the TIME after it’s gone. Be Careful!",
+      "author": "Unknown"
    },
    {
-      id: 32,
-      quote: "Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.",
-      author: "Carl Bard"
+      "id": 32,
+      "quote": "Though no one can go back and make a brand new start, anyone can start from now and make a brand new ending.",
+      "author": "Carl Bard"
    },
    {
-      id: 33,
-      quote: "Rule #1 of life. Do what makes YOU happy.",
-      author: "Unknown"
+      "id": 33,
+      "quote": "Rule #1 of life. Do what makes YOU happy.",
+      "author": "Unknown"
    },
    {
-      id: 34,
-      quote: "Walk away from anything or anyone who takes away from your joy. Life is too short to put up with fools.",
-      author: "Unknown"
+      "id": 34,
+      "quote": "Walk away from anything or anyone who takes away from your joy. Life is too short to put up with fools.",
+      "author": "Unknown"
    },
    {
-      id: 35,
-      quote: "Love what you have. Need what you want. Accept what you receive. Give what you can. Always remember, what goes around, comes around...",
-      author: "Unknown"
+      "id": 35,
+      "quote": "Love what you have. Need what you want. Accept what you receive. Give what you can. Always remember, what goes around, comes around...",
+      "author": "Unknown"
    },
    {
-      id: 36,
-      quote: "Just remember there is someone out there that is more than happy with less than what you have.",
-      author: "Unknown"
+      "id": 36,
+      "quote": "Just remember there is someone out there that is more than happy with less than what you have.",
+      "author": "Unknown"
    },
    {
-      id: 37,
-      quote: "The biggest failure you can have in life is making the mistake of never trying at all.",
-      author: "Unknown"
+      "id": 37,
+      "quote": "The biggest failure you can have in life is making the mistake of never trying at all.",
+      "author": "Unknown"
    },
    {
-      id: 38,
-      quote: "Life has two rules: #1 Never quit #2 Always remember rule #1.",
-      author: "Unknown"
+      "id": 38,
+      "quote": "Life has two rules: #1 Never quit #2 Always remember rule #1.",
+      "author": "Unknown"
    },
    {
-      id: 39,
-      quote: "It's funny how day by day, nothing changes. But when you look back everything is different.",
-      author: "Calvin & Hobbes"
+      "id": 39,
+      "quote": "It's funny how day by day, nothing changes. But when you look back everything is different.",
+      "author": "Calvin & Hobbes"
    },
    {
-      id: 40,
-      quote: "Don't take life so seriously. It's not like you're going to get out alive!",
-      author: "Louise Smith"
+      "id": 40,
+      "quote": "Don't take life so seriously. It's not like you're going to get out alive!",
+      "author": "Louise Smith"
    },
    {
-      id: 41,
-      quote: "In the end, it's not the years in your life that count. It's the life in your years.",
-      author: "Abraham Lincoln"
+      "id": 41,
+      "quote": "In the end, it's not the years in your life that count. It's the life in your years.",
+      "author": "Abraham Lincoln"
    },
    {
-      id: 42,
-      quote: "The greatest day in your life and mine is when we take total responsibility for our attitudes. That's the day we truly grow up.",
-      author: "John C. Maxwell"
+      "id": 42,
+      "quote": "The greatest day in your life and mine is when we take total responsibility for our attitudes. That's the day we truly grow up.",
+      "author": "John C. Maxwell"
    },
    {
-      id: 43,
-      quote: "Life is not a problem to be solved, but a reality to be experienced.",
-      author: "Soren Kierkegaard"
+      "id": 43,
+      "quote": "Life is not a problem to be solved, but a reality to be experienced.",
+      "author": "Soren Kierkegaard"
    },
    {
-      id: 44,
-      quote: "What we think determines what happens to us, so if we want to change our lives, we need to stretch our minds.",
-      author: "Wayne Dyer"
+      "id": 44,
+      "quote": "What we think determines what happens to us, so if we want to change our lives, we need to stretch our minds.",
+      "author": "Wayne Dyer"
    },
    {
-      id: 45,
-      quote: "Life is ten percent what happens to you and ninety percent how you respond to it.",
-      author: "Lou Holtz"
+      "id": 45,
+      "quote": "Life is ten percent what happens to you and ninety percent how you respond to it.",
+      "author": "Lou Holtz"
    },
    {
-      id: 46,
-      quote: "Believe that life is worth living and your belief will help create the fact.",
-      author: "William James"
+      "id": 46,
+      "quote": "Believe that life is worth living and your belief will help create the fact.",
+      "author": "William James"
    },
    {
-      id: 47,
-      quote: "Too often we underestimate the power of a touch, a smile, a kind word, a listening ear, an honest compliment, or the smallest act of caring, all of which have the potential to turn a life around.",
-      author: "Leo Buscaglia"
+      "id": 47,
+      "quote": "Too often we underestimate the power of a touch, a smile, a kind word, a listening ear, an honest compliment, or the smallest act of caring, all of which have the potential to turn a life around.",
+      "author": "Leo Buscaglia"
    },
    {
-      id: 48,
-      quote: "Life isn't about finding yourself. Life is about creating yourself.",
-      author: "George Bernard Shaw"
+      "id": 48,
+      "quote": "Life isn't about finding yourself. Life is about creating yourself.",
+      "author": "George Bernard Shaw"
    },
    {
-      id: 49,
-      quote: "Life is really simple, but we insist on making it complicated.",
-      author: "Confucius"
+      "id": 49,
+      "quote": "Life is really simple, but we insist on making it complicated.",
+      "author": "Confucius"
    },
    {
-      id: 50,
-      quote: "Change is the law of life. And those who look only to the past or present are certain to miss the future.",
-      author: "John F. Kennedy"
+      "id": 50,
+      "quote": "Change is the law of life. And those who look only to the past or present are certain to miss the future.",
+      "author": "John F. Kennedy"
    },
    {
-      id: 51,
-      quote: "When life is too easy for us, we must beware or we may not be ready to meet the blows which sooner or later come to everyone, rich or poor.",
-      author: "Eleanor Roosevelt"
+      "id": 51,
+      "quote": "When life is too easy for us, we must beware or we may not be ready to meet the blows which sooner or later come to everyone, rich or poor.",
+      "author": "Eleanor Roosevelt"
    },
    {
-      id: 52,
-      quote: "God gave us the gift of life; it is up to us to give ourselves the gift of living well.",
-      author: "Voltaire"
+      "id": 52,
+      "quote": "God gave us the gift of life; it is up to us to give ourselves the gift of living well.",
+      "author": "Voltaire"
    },
    {
-      id: 53,
-      quote: "We make a living by what we get, but we make a life by what we give.",
-      author: "Winston Churchill"
+      "id": 53,
+      "quote": "We make a living by what we get, but we make a life by what we give.",
+      "author": "Winston Churchill"
    },
    {
-      id: 54,
-      quote: "All life is an experiment. The more experiments you make the better.",
-      author: "Ralph Waldo Emerson"
+      "id": 54,
+      "quote": "All life is an experiment. The more experiments you make the better.",
+      "author": "Ralph Waldo Emerson"
    },
    {
-      id: 55,
-      quote: "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much.",
-      author: "Jim Rohn"
+      "id": 55,
+      "quote": "If you don't design your own life plan, chances are you'll fall into someone else's plan. And guess what they have planned for you? Not much.",
+      "author": "Jim Rohn"
    },
    {
-      id: 56,
-      quote: "The biggest adventure you can take is to live the life of your dreams.",
-      author: "Oprah Winfrey"
+      "id": 56,
+      "quote": "The biggest adventure you can take is to live the life of your dreams.",
+      "author": "Oprah Winfrey"
    },
    {
-      id: 57,
-      quote: "Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young. The greatest thing in life is to keep your mind young.",
-      author: "Henry Ford"
+      "id": 57,
+      "quote": "Anyone who stops learning is old, whether at twenty or eighty. Anyone who keeps learning stays young. The greatest thing in life is to keep your mind young.",
+      "author": "Henry Ford"
    },
    {
-      id: 58,
-      quote: "Many of life's failures are people who did not realize how close they were to success when they gave up.",
-      author: "Thomas A. Edison"
+      "id": 58,
+      "quote": "Many of life's failures are people who did not realize how close they were to success when they gave up.",
+      "author": "Thomas A. Edison"
    },
    {
-      id: 59,
-      quote: "The quality of a person's life is in direct proportion to their commitment to excellence, regardless of their chosen field of endeavor.",
-      author: "Vince Lombardi"
+      "id": 59,
+      "quote": "The quality of a person's life is in direct proportion to their commitment to excellence, regardless of their chosen field of endeavor.",
+      "author": "Vince Lombardi"
    },
    {
-      id: 60,
-      quote: "Communication is a skill that you can learn. It's like riding a bicycle or typing. If you're willing to work at it, you can rapidly improve the quality of every part of your life.",
-      author: "Brian Tracy"
+      "id": 60,
+      "quote": "Communication is a skill that you can learn. It's like riding a bicycle or typing. If you're willing to work at it, you can rapidly improve the quality of every part of your life.",
+      "author": "Brian Tracy"
    },
    {
-      id: 61,
-      quote: "The secret of success is learning how to use pain and pleasure instead of having pain and pleasure use you. If you do that, you're in control of your life. If you don't, life controls you.",
-      author: "Tony Robbins"
+      "id": 61,
+      "quote": "The secret of success is learning how to use pain and pleasure instead of having pain and pleasure use you. If you do that, you're in control of your life. If you don't, life controls you.",
+      "author": "Tony Robbins"
    },
    {
-      id: 62,
-      quote: "Great men are not born great, they grow great.",
-      author: "Mario Puzo, from The Godfather"
+      "id": 62,
+      "quote": "Great men are not born great, they grow great.",
+      "author": "Mario Puzo, from The Godfather"
    },
    {
-      id: 63,
-      quote: "All things are difficult before they are easy.",
-      author: "Thomas Fuller"
+      "id": 63,
+      "quote": "All things are difficult before they are easy.",
+      "author": "Thomas Fuller"
    },
    {
-      id: 64,
-      quote: "Be kind, for everyone you meet is fighting a hard battle.",
-      author: "Ian Maclaren"
+      "id": 64,
+      "quote": "Be kind, for everyone you meet is fighting a hard battle.",
+      "author": "Ian Maclaren"
    },
    {
-      id: 65,
-      quote: "Have I not destroyed my enemy when I have made him into my friend?",
-      author: "Abraham Lincoln"
+      "id": 65,
+      "quote": "Have I not destroyed my enemy when I have made him into my friend?",
+      "author": "Abraham Lincoln"
    },
    {
-      id: 66,
-      quote: "Science is not perfect. It’s often misused; it's only a tool, but it’s the best tool we have. Self-correcting, ever-changing, applicable to everything; with this tool, we vanquish the impossible.",
-      author: "Carl Sagan"
+      "id": 66,
+      "quote": "Science is not perfect. It’s often misused; it's only a tool, but it’s the best tool we have. Self-correcting, ever-changing, applicable to everything; with this tool, we vanquish the impossible.",
+      "author": "Carl Sagan"
    },
    {
-      id: 67,
-      quote: "Because the people who are crazy enough to think they can change the world, are the ones who do.",
-      author: "Steve Jobs"
+      "id": 67,
+      "quote": "Because the people who are crazy enough to think they can change the world, are the ones who do.",
+      "author": "Steve Jobs"
    },
    {
-      id: 68,
-      quote: "Talent wins games, but teamwork and intelligence wins championships.",
-      author: "Michael Jordan"
+      "id": 68,
+      "quote": "Talent wins games, but teamwork and intelligence wins championships.",
+      "author": "Michael Jordan"
    },
    {
-      id: 69,
-      quote: "Logic will get you from A to B. Imagination will take you everywhere.",
-      author: "Albert Einstein"
+      "id": 69,
+      "quote": "Logic will get you from A to B. Imagination will take you everywhere.",
+      "author": "Albert Einstein"
    },
    {
-      id: 70,
-      quote: "If you can’t explain it simply, you haven’t understood is well enough.",
-      author: "Albert Einstein"
+      "id": 70,
+      "quote": "If you can’t explain it simply, you haven’t understood is well enough.",
+      "author": "Albert Einstein"
    },
    {
-      id: 71,
-      quote: "Those who cannot remember the past are condemned to repeat it.",
-      author: "George Santayana"
+      "id": 71,
+      "quote": "Those who cannot remember the past are condemned to repeat it.",
+      "author": "George Santayana"
    },
    {
-      id: 72,
-      quote: "A Person who is happy is not because everything is right in his Life. He is happy because his attitude towards everything in his life is right",
-      author: "Sundar Pichai"
+      "id": 72,
+      "quote": "A Person who is happy is not because everything is right in his Life. He is happy because his attitude towards everything in his life is right",
+      "author": "Sundar Pichai"
    },
    {
-      id: 73,
-      quote: "Dreaming to be someone else, is a waste of who you are.",
-      author: "Kurt Cobain"
+      "id": 73,
+      "quote": "Dreaming to be someone else, is a waste of who you are.",
+      "author": "Kurt Cobain"
    },
    {
-      id: 74,
-      quote: "The best teachers are those who show you where to look, but don't tell you what to see.",
-      author: "Alexandra K. Trenfor"
+      "id": 74,
+      "quote": "The best teachers are those who show you where to look, but don't tell you what to see.",
+      "author": "Alexandra K. Trenfor"
    },
    {
-      id: 75,
-      quote: "The caterpillar does all the work, but the butterfly gets all the publicity.",
-      author: "George Carlin"
+      "id": 75,
+      "quote": "The caterpillar does all the work, but the butterfly gets all the publicity.",
+      "author": "George Carlin"
    },
    {
-      id: 76,
-      quote: "Give a man a mask and he will show you his real face.",
-      author: "Oscar Wilde"
+      "id": 76,
+      "quote": "Give a man a mask and he will show you his real face.",
+      "author": "Oscar Wilde"
    },
    {
-      id: 77,
-      quote: "We can be blind to the obvious, but we can also be blind to our blindness.",
-      author: "Daniel Kahneman"
+      "id": 77,
+      "quote": "We can be blind to the obvious, but we can also be blind to our blindness.",
+      "author": "Daniel Kahneman"
    },
    {
-      id: 78,
-      quote: "Hope is a good breakfast, but it is a bad supper.",
-      author: "Sir Francis Bacon"
+      "id": 78,
+      "quote": "Hope is a good breakfast, but it is a bad supper.",
+      "author": "Sir Francis Bacon"
    },
    {
-      id: 79,
-      quote: "We suffer more in our imagination than in our reality.",
-      author: "Seneca"
+      "id": 79,
+      "quote": "We suffer more in our imagination than in our reality.",
+      "author": "Seneca"
    },
    {
-      id: 80,
-      quote: "He who fears death is already dead.",
-      author: "Zarathustra"
+      "id": 80,
+      "quote": "He who fears death is already dead.",
+      "author": "Zarathustra"
    },
    {
-      id: 81,
-      quote: "The true measure of a man is how he treats someone who can do him absolutely no good.",
-      author: "Samuel Johnson"
+      "id": 81,
+      "quote": "The true measure of a man is how he treats someone who can do him absolutely no good.",
+      "author": "Samuel Johnson"
    },
    {
-      id: 82,
-      quote: "Being a little weird is just a natural side-effect of being awesome.",
-      author: "Sue Fitzmaurice"
+      "id": 82,
+      "quote": "Being a little weird is just a natural side-effect of being awesome.",
+      "author": "Sue Fitzmaurice"
    },
    {
-      id: 83,
-      quote: "Failure is not the opposite of success, it's part of success.",
-      author: "Arianna Huffington"
+      "id": 83,
+      "quote": "Failure is not the opposite of success, it's part of success.",
+      "author": "Arianna Huffington"
    },
    {
-      id: 84,
-      quote: "I don't want you to save me I want you to stand by my side as I save myself.",
-      author: "Unknown"
+      "id": 84,
+      "quote": "I don't want you to save me I want you to stand by my side as I save myself.",
+      "author": "Unknown"
    },
    {
-      id: 85,
-      quote: "Everything has beauty, but not everyone sees it.",
-      author: "Confucius"
+      "id": 85,
+      "quote": "Everything has beauty, but not everyone sees it.",
+      "author": "Confucius"
    },
    {
-      id: 86,
-      quote: "If you don't fight for what you want, don't cry for what you've lost.",
-      author: "Unknown"
+      "id": 86,
+      "quote": "If you don't fight for what you want, don't cry for what you've lost.",
+      "author": "Unknown"
    },
    {
-      id: 87,
-      quote: "Failure is success if we learn from it.",
-      author: "Malcolm S.Forbes"
+      "id": 87,
+      "quote": "Failure is success if we learn from it.",
+      "author": "Malcolm S.Forbes"
    },
    {
-      id: 88,
-      quote: "your salary is the bribe they give you to forget your dreams.",
-      author: "Unknown"
+      "id": 88,
+      "quote": "your salary is the bribe they give you to forget your dreams.",
+      "author": "Unknown"
    },
    {
-      id: 89,
-      quote: "Inside every self-made man is a poor kid who followed his dreams.",
-      author: "Unknown"
+      "id": 89,
+      "quote": "Inside every self-made man is a poor kid who followed his dreams.",
+      "author": "Unknown"
    },
    {
-      id: 90,
-      quote: "Before you say something, think how you would feel if someone said it to you.",
-      author: "Unknown"
+      "id": 90,
+      "quote": "Before you say something, think how you would feel if someone said it to you.",
+      "author": "Unknown"
    },
    {
-      id: 91,
-      quote: "Success comes from having dreams that are bigger than your fears.",
-      author: "Terry Litwiller"
+      "id": 91,
+      "quote": "Success comes from having dreams that are bigger than your fears.",
+      "author": "Terry Litwiller"
    },
    {
-      id: 92,
-      quote: "Arguing with a fool proves there are two.",
-      author: "Doris M. Smith"
+      "id": 92,
+      "quote": "Arguing with a fool proves there are two.",
+      "author": "Doris M. Smith"
    },
    {
-      id: 93,
-      quote: "No amount of guilt can change the past, and not amount of worrying can change the future.",
-      author: "Umar ibn Al-Khattab"
+      "id": 93,
+      "quote": "No amount of guilt can change the past, and not amount of worrying can change the future.",
+      "author": "Umar ibn Al-Khattab"
    },
    {
-      id: 94,
-      quote: "I can. I will. End of story.",
-      author: "Unknown"
+      "id": 94,
+      "quote": "I can. I will. End of story.",
+      "author": "Unknown"
    },
    {
-      id: 95,
-      quote: "A lion doesn't concern itself with the opinion of sheep",
-      author: "George R.R. Martin"
+      "id": 95,
+      "quote": "A lion doesn't concern itself with the opinion of sheep",
+      "author": "George R.R. Martin"
    },
    {
-      id: 96,
-      quote: "Complaining is silly. Either act or forget.",
-      author: "Stefan Sagmeister"
+      "id": 96,
+      "quote": "Complaining is silly. Either act or forget.",
+      "author": "Stefan Sagmeister"
    },
    {
-      id: 97,
-      quote: "Don't allow someone to treat you poorly just because you love them.",
-      author: "Unknown"
+      "id": 97,
+      "quote": "Don't allow someone to treat you poorly just because you love them.",
+      "author": "Unknown"
    },
    {
-      id: 98,
-      quote: "You will never be admired without being criticized first.",
-      author: "Grant Cardone"
+      "id": 98,
+      "quote": "You will never be admired without being criticized first.",
+      "author": "Grant Cardone"
    },
    {
-      id: 99,
-      quote: "Be the reason someone smiles today.",
-      author: "Unknown"
+      "id": 99,
+      "quote": "Be the reason someone smiles today.",
+      "author": "Unknown"
    },
    {
-      id: 100,
-      quote: "Stop worrying about people that aren't worried about you.",
-      author: "Unknown"
+      "id": 100,
+      "quote": "Stop worrying about people that aren't worried about you.",
+      "author": "Unknown"
    },
    {
-      id: 101,
-      quote: "A reader lives a thousand lives before he dies. The man who never reads lives only one.",
-      author: "George R.R. Martin"
+      "id": 101,
+      "quote": "A reader lives a thousand lives before he dies. The man who never reads lives only one.",
+      "author": "George R.R. Martin"
    }
 ]

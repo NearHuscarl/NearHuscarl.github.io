@@ -7,6 +7,7 @@
 /* body * * * * * *   { background-color: #004040 !important; } */
 /* body * * * * * * * { background-color: #003333 !important; } */
 
+
 body {
    display: flex;
    align-items: center;
@@ -46,19 +47,61 @@ h1 {
    color: #6e5691;
 }
 
-.button-list {
-   text-align: center;
+.content {
+  -webkit-animation-duration: .5s;
+  -webkit-animation-delay: 0s;
+  -webkit-animation-fill-mode: forwards;
 }
 
 #display-author {
+   font-weight: bold;
    text-align: right;
    margin-top: 1em;
    margin-right: 70px;
    color: #412f5d;
 }
 
-.content {
-  -webkit-animation-duration: .5s;
-  -webkit-animation-delay: 0s;
-  -webkit-animation-fill-mode: forwards;
+.button-list {
+   text-align: center;
+}
+
+button {
+   display: inline-block;
+   border: none;
+   border-radius: 4px;
+   line-height: 1.8;
+
+   padding: 5px 9px 5px 9px;
+   outline: none;
+
+   transition: all .2s;
+   transition-timing-function: ease-out;
+}
+
+#btn-quote {
+   background-color: #cdbfe3;
+   color: #412f5d;
+}
+
+#btn-quote:hover {
+   background-color: #412f5d;
+   color: #cdbfe3;
+}
+
+#btn-tweet {
+   background-color: #cdbfe3;
+   color: #412f5d;
+}
+
+#btn-tweet:hover {
+   background-color: #48aae6;
+   color: #e1f1fb;
+}
+
+.footer {
+   text-align: center;
+   font-size: 11px;
+
+   margin: 1em 1em;
+   color: #cdbfe3;
 }
