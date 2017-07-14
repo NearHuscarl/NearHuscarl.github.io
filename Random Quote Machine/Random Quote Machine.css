@@ -1,23 +1,14 @@
-/* body               { background-color: #198c8c !important; } */
-/* body *             { background-color: #008080 !important; } */
-/* body * *           { background-color: #007373 !important; } */
-/* body * * *         { background-color: #006666 !important; } */
-/* body * * * *       { background-color: #005959 !important; } */
-/* body * * * * *     { background-color: #004c4c !important; } */
-/* body * * * * * *   { background-color: #004040 !important; } */
-/* body * * * * * * * { background-color: #003333 !important; } */
-
-
 body {
    display: flex;
    align-items: center;
    justify-content: center;
+
    background: linear-gradient(#412f5d, #6e5691);
+   color: #cdbfe3;
 }
 
 h1 {
    text-align: center;
-   color: #cdbfe3;
 }
 
 .well {
@@ -101,7 +92,9 @@ button {
 .footer {
    text-align: center;
    font-size: 11px;
-
    margin: 1em 1em;
+}
+
+.footer a {
    color: #cdbfe3;
 }

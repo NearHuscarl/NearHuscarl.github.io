@@ -10,7 +10,7 @@ function createQuote(){
 
    initHeightFontSize();
 
-   var quoteJson = "https://raw.githubusercontent.com/NearHuscarl/FCC-Exercise-Archive/master/9.%20Intermediate%20Front%20End%20Development%20Projects/Random%20Quote%20Machine/quotes.json";
+   var quoteJson = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Random%20Quote%20Machine/quotes.json";
 
    $.getJSON(quoteJson, function(quoteList){
       var randNum = Math.floor(Math.random() * quoteList.length);
