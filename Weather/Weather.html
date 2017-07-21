@@ -4,7 +4,6 @@
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <script src="js/tether.min.js"></script>
    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
 
    <link rel="stylesheet" href="Weather.css" type="text/css">
@@ -18,9 +17,9 @@
    <span class="dateTime__time">12:04 PM</span>
 </div>
 
-<div class="container loading-section">
-   <div class="loading"></div>
-</div>
+<!-- <div class="container loading-section"> -->
+<!--    <div class="loading"></div> -->
+<!-- </div> -->
 
 <div class="container weather">
 
@@ -39,15 +38,13 @@
                <i class='fa fa-thermometer-half'></i>
             </span>
          </div>
-         <div class="weather__list">
-            <li>
-               <!-- <ul class="weather__wind">Wind: 148 kph, West</ul> -->
-               <ul class="weather__wind">Wind: 148 kph, South Southeast</ul>
-               <ul class="weather__cloud">Clouds: 40%</ul>
-               <ul class="weather__pressure">Pressure: 1010 hpa</ul>
-               <ul class="weather__humidity">Humidity: 70%</ul>
-            </li>
-         </div>
+         <li class="weather__list">
+            <!-- <ul class="weather__wind">Wind: 148 kph, West</ul> -->
+            <ul class="weather__wind">Wind: 148 kph, South Southeast</ul>
+            <ul class="weather__cloud">Clouds: 40%</ul>
+            <ul class="weather__pressure">Pressure: 1010 hpa</ul>
+            <ul class="weather__humidity">Humidity: 70%</ul>
+         </li>
       </div>
    </div>
 
@@ -58,59 +55,78 @@
 
 </div>
 
-<div class="container-fluid footer">
-   <span class="info">
-      <span class="tooltip-text">
+<div class="footer">
+   <span class="footer__info">
+      <i class="icon fa fa-info-circle"></i>
+      <span class="tooltip footer__infoTooltip--top">
          Click the temperature to convert between &deg;C and &deg;F<br>
          Click the wind speed to convert between kph and mph<br>
       </span>
-      <i class="fa fa-info-circle"></i>
    </span>
-   <!-- <span class="copyright"> -->
-   <!--    <p>Near Huscarl &copy; <span class="year"></span></p> -->
-   <!-- </span> -->
-   <span class="debug">
-      <i class="fa fa-bug"></i>
+   <span class="footer__portfolio">
+      <a class="footer__portfLink" href="https://nearhuscarl.github.io/Portfolio/Portfolio.html" target=_blank>
+         <i class="icon fa fa-id-badge"></i>
+      </a>
+      <span class="tooltip footer__portfolioTooltip--top">
+         Visit my portfolio
+      </span>
    </span>
-   <span class="local-weather">
-      <i class="fa fa-map-marker"></i>
+   <span class="footer__debug">
+      <i class="icon fa fa-bug"></i>
+      <span class="tooltip footer__bugTooltip--top">
+         --Debug Info--<br>
+         N/A
+      </span>
    </span>
-   <span class="random-weather">
-      <i class="wi wi-cloud-refresh"></i>
+   <span class="footer__localWeather">
+      <i class="icon fa fa-map-marker"></i>
+      <span class="tooltip footer__localTooltip--top">
+         If you have clicked the button on the left <br>
+         Click me to show to your current local weather again
+      </span>
+   </span>
+   <span class="footer__randWeather">
+      <i class="icon wi wi-cloud-refresh"></i>
+      <span class="tooltip footer__randTooltip--top">
+         Display weather on a random location
+      </span>
+   </span>
+   <span class="copyright footer__cpr">
+      Near Huscarl &copy; <span class="cpr-year"></span>
    </span>
 </div>
 
-info
-   click on the temperature to convert between celcius and friejl
-   written by near huscarl
+<!-- info -->
+<!--    click on the temperature to convert between celcius and friejl -->
+<!--    written by near huscarl -->
 
-my portfolio
+<!-- my portfolio -->
 
-debug
-   show debug info
-      lat, lon
-      country, city, district, street name
-   act as copy debug info button
+<!-- debug -->
+<!--    show debug info -->
+<!--       lat, lon -->
+<!--       country, city, district, street name -->
+<!--    act as copy debug info button -->
 
-randomize weather stat
-display current location weather again
+<!-- randomize weather stat -->
+<!-- display current location weather again -->
 
-   <!-- weather -->
-   <!-- temperature -->
-   <!-- icon for each component -->
+<!--    <1!-- weather --1> -->
+<!--    <1!-- temperature --1> -->
+<!--    <1!-- icon for each component --1> -->
 
-   <!-- color-effect -->
-   <!--  clear-day -   orange -->
-   <!--  clear-night - purple -->
-   <!--  cloudy -      blue -->
-   <!--  rain -        grey -->
-   <!--  storm -       black -->
-   <!--  snow -        lightblue -->
-   <!--  mist -        brown -->
+<!--    <1!-- color-effect --1> -->
+<!--    <1!--  clear-day -   orange --1> -->
+<!--    <1!--  clear-night - purple --1> -->
+<!--    <1!--  cloudy -      blue --1> -->
+<!--    <1!--  rain -        grey --1> -->
+<!--    <1!--  storm -       black --1> -->
+<!--    <1!--  snow -        lightblue --1> -->
+<!--    <1!--  mist -        brown --1> -->
 
-loading screen when get json
+<!-- loading screen when get json -->
 
-<!-- change from C <-> F -->
-smooth transition from C to F
-randomzie location button icon reload
-show current weather location again icon umbrella
+<!-- <1!-- change from C <-> F --1> -->
+<!-- smooth transition from C to F -->
+<!-- randomzie location button icon reload -->
+<!-- show current weather location again icon umbrella -->

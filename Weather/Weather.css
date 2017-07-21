@@ -10,9 +10,7 @@
 body {
    cursor: default;
    user-select: none;
-
    color: white;
-   text-shadow: 0px 0.5px 0px #adadad;
 
    /* fallback */
    background-color: #5fc4e4;
@@ -24,62 +22,6 @@ body {
    linear-gradient(to right, #8ba1c5, #8ba1c5),
    linear-gradient(to right, #75b2d4, #75b2d4),
    linear-gradient(to right, #5fc4e4, #5fc4e4);
-
-   /* linear-gradient(to right, #865356, #865356), */ 
-   /* linear-gradient(to right, #855461, #855461), */
-   /* linear-gradient(to right, #84566d, #84566d), */
-   /* linear-gradient(to right, #835779, #835779), */
-   /* linear-gradient(to right, #825984, #825984), */
-   /* linear-gradient(to right, #815a90, #815a90), */
-   /* linear-gradient(to right, #815c9c, #815c9c); */
-
-   /* linear-gradient(to right, #226982, #226982), */ 
-   /* linear-gradient(to right, #287088, #287088), */
-   /* linear-gradient(to right, #2f788e, #2f788e), */
-   /* linear-gradient(to right, #358094, #358094), */
-   /* linear-gradient(to right, #3c889a, #3c889a), */
-   /* linear-gradient(to right, #4290a0, #4290a0), */
-   /* linear-gradient(to right, #4998a6, #4998a6); */
-
-   /* linear-gradient(to right, #687a8b, #687a8b), */ 
-   /* linear-gradient(to right, #6e8191, #6e8191), */
-   /* linear-gradient(to right, #758897, #758897), */
-   /* linear-gradient(to right, #7c8f9d, #7c8f9d), */
-   /* linear-gradient(to right, #8396a3, #8396a3), */
-   /* linear-gradient(to right, #8a9da9, #8a9da9), */
-   /* linear-gradient(to right, #91a4af, #91a4af); */
-
-   /* linear-gradient(to right, #282828, #282828), */ 
-   /* linear-gradient(to right, #272c2e, #272c2e), */
-   /* linear-gradient(to right, #263034, #263034), */
-   /* linear-gradient(to right, #25353a, #25353a), */
-   /* linear-gradient(to right, #243940, #243940), */
-   /* linear-gradient(to right, #233d46, #233d46), */
-   /* linear-gradient(to right, #23424c, #23424c); */
-
-   /* linear-gradient(to right, #601e9e, #601e9e), */ 
-   /* linear-gradient(to right, #6429ac, #6429ac), */
-   /* linear-gradient(to right, #6835ba, #6835ba), */
-   /* linear-gradient(to right, #6c41c8, #6c41c8), */
-   /* linear-gradient(to right, #704cd6, #704cd6), */
-   /* linear-gradient(to right, #7458e4, #7458e4), */
-   /* linear-gradient(to right, #7864f2, #7864f2); */
-
-   /* linear-gradient(to right, #ff5d39, #ff5d39), */ 
-   /* linear-gradient(to right, #ff692f, #ff692f), */
-   /* linear-gradient(to right, #ff7526, #ff7526), */
-   /* linear-gradient(to right, #ff811c, #ff811c), */
-   /* linear-gradient(to right, #ff8d13, #ff8d13), */
-   /* linear-gradient(to right, #ff9909, #ff9909), */
-   /* linear-gradient(to right, #ffa500, #ffa500); */
-
-   /* linear-gradient(to right, #40e0d0, #40e0d0), */ 
-   /* linear-gradient(to right, #53e3d4, #53e3d4), */
-   /* linear-gradient(to right, #66e6d9, #66e6d9), */
-   /* linear-gradient(to right, #79e9de, #79e9de), */
-   /* linear-gradient(to right, #8cece2, #8cece2), */
-   /* linear-gradient(to right, #9fefe7, #9fefe7), */
-   /* linear-gradient(to right, #b2f2ec, #b2f2ec); */
 
    background-repeat:no-repeat;
 
@@ -110,9 +52,10 @@ body {
 /* } */
 
 .dateTime {
-   height: 50px;
+   height: 30px;
    position: relative;
    font-size: 20px;
+   text-shadow: 0px 0.5px 0px #adadad;
 }
 
 .dateTime__date {
@@ -133,7 +76,8 @@ body {
    text-align: center;
    font-size: 70px;
    margin-top: 12;
-   margin-bottom: 55;
+
+   text-shadow: 0px 0.5px 0px #adadad;
    /* transform: rotateX(90deg); */
    /* transition: transform .5s; */
 }
@@ -147,7 +91,13 @@ body {
 
 .weather__icon {
    font-size: 240px;
-   margin: 0 20;
+   text-shadow: 0px 0.5px 0px #adadad;
+   padding: 55 10 40 10;
+}
+
+.weather__stat {
+   box-shadow: inset 0 0 100px 1000px rgba(0, 0, 0, 0.15);
+   padding: 10;
 }
 
 .weather__temp {
@@ -155,16 +105,16 @@ body {
    line-height: 85%;
    cursor: pointer;
    font-family: monospace;
+   text-shadow: 0px 0.5px 0px #adadad;
 }
 
 .weather__tempIcon {
-   margin-left: -40;
+   margin-left: -30;
 }
 
 .weather__list {
    list-style-type: none;
    font-size: 14px;
-   text-shadow: initial;
 }
 
 ul {
@@ -176,56 +126,26 @@ ul {
    cursor: pointer;
 }
 
-/*    ---mobile---   */
-/* [ weather__icon ] */
-/* [ weather__temp ] */
-/* [ weather__list ] */
-@media screen and (max-width: 637px) {
-/* @media screen and (max-width: 804px) { */
-   .weather__stat {
-      text-align: center;
-   }
-}
-
-/*            ---tablet---         */
-/* [         weather__icon       ] */
-/* [ weather__temp weather__list ] */
+/* mobile tablet */
 @media screen and (max-width: 768px) {
 /* @media screen and (max-width: 935px) { */
    .weather__stat {
-      margin-top: 50;
-      line-height: 85%;
-   }
-   .weather__temp {
-      display: inline-block;
-      font-size: 75px;
-      margin-left: -30;
-   }
-   .weather__list {
-      display: inline-block;
-   }
-   .weather__desc {
       margin-top: 0;
    }
 }
 
-/*            ---desktop---          */
-/* [ |weather__icon| weather__temp ] */
-/* [ |weather__icon| weather__list ] */
+/* desktop */
 @media screen and (min-width: 769px) {
 /* @media screen and (min-width: 936px) { */
    .weather__stat {
       margin-top: -20;
-   }
-   .weather__desc {
-      margin-top: 40;
    }
 }
 
 .weather__miscInfo {
    text-align: center;
    margin-bottom: 80px;
-   /* box-shadow: inset 0 0 100px 1000px rgba(50, 153, 153, 0.15); */
+   text-shadow: 0px 0.5px 0px #adadad;
 }
 
 .weather__desc {
@@ -240,45 +160,96 @@ ul {
    position: fixed;
    bottom: 0;
    width: 100%;
-
-   padding: 5 5;
+   padding: 5;
+   text-shadow: 0px 0.5px 0px #adadad;
+   text-align: center;
 }
 
-.info .tooltip-text {
-   visibility: hidden;
-   width: 305px;
-   background-color: black;
-   color: white;
-   border-radius: 4px;
-   /* text-align: center; */
-   padding: 7 7;
-   font-size: 12px;
+.icon {
+   font-size: 20;
+   cursor: pointer;
+   margin: 10 10;
+   transition: transform 0.25s;
+}
 
-   z-index: 1;
+.icon:hover {
+   transform: scale(1.25);
+}
+
+.tooltip {
    position: absolute;
-   bottom: 90%;
+   color: white;
+   background-color: black;
+   border-radius: 4px;
+   padding: 7 7;
+   text-align: center;
+   font-size: 12px;
+   z-index: 1;
 
+   /* width: 200px; */
+   /* height: 100px; */
+
+   visibility: hidden;
    opacity: 0;
    transform: translateY(8px);
    transition: all 0.25s ease-in;
 
    text-shadow: initial;
-   box-shadow: 0px 0.5px 0px #eeeeee;
 }
 
+.footer__infoTooltip--top {
+   width: 310px;
+   bottom: 100%;
+   left: 0%;
+}
+
+.footer__portfolioTooltip--top {
+   width: 110px;
+   bottom: 100%;
+   left: 0%;
+}
+
+.footer__bugTooltip--top {
+   width: 200;
+   bottom: 100%;
+   right: 0%;
+
+   text-align: left;
+}
+
+.footer__localTooltip--top {
+   bottom: 100%;
+   width: 300;
+   right: -120%;
+}
+
+.footer__randTooltip--top {
+   bottom: 100%;
+   width: 220;
+   right: -170%;
+}
 /* arrow hack */
-.tooltip-text:after {
+.tooltip:after {
    content: " ";
    position: absolute;
    top: 100%;
-   left: 6%;
    margin-left: -5px;
    border-width: 5px;
    border-style: solid;
    border-color: black transparent transparent transparent;
 }
 
-.info:hover .tooltip-text {
+.footer__infoTooltip--top:after      { left:   6%; }
+.footer__portfolioTooltip--top:after { left:  16%; }
+.footer__bugTooltip--top:after       { right:  7%; }
+.footer__localTooltip--top:after     { right: 16%; }
+.footer__randTooltip--top:after      { right: 40%; }
+
+.footer__portfLink, .footer__portfLink:hover {
+   color: white;
+}
+
+.icon:hover ~ .tooltip, .footer__portfLink:hover ~ .tooltip {
    visibility: visible;
 
    opacity: 0.9;
@@ -286,41 +257,22 @@ ul {
    transition: all 0.25s ease-in;
 } 
 
-.footer > * > i {
-   font-size: 20;
-   cursor: pointer;
-   margin: 10 10;
-   transition: transform 0.25s;
-}
-
-.footer > 
-   .info:hover > i,
-   .random-weather:hover > i, 
-   .local-weather:hover > i, 
-   .debug:hover > i {
-   transform: scale(1.25);
-}
-
-.info {
+.footer__info, .footer__portfolio {
+   position: relative;
    float: left;
-
-   /* position: absolute; */
-   /* left: 10; */
-   /* bottom: 10; */
 }
 
-.local-weather {
+.footer__randWeather, .footer__localWeather, .footer__debug {
+   position: relative;
    float: right;
 }
 
-.random-weather {
-   float: right;
+.copyright {
+   position: absolute;
+   font-size: 12px;
+   bottom: 15;
 }
 
-.debug {
-   float: right;
-
-   /* position: absolute; */
-   /* right: 10; */
-   /* bottom: 10; */
+.footer__cpr {
+   margin-left: -40;
 }

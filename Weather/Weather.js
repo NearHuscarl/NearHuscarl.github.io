@@ -1,12 +1,28 @@
 (function(){
 
-   let longitude = 0.0,
-      latitude = 0.0,
+   let lon = 0.0,
+      lat = 0.0,
       date = new Date(),
       tempUnit = "C",
       windUnit = "kph",
-      weatherFlag = false,
-      locationFlag = false;
+      debug = {
+         lat: 0.0,
+         lon: 0.0,
+         address: ["N/A","N/A","N/A","N/A","N/A","N/A"],
+         weather: {
+            id: 0,
+            main: "N/A",
+            desc: "N/A",
+            temp: 0,
+            pressure: 0,
+            humidity: 0,
+            wind: {
+               speed: 0.0,
+               deg: 0
+            },
+            clouds: 0
+         }
+      };
 
    function initBackgroundColor(color)
    {
@@ -21,12 +37,21 @@
       $("body").css("background-image", cssValue);
    }
 
-   function initWeatherHTML(weather)
+   function initWeatherHTML(json)
    {
-      let bgColor = getBackgroundColor(weather.id),
-         thermoIcon = getThermoIcon(weather.temp, tempUnit),
+      let id         = json.weather[0].id,
+         description = json.weather[0].description,
+         temp        = Math.round(json.main.temp),
+         wind        = parseFloat((json.wind.speed * 3600 / 1000).toFixed(1)), // convert from m/s to k/h
+         degree      = json.wind.deg, 
+         cloud       = json.clouds.all,
+         pressure    = json.main.pressure,
+         humidity    = json.main.humidity;
+
+      let bgColor = getBackgroundColor(id),
+         thermoIcon = getThermoIcon(temp, tempUnit),
          attr = " style='width: 20; text-align:center' ",
-         windIcon = getWindScaleIcon(weather.wind, windUnit),
+         windIcon = getWindScaleIcon(wind, windUnit),
          cloudIcon =    "<i" + attr + "class='wi wi-sunrise'></i>",
          pressureIcon = "<i" + attr + "class='wi wi-barometer'></i>",
          humidityIcon = "<i" + attr + "class='wi wi-humidity'></i>";
@@ -34,16 +59,104 @@
       windIcon = windIcon.slice(0, 2) + attr + windIcon.slice(2); // add attribute to wind icon
 
       initBackgroundColor(bgColor);
-      $(".weather__desc").html(weather.description);
-      $(".weather__tempStat").html(weather.temp + "&deg;" + tempUnit);
+      $(".weather__desc").html(description);
+      $(".weather__tempStat").html(temp + "&deg;" + tempUnit);
       $(".weather__tempIcon").html(thermoIcon);
-      $(".weather__icon").html(getWeatherIcon(weather.id, weather.wind, windUnit));
-      $(".weather__wind").html(windIcon + " Wind: " + weather.wind + " " + windUnit + getWindDir(weather.degree));
-      $(".weather__cloud").html(cloudIcon + " Clouds: " + weather.cloud + "%");
-      $(".weather__pressure").html(pressureIcon + " Pressure: " + weather.pressure + " hpa");
-      $(".weather__humidity").html(humidityIcon + " Humidity: " + weather.humidity + "%");
+      $(".weather__icon").html(getWeatherIcon(id, wind, windUnit));
+      $(".weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + getWindDir(degree));
+      $(".weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
+      $(".weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
+      $(".weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
+   }
 
-      weatherFlag = true;
+   function initCityHTML(json)
+   {
+      let cityIndex = 4,
+         districtIndex = 3,
+         fallback = 0;
+
+      // not every country has this administrative level (5) -> if so long_name will return a number
+      if(Number.isInteger(parseInt(json.results[0].address_components[5].long_name))) {
+         fallback++;
+      } // same as above case, also applied with all below cases
+      if(Number.isInteger(parseInt(json.results[0].address_components[4].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[3].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[2].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[1].long_name))) {
+         fallback++;
+      }
+      cityIndex-= fallback;
+      districtIndex-= fallback;
+
+      let district = json.results[0].address_components[districtIndex].long_name,
+         city      = json.results[0].address_components[cityIndex].long_name;
+
+      $(".weather__city").html(city + " - " + district);
+   }
+
+   function initCountryHTML(json)
+   {
+      let countryIndex = 5,
+         cityIndex = 4,
+         fallback = 0;
+
+      // not every country has this administrative level (5) -> if so long_name will return a number
+      if(Number.isInteger(parseInt(json.results[0].address_components[5].long_name))) {
+         fallback++;
+      } // same as above case, also applied with all below cases
+      if(Number.isInteger(parseInt(json.results[0].address_components[4].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[3].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[2].long_name))) {
+         fallback++;
+      }
+      if(Number.isInteger(parseInt(json.results[0].address_components[1].long_name))) {
+         fallback++;
+      }
+      countryIndex-= fallback;
+      cityIndex-= fallback;
+
+      let city   = json.results[0].address_components[cityIndex].long_name,
+         country = json.results[0].address_components[countryIndex].long_name;
+
+      $(".weather__city").html(city + " - " + country);
+   }
+
+   function initDebugHTML()
+   {
+      var sp = "&nbsp;&nbsp;";
+
+      $(".footer__bugTooltip--top").html(
+         "---Debug Info---<br>" +
+         "latitude:  " + debug.lat + "<br>" +
+         "longitude: " + debug.lon + "<br>" +
+         "address_0: " + debug.address[0] + "<br>" +
+         "address_1: " + debug.address[1] + "<br>" +
+         "address_2: " + debug.address[2] + "<br>" +
+         "address_3: " + debug.address[3] + "<br>" +
+         "address_4: " + debug.address[4] + "<br>" +
+         "address_5: " + debug.address[5] + "<br>" +
+         "weather: <br>" +
+         sp + "id: " + debug.weather.id + "<br>" +
+         sp + "main: " + debug.weather.main + "<br>" +
+         sp + "desc: " + debug.weather.desc + "<br>" +
+         sp + "temp: " + debug.weather.temp + "<br>" +
+         sp + "pressure: " + debug.weather.pressure + "<br>" +
+         sp + "humidity: " + debug.weather.humidity + "<br>" +
+         sp + "wind: <br>" +
+         sp + sp + "speed: " + debug.weather.wind.speed + "<br>" +
+         sp + sp + "deg: " + debug.weather.wind.deg + "<br>" +
+         sp + "clouds: " + debug.weather.clouds + "<br>"
+      );
    }
 
    function getThermoIcon(temp, tempUnit)
@@ -285,32 +398,21 @@
       let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
          url = "http://api.openweathermap.org/data/2.5/weather?lat=" + lat + "&lon=" + lon + weatherApiKey + "&units=metric";
 
-      $.getJSON(url, function(weatherJson){
-         let weather = {
-            id:          weatherJson.weather[0].id,
-            description: weatherJson.weather[0].description,
-            temp:        Math.round(weatherJson.main.temp),
-            wind:        parseFloat((weatherJson.wind.speed * 3600 / 1000).toFixed(1)), // convert from m/s to k/h
-            degree:      weatherJson.wind.deg, 
-            cloud:       weatherJson.clouds.all,
-            pressure:    weatherJson.main.pressure,
-            humidity:    weatherJson.main.humidity
-         }
+      $.getJSON(url, function(json){
 
-         callback(weather);
-         console.log(weatherJson);
+         debug.weather.id          = json.weather[0].id;
+         debug.weather.main        = json.weather[0].main;
+         debug.weather.desc        = json.weather[0].description;
+         debug.weather.temp        = Math.round(json.main.temp);
+         debug.weather.pressure    = json.main.pressure;
+         debug.weather.humidity    = json.main.humidity;
+         debug.weather.wind.speed  = parseFloat((json.wind.speed * 3600 / 1000).toFixed(1)); // convert from m/s to k/h
+         debug.weather.wind.deg    = json.wind.deg;
+         debug.weather.clouds      = json.clouds.all;
+
+         initDebugHTML();
+         callback(json);
       });
-   }
-
-   function initCityHTML(nameList)
-   {
-      $("weather__city").html(nameList.city + " - " + nameList.district);
-      cityFlag = true;
-   }
-
-   function initCountryHTML(nameList)
-   {
-      $("weather__city").html(nameList.city + " - " + nameList.country);
    }
 
    function getLocationInfo(lon, lat, callback)
@@ -319,64 +421,16 @@
          url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + lat + "," + lon + "&key=" + apiKey;
 
       $.getJSON(url, function(geocodeJson){
+         debug.address[0] = geocodeJson.results[0].address_components[0].long_name;
+         debug.address[1] = geocodeJson.results[0].address_components[1].long_name;
+         debug.address[2] = geocodeJson.results[0].address_components[2].long_name;
+         debug.address[3] = geocodeJson.results[0].address_components[3].long_name;
+         debug.address[4] = geocodeJson.results[0].address_components[4].long_name;
+         debug.address[5] = geocodeJson.results[0].address_components[5].long_name;
 
-         let country = 5,
-            city = 4,
-            district = 3,
-            fallback = 0;
-
-         // not every country has this administrative level (5) -> if so long_name will return a number
-         if(Number.isInteger(parseInt(geocodeJson.results[0].address_components[5].long_name))) {
-            fallback++;
-         } // same as above case, also applied with all below cases
-         if(Number.isInteger(parseInt(geocodeJson.results[0].address_components[4].long_name))) {
-            fallback++;
-         }
-         if(Number.isInteger(parseInt(geocodeJson.results[0].address_components[3].long_name))) {
-            fallback++;
-         }
-         if(Number.isInteger(parseInt(geocodeJson.results[0].address_components[2].long_name))) {
-            fallback++;
-         }
-         if(Number.isInteger(parseInt(geocodeJson.results[0].address_components[1].long_name))) {
-            fallback++;
-         }
-         country-= fallback;
-         city-= fallback;
-         district-= fallback;
-
-         let name = {
-            district:  geocodeJson.results[0].address_components[3].long_name,
-            city:   geocodeJson.results[0].address_components[4].long_name,
-            country:   geocodeJson.results[0].address_components[5].long_name
-         };
-
-         callback(name);
+         getWeather(lon, lat, initWeatherHTML);
+         callback(geocodeJson);
       })
-   }
-
-   function convertWindSpeedUnit(num, unit)
-   {
-      if(unit === "kph")
-      {
-         return parseFloat((num * 0.621371).toFixed(1));
-      }
-      else if(unit === "mph")
-      {
-         return parseFloat((num * 1.60934).toFixed(1));
-      }
-   }
-
-   function convertTempUnit(num, unit)
-   {
-      if(unit === "C")
-      {
-         return Math.round((num - 32) / 1.8);
-      }
-      else if(unit === "F")
-      {
-         return Math.round(num * 1.8 + 32);
-      }
    }
 
    function getBackgroundColor(id)
@@ -414,6 +468,30 @@
       }
    }
 
+   function convertWindSpeedUnit(num, unit)
+   {
+      if(unit === "kph")
+      {
+         return parseFloat((num * 0.621371).toFixed(1));
+      }
+      else if(unit === "mph")
+      {
+         return parseFloat((num * 1.60934).toFixed(1));
+      }
+   }
+
+   function convertTempUnit(num, unit)
+   {
+      if(unit === "C")
+      {
+         return Math.round((num - 32) / 1.8);
+      }
+      else if(unit === "F")
+      {
+         return Math.round(num * 1.8 + 32);
+      }
+   }
+
    function setTime()
    {
       $(".dateTime__date").html(getDay() + " " + date.getDate() + " " + getMonth());
@@ -427,16 +505,13 @@
       let hour = date.getHours(),
          minute = ("0" + date.getMinutes()).slice(-2);
 
-      if(date.getHours() === 12)
-      {
+      if(date.getHours() === 12) {
          return hour + ":" + minute + " PM";
       }
-      else if(date.getHours() > 12)
-      {
+      else if(date.getHours() > 12) {
          return hour - 12 + ":" + minute + " PM";
       }
-      else
-      {
+      else {
          return hour + ":" + minute + " AM";
       }
    }
@@ -471,13 +546,13 @@
 
    function onClickWind()
    {
-      let windIcon = $(".weatherInfo__wind").html().match(/^.*?(<\/i>)/)[0],
-         windSpeed = parseFloat($(".weatherInfo__wind").text().trim().slice(6)),
-         windDir = $(".weatherInfo__wind").html().match(/,.*$/)[0];
+      let windIcon = $(".weather__wind").html().match(/^.*?(<\/i>)/)[0],
+         windSpeed = parseFloat($(".weather__wind").text().trim().slice(6)),
+         windDir = $(".weather__wind").html().match(/,.*$/)[0];
 
       windUnit = (windUnit === "kph" ? "mph" : "kph");
       windSpeed = convertWindSpeedUnit(windSpeed, windUnit);
-      $("weatherInfo__wind").html(windIcon + " Wind: " + windSpeed + " " + windUnit + windDir);
+      $(".weather__wind").html(windIcon + " Wind: " + windSpeed + " " + windUnit + windDir);
    }
 
    function onClickRandom()
@@ -489,7 +564,9 @@
             latitude = cityJson[randNum].lat,
             longitude = cityJson[randNum].lon;
 
-         getWeather(longitude, latitude, initWeatherHTML);
+         debug.lon = longitude;
+         debug.lat = latitude;
+
          getLocationInfo(longitude, latitude, initCountryHTML);
       });
    }
@@ -497,6 +574,7 @@
    $(document).ready(function(){
 
       setTime();
+      $(".cpr-year").text(new Date().getFullYear());
 
       if(navigator.geolocation)
       {
@@ -504,22 +582,17 @@
 
             longitude = position.coords.longitude;
             latitude = position.coords.latitude;
+            debug.lon = longitude;
+            debug.lat = latitude;
 
             $("h1").text("Current Weather");
 
-            getWeather(longitude, latitude, initWeatherHTML);
             getLocationInfo(longitude, latitude, initCityHTML);
             setInterval(setTime, 60000); // Update time every 60 seconds
 
             $(".weather__temp").on("click", onClickTemp);
-            $(".weatherInfo__wind").on("click", onClickWind);
-            $(".debug").on("click", onClickRandom);
-
-            if(weatherFlag === true && cityFlag === true)
-            {
-               // Statements
-            }
-
+            $(".weather__wind").on("click", onClickWind);
+            $(".footer__randWeather").on("click", onClickRandom);
          });
       }
       else
