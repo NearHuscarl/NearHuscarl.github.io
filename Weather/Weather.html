@@ -1,0 +1,116 @@
+<head>
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script src="js/tether.min.js"></script>
+   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+
+   <link rel="stylesheet" href="Weather.css" type="text/css">
+   <link rel="stylesheet" href="css/weather-icons.min.css" type="text/css">
+   <link rel="stylesheet" href="css/weather-icons-wind.min.css" type="text/css">
+   <script src="Weather.js"></script>
+</head>
+
+<div class="container dateTime">
+   <span class="dateTime__date">Fri 21 Jul</span>
+   <span class="dateTime__time">12:04 PM</span>
+</div>
+
+<div class="container loading-section">
+   <div class="loading"></div>
+</div>
+
+<div class="container weather">
+
+   <h1 class="weather__title">Current Weather</h1>
+
+   <div class="weather__info">
+      <div class="weather__icon">
+         <!-- <i class="wi wi-rain"></i> -->
+         <i class='wi wi-day-rain'></i>
+      </div>
+      <div class="weather__stat">
+         <div class="weather__temp">
+            <!-- 12345 -->
+            <span class="weather__tempStat">30&deg;C</span>
+            <span class="weather__tempIcon">
+               <i class='fa fa-thermometer-half'></i>
+            </span>
+         </div>
+         <div class="weather__list">
+            <li>
+               <!-- <ul class="weather__wind">Wind: 148 kph, West</ul> -->
+               <ul class="weather__wind">Wind: 148 kph, South Southeast</ul>
+               <ul class="weather__cloud">Clouds: 40%</ul>
+               <ul class="weather__pressure">Pressure: 1010 hpa</ul>
+               <ul class="weather__humidity">Humidity: 70%</ul>
+            </li>
+         </div>
+      </div>
+   </div>
+
+   <div class="weather__miscInfo">
+      <div class="weather__desc">scattered clouds</div>
+      <div class="weather__city">Tan An - Long An</div>
+   </div>
+
+</div>
+
+<div class="container-fluid footer">
+   <span class="info">
+      <span class="tooltip-text">
+         Click the temperature to convert between &deg;C and &deg;F<br>
+         Click the wind speed to convert between kph and mph<br>
+      </span>
+      <i class="fa fa-info-circle"></i>
+   </span>
+   <!-- <span class="copyright"> -->
+   <!--    <p>Near Huscarl &copy; <span class="year"></span></p> -->
+   <!-- </span> -->
+   <span class="debug">
+      <i class="fa fa-bug"></i>
+   </span>
+   <span class="local-weather">
+      <i class="fa fa-map-marker"></i>
+   </span>
+   <span class="random-weather">
+      <i class="wi wi-cloud-refresh"></i>
+   </span>
+</div>
+
+info
+   click on the temperature to convert between celcius and friejl
+   written by near huscarl
+
+my portfolio
+
+debug
+   show debug info
+      lat, lon
+      country, city, district, street name
+   act as copy debug info button
+
+randomize weather stat
+display current location weather again
+
+   <!-- weather -->
+   <!-- temperature -->
+   <!-- icon for each component -->
+
+   <!-- color-effect -->
+   <!--  clear-day -   orange -->
+   <!--  clear-night - purple -->
+   <!--  cloudy -      blue -->
+   <!--  rain -        grey -->
+   <!--  storm -       black -->
+   <!--  snow -        lightblue -->
+   <!--  mist -        brown -->
+
+loading screen when get json
+
+<!-- change from C <-> F -->
+smooth transition from C to F
+randomzie location button icon reload
+show current weather location again icon umbrella
