@@ -117,7 +117,7 @@ body {
    font-size: 14px;
 }
 
-ul {
+.weather__list > * {
    margin: 5;
    padding-left: 0;
 }
@@ -128,15 +128,15 @@ ul {
 
 /* mobile tablet */
 @media screen and (max-width: 768px) {
-/* @media screen and (max-width: 935px) { */
    .weather__stat {
       margin-top: 0;
+      width: 100%;
+      text-align: center;
    }
 }
 
 /* desktop */
 @media screen and (min-width: 769px) {
-/* @media screen and (min-width: 936px) { */
    .weather__stat {
       margin-top: -20;
    }
@@ -193,38 +193,35 @@ ul {
    opacity: 0;
    transform: translateY(8px);
    transition: all 0.25s ease-in;
-
-   text-shadow: initial;
 }
 
-.footer__infoTooltip--top {
+.tooltip--top {
+   bottom: 100%;
+}
+
+.footer__infoTooltip {
    width: 310px;
-   bottom: 100%;
    left: 0%;
 }
 
-.footer__portfolioTooltip--top {
+.footer__portfolioTooltip {
    width: 110px;
-   bottom: 100%;
    left: 0%;
 }
 
-.footer__bugTooltip--top {
+.footer__bugTooltip {
    width: 200;
-   bottom: 100%;
    right: 0%;
 
    text-align: left;
 }
 
-.footer__localTooltip--top {
-   bottom: 100%;
+.footer__localTooltip {
    width: 300;
    right: -120%;
 }
 
-.footer__randTooltip--top {
-   bottom: 100%;
+.footer__randTooltip {
    width: 220;
    right: -170%;
 }
@@ -239,17 +236,19 @@ ul {
    border-color: black transparent transparent transparent;
 }
 
-.footer__infoTooltip--top:after      { left:   6%; }
-.footer__portfolioTooltip--top:after { left:  16%; }
-.footer__bugTooltip--top:after       { right:  7%; }
-.footer__localTooltip--top:after     { right: 16%; }
-.footer__randTooltip--top:after      { right: 40%; }
+.footer__infoTooltip:after      { left:   6%; }
+.footer__portfolioTooltip:after { left:  16%; }
+.footer__bugTooltip:after       { right:  7%; }
+.footer__localTooltip:after     { right: 16%; }
+.footer__randTooltip:after      { right: 40%; }
 
-.footer__portfLink, .footer__portfLink:hover {
+.footer__portfLink, 
+.footer__portfLink:hover {
    color: white;
 }
 
-.icon:hover ~ .tooltip, .footer__portfLink:hover ~ .tooltip {
+.icon:hover              ~ .tooltip, 
+.footer__portfLink:hover ~ .tooltip {
    visibility: visible;
 
    opacity: 0.9;
@@ -257,12 +256,15 @@ ul {
    transition: all 0.25s ease-in;
 } 
 
-.footer__info, .footer__portfolio {
+.footer__info, 
+.footer__portfolio {
    position: relative;
    float: left;
 }
 
-.footer__randWeather, .footer__localWeather, .footer__debug {
+.footer__randWeather, 
+.footer__localWeather,
+.footer__debug {
    position: relative;
    float: right;
 }
