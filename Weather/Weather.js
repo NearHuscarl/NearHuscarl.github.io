@@ -10,7 +10,7 @@
       debug = {
          lat: 0.0,
          lon: 0.0,
-         address: ["N/A","N/A","N/A","N/A","N/A","N/A"],
+         address: ["N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"],
          weather: {
             id: 0,
             main: "N/A",
@@ -75,12 +75,11 @@
 
    function initCityHTML(json)
    {
-      let cityIndex = 4,
-         districtIndex = 3,
+      // not every country has this administrative level (5 or 6..) -> if so long_name will return a number
+      let numOfAddressComp = json.results[0].address_components.length,
+         cityIndex = numOfAddressComp - 2,
+         districtIndex = cityIndex - 1,
          fallback = 0;
-
-      // not every country has this administrative level (5) -> if so long_name will return a number
-      let numOfAddressComp = json.results[0].address_components.length;
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
@@ -105,12 +104,13 @@
 
    function initCountryHTML(json)
    {
-      let countryIndex = 5,
-         cityIndex = 4,
-         fallback = 0;
+      console.log(json);
 
-      // not every country has this administrative level (5) -> if so long_name will return a number
-      let numOfAddressComp = json.results[0].address_components.length;
+      // not every country has this administrative level (5 or 6..) -> if so long_name will return a number
+      let numOfAddressComp = json.results[0].address_components.length,
+         countryIndex = numOfAddressComp - 1,
+         cityIndex = countryIndex - 1,
+         fallback = 0;
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
@@ -137,12 +137,17 @@
       console.log(geocodeJson);
       console.log(weatherJson);
 
-      debug.address[0] = geocodeJson.results[0].address_components[0].long_name;
-      debug.address[1] = geocodeJson.results[0].address_components[1].long_name;
-      debug.address[2] = geocodeJson.results[0].address_components[2].long_name;
-      debug.address[3] = geocodeJson.results[0].address_components[3].long_name;
-      debug.address[4] = geocodeJson.results[0].address_components[4].long_name;
-      debug.address[5] = geocodeJson.results[0].address_components[5].long_name;
+      for(let i = 0; i < 8; i++)
+      {
+         debug.address[i] = "N/A";
+      }
+
+      let numOfAddressComp = geocodeJson.results[0].address_components.length;
+      for(let i = 0; i < numOfAddressComp; i++)
+      {
+         debug.address[i] = geocodeJson.results[0].address_components[i].long_name;
+      }
+
       debug.lon = geocodeJson.results[0].geometry.location.lng;
       debug.lat = geocodeJson.results[0].geometry.location.lat;
 
@@ -168,6 +173,8 @@
          "address_3: " + debug.address[3] + "<br>" +
          "address_4: " + debug.address[4] + "<br>" +
          "address_5: " + debug.address[5] + "<br>" +
+         "address_6: " + debug.address[6] + "<br>" +
+         "address_7: " + debug.address[7] + "<br>" +
          "weather: <br>" +
          sp + "id: " + debug.weather.id + "<br>" +
          sp + "main: " + debug.weather.main + "<br>" +
@@ -575,7 +582,7 @@
 
    function onClickRandom()
    {
-      let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/cityList.json";
+      let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/city_list.mini.json";
 
       $.getJSON(url, function(cityJson){
          let randNum = Math.floor(Math.random() * (1947 + 1)),
