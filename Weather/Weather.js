@@ -423,7 +423,7 @@
       coords.lat = geocodeJson.results[0].geometry.location.lat;
 
       let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
-         url = "http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+         url = "http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric&callback=?";
 
       $.getJSON(url, function(weatherJson){
 
