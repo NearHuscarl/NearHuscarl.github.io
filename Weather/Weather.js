@@ -80,21 +80,20 @@
          fallback = 0;
 
       // not every country has this administrative level (5) -> if so long_name will return a number
-      if(Number.isInteger(parseInt(json.results[0].address_components[5].long_name))) {
-         fallback++; // same as above case, also applied with all below cases
-         if(Number.isInteger(parseInt(json.results[0].address_components[4].long_name))) {
+      let numOfAddressComp = json.results[0].address_components.length;
+
+      for(let i = numOfAddressComp-1; i >= 1; i--)
+      {
+         if(Number.isInteger(parseInt(json.results[0].address_components[i].long_name))) 
+         {
             fallback++;
-            if(Number.isInteger(parseInt(json.results[0].address_components[3].long_name))) {
-               fallback++;
-               if(Number.isInteger(parseInt(json.results[0].address_components[2].long_name))) {
-                  fallback++;
-                  if(Number.isInteger(parseInt(json.results[0].address_components[1].long_name))) {
-                     fallback++;
-                  }
-               }
-            }
          }
-      } 
+         else
+         {
+            break;
+         }
+      }
+
       cityIndex-= fallback;
       districtIndex-= fallback;
 
@@ -111,19 +110,17 @@
          fallback = 0;
 
       // not every country has this administrative level (5) -> if so long_name will return a number
-      if(Number.isInteger(parseInt(json.results[0].address_components[5].long_name))) {
-         fallback++; // same as above case, also applied with all below cases
-         if(Number.isInteger(parseInt(json.results[0].address_components[4].long_name))) {
+      let numOfAddressComp = json.results[0].address_components.length;
+
+      for(let i = numOfAddressComp-1; i >= 1; i--)
+      {
+         if(Number.isInteger(parseInt(json.results[0].address_components[i].long_name))) 
+         {
             fallback++;
-            if(Number.isInteger(parseInt(json.results[0].address_components[3].long_name))) {
-               fallback++;
-               if(Number.isInteger(parseInt(json.results[0].address_components[2].long_name))) {
-                  fallback++;
-                  if(Number.isInteger(parseInt(json.results[0].address_components[1].long_name))) {
-                     fallback++;
-                  }
-               }
-            }
+         }
+         else
+         {
+            break;
          }
       }
       countryIndex-= fallback;
@@ -423,7 +420,7 @@
       coords.lat = geocodeJson.results[0].geometry.location.lat;
 
       let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
-         url = "https://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+         url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
 
       $.getJSON(url, function(weatherJson){
 
