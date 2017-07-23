@@ -1,0 +1,101 @@
+<head>
+   <link rel="stylesheet" href="tooltip.css" type="text/css">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<style>
+   body {
+      padding-top: 70;
+      background-color: silver;
+   }
+   .container {
+      text-align: center;
+      padding: 50;
+      margin-bottom: 50;
+   }
+   .wrapper {
+      display: inline-block;
+      position: relative;
+   }
+   .tooltip-trigger {
+      border-style: solid;
+      font-size: 20;
+      margin: 10;
+   }
+</style>
+
+<div class="container">
+
+   <span class="wrapper">
+      <span class="tooltip-trigger">Hover to trigger tooltip</span>
+      <span class="tooltip">This is a default tooltip</span>
+   </span>
+
+   <span class="wrapper">
+      <span class="tooltip-trigger">Hover to trigger tooltip</span>
+      <span class="tooltip tooltip--top">This is a top tooltip</span>
+   </span>
+
+   <span class="wrapper">
+      <span class="tooltip-trigger">Hover to trigger tooltip</span>
+      <span class="tooltip tooltip--bottom">This is a bottom tooltip</span>
+   </span>
+
+   <span class="wrapper">
+      <span class="tooltip-trigger">Hover to trigger tooltip</span>
+      <span class="tooltip tooltip--left">This is a left tooltip</span>
+   </span>
+
+   <span class="wrapper">
+      <span class="tooltip-trigger">Hover to trigger tooltip</span>
+      <span class="tooltip tooltip--right">This is a right tooltip</span>
+   </span>
+
+</div>
+<div class="container">
+
+   <span class="wrapper">
+      <i class="tooltip-trigger fa fa-cloud"></i>
+      <span class="tooltip tooltip">Display tooltip triggered by icons</span>
+   </span>
+
+   <div class="wrapper">
+      <i class="tooltip-trigger fa fa-id-badge"></i>
+      <span class="tooltip tooltip--top">A very loooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong tooltip but white-space:nowrap so no newline</span>
+   </div>
+
+   <span class="wrapper">
+      <i class="tooltip-trigger fa fa-info-circle"></i>
+      <span class="tooltip tooltip--bottom">
+         Type &lt;br&gt; to endline instead:
+         <br><br><br><br><br><br><br><br>
+         Notice me senpai ~ I can make newline
+      </span>
+   </span>
+
+   <span class="wrapper">
+      <i class="tooltip-trigger fa fa-bug"></i>
+      <span style="text-align:left" class="tooltip tooltip--left">
+         Title<br>
+         Lorem natus porro explicabo dolor odit enim? Temporibus accusamus labore et distinctio aliquam.<br>
+         Quo numquam eius incidunt laborum perspiciatis Atque repudiandae sapiente saepe perferendis rem nisi ad.<br>
+         Optio ea atque.<br><br>
+         That title could need some indent..
+      </span>
+   </span>
+
+   <span class="wrapper">
+      <i class="tooltip-trigger fa fa-map-marker"></i>
+      <span style="text-align:left" class="tooltip tooltip--right">
+         No worry. Just type &amp;nbsp; and you're set<br>
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         Totally Accurate Title Simulator<br>
+         Sit repellendus eius sit in quidem magni, rem exercitationem Ad enim expedita unde quasi atque? Iusto<br> sequi dolorum tempora veniam earum. Voluptatum magnam distinctio totam quisquam consequuntur Soluta<br> deserunt eveniet<br><br>
+         Now that should look prettier
+      </span>
+   </span>
+
+</div>
