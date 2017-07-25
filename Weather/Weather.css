@@ -11,20 +11,13 @@ body {
    cursor: default;
    user-select: none;
    color: white;
+}
 
+.background {
    /* fallback */
    background-color: #5fc4e4;
-   background-image:
-   linear-gradient(to right, #e55d87, #e55d87), 
-   linear-gradient(to right, #ce6e96, #ce6e96),
-   linear-gradient(to right, #b87fa6, #b87fa6),
-   linear-gradient(to right, #a290b5, #a290b5),
-   linear-gradient(to right, #8ba1c5, #8ba1c5),
-   linear-gradient(to right, #75b2d4, #75b2d4),
-   linear-gradient(to right, #5fc4e4, #5fc4e4);
 
    background-repeat:no-repeat;
-
    background-size: 
     100% 14.285714%,
     100% 28.571428%,
@@ -33,23 +26,92 @@ body {
     100% 71.42857%,
     100% 85.714284%,
     100% 100%;
+
+   width: 100%;
+   height: 100%;
+   z-index: -99;
+   position: fixed;
 }
 
-/* .loading-section { */
-/*    text-align: center; */
-/*    height: 100%; */
+.background--one {
+   z-index: -2;
+   background-image:
+   linear-gradient(to right, #ff5d39, #ff5d39),
+   linear-gradient(to right, #ff692f, #ff692f),
+   linear-gradient(to right, #ff7526, #ff7526),
+   linear-gradient(to right, #ff811c, #ff811c),
+   linear-gradient(to right, #ff8d13, #ff8d13),
+   linear-gradient(to right, #ff9909, #ff9909),
+   linear-gradient(to right, #ffa500, #ffa500);
+}
 
-/*    display: flex; */
-/*    align-items: center; */
-/*    justify-content: center; */
-/* } */
+.background--two {
+   z-index: -1;
+   background-image:
+   linear-gradient(to right, #e55d87, #e55d87), 
+   linear-gradient(to right, #ce6e96, #ce6e96),
+   linear-gradient(to right, #b87fa6, #b87fa6),
+   linear-gradient(to right, #a290b5, #a290b5),
+   linear-gradient(to right, #8ba1c5, #8ba1c5),
+   linear-gradient(to right, #75b2d4, #75b2d4),
+   linear-gradient(to right, #5fc4e4, #5fc4e4);
+}
 
-/* .loading { */
-/*    background-color: red; */
-/*    width: 600; */
-/*    height: 150; */
-/*    border-radius: 4px; */
-/* } */
+.loader-wrapper {
+   position: absolute;
+   top: 0;
+   left: 0;
+   z-index: -3;
+   width: 100%;
+   height: 100%;
+   box-shadow: inset 0 0 100px 1000px rgba(0, 0, 0, 0.4);
+}
+
+.loader {
+   border: 0.5em solid rgba(129, 216, 208, 1);
+   border-top: 0.5em solid rgba(129, 216, 208, 0.2);
+   border-bottom: 0.5em solid rgba(129, 216, 208, 0.2);
+   border-radius: 50%;
+   width: 3em;
+   height: 3em;
+
+   display: inline-block;
+   position: fixed;
+   top: 0;
+   bottom: 0;
+   left: 0;
+   right: 0;
+   margin: auto;
+   -webkit-animation: spin 0.75s cubic-bezier(.55, .79, .71, .42) infinite;
+   animation: spin 0.75s cubic-bezier(.55, .79, .71, .42) infinite;
+
+}
+
+@-webkit-keyframes spin {
+   0%   { transform: rotate(0deg);   }
+   100% { transform: rotate(360deg); }
+}
+
+@keyframes spin {
+   0%   { transform: rotate(0deg);   }
+   100% { transform: rotate(360deg); }
+}
+
+._card {
+   padding: 0px;
+   margin: 0px;
+}
+
+.front, .back {
+   min-width: 100%;
+   padding: 0px;
+   margin: 0px;
+}
+
+/* use it to hide element while loading, js will reset the display */
+.back {
+   display: none;
+}
 
 .dateTime {
    height: 30px;
@@ -68,6 +130,10 @@ body {
    right: 0;
 }
 
+._card * {
+   backface-visibility: hidden;
+}
+
 .weather {
    /* display: none; */
 }
@@ -78,8 +144,6 @@ body {
    margin-top: 12;
 
    text-shadow: 0px 0.5px 0px #adadad;
-   /* transform: rotateX(90deg); */
-   /* transition: transform .5s; */
 }
 
 .weather__info {
@@ -90,9 +154,32 @@ body {
 }
 
 .weather__icon {
-   font-size: 240px;
+   font-size: 210px;
    text-shadow: 0px 0.5px 0px #adadad;
-   padding: 55 10 40 10;
+   height: 300;
+   width: 300;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-flow: row wrap;
+}
+
+.shadow--full:after {
+   content: "";
+   border-radius: 5px;
+   position: absolute;
+   z-index: 1;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+   opacity: 0;
+   -webkit-transition: all 0.3s ease-out;
+   transition: all 0.3s ease-out;
+
+   background-color: black;
+   visibility: hidden;
 }
 
 .weather__stat {
@@ -138,7 +225,7 @@ body {
 /* desktop */
 @media screen and (min-width: 769px) {
    .weather__stat {
-      margin-top: -20;
+      margin-top: 12;
    }
 }
 
@@ -176,85 +263,31 @@ body {
    transform: scale(1.25);
 }
 
-.tooltip {
-   position: absolute;
-   color: white;
-   background-color: black;
-   border-radius: 4px;
-   padding: 7 7;
-   text-align: center;
-   font-size: 12px;
-   z-index: 1;
-
-   /* width: 200px; */
-   /* height: 100px; */
-
-   visibility: hidden;
-   opacity: 0;
-   transform: translateY(8px);
-   transition: all 0.25s ease-in;
-}
-
-.tooltip--top {
-   bottom: 100%;
-}
-
-.footer__infoTooltip {
-   width: 310px;
-   left: 0%;
-}
-
-.footer__portfolioTooltip {
-   width: 110px;
-   left: 0%;
-}
-
-.footer__bugTooltip {
-   width: 200;
-   right: 0%;
-
+.footer__infoTooltip      { left: 153px; }
+.footer__portfolioTooltip { left:  53px; }
+.footer__randTooltip      { left:   2px; }
+.footer__localTooltip     { left: -80px; }
+.footer__bugTooltip       { 
+   left: -65px;
    text-align: left;
+   width: 200px;
 }
 
-.footer__localTooltip {
-   width: 300;
-   right: -120%;
-}
+.footer__infoTooltip:after      { left:  6%; }
+.footer__portfolioTooltip:after { left: 16%; }
+.footer__randTooltip:after      { left: 58%; }
+.footer__localTooltip:after     { left: 82%; }
+.footer__bugTooltip:after       { left: 92%; }
 
-.footer__randTooltip {
-   width: 220;
-   right: -170%;
+.tooltip-trigger:hover ~ .footer__copyTooltip { 
+   visibility: hidden; 
+   opacity: 0;
 }
-/* arrow hack */
-.tooltip:after {
-   content: " ";
-   position: absolute;
-   top: 100%;
-   margin-left: -5px;
-   border-width: 5px;
-   border-style: solid;
-   border-color: black transparent transparent transparent;
-}
-
-.footer__infoTooltip:after      { left:   6%; }
-.footer__portfolioTooltip:after { left:  16%; }
-.footer__bugTooltip:after       { right:  7%; }
-.footer__localTooltip:after     { right: 16%; }
-.footer__randTooltip:after      { right: 40%; }
 
 .footer__portfLink, 
 .footer__portfLink:hover {
    color: white;
 }
-
-.icon:hover              ~ .tooltip, 
-.footer__portfLink:hover ~ .tooltip {
-   visibility: visible;
-
-   opacity: 0.9;
-   transform: translateY(-2px);
-   transition: all 0.25s ease-in;
-} 
 
 .footer__info, 
 .footer__portfolio {

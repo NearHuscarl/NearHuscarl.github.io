@@ -1,144 +1,165 @@
 <head>
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css"> -->
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
 
-   <link rel="stylesheet" href="Weather.css" type="text/css">
    <link rel="stylesheet" href="css/weather-icons.min.css" type="text/css">
    <link rel="stylesheet" href="css/weather-icons-wind.min.css" type="text/css">
+   <link rel="stylesheet" href="css/tooltip.css" type="text/css">
+   <link rel="stylesheet" href="Weather.css" type="text/css">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script>
+      window.jQuery || document.write('<script src="js/jquery-3.2.1.min.js"><\/script>');
+   </script>
+   <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
    <script src="Weather.js"></script>
 </head>
 
-<div class="container dateTime">
-   <span class="dateTime__date"></span>
-   <span class="dateTime__time"></span>
-</div>
+   <div class="background background--one"></div>
+   <div class="background background--two"></div>
+   <div class="loader-wrapper">
+      <div class="loader"></div>
+   </div>
 
-<!-- <div class="container loading-section"> -->
-<!--    <div class="loading"></div> -->
-<!-- </div> -->
+   <div class="container dateTime">
+      <span class="dateTime__date"></span>
+      <span class="dateTime__time"></span>
+   </div>
 
-<div class="container weather">
+   <div class="container weather">
 
-   <h1 class="weather__title">Current Weather</h1>
-
-   <div class="weather__info">
-      <div class="weather__icon">
-         <!-- <i class="wi wi-rain"></i> -->
-         <!-- <i class='wi wi-day-rain'></i> -->
-         <i class='wi wi-day-sunny'></i>
-      </div>
-      <div class="weather__stat">
-         <div class="weather__temp">
-            <span class="weather__tempStat">0&deg;C</span>
-            <span class="weather__tempIcon">
-               <i class='fa fa-thermometer-empty'></i>
-            </span>
+      <!-- <h1 class="weather__title">Current Weather</h1> -->
+      <div class="_card _card__title">
+         <div class="front">
+            <h1 class="weather__title">Current Weather</h1>
          </div>
-         <li class="weather__list">
-            <!-- <ul class="weather__wind">Wind: 148 kph, West</ul> -->
-            <ul class="weather__wind">
-               <i style="width:20; text-align:center" class='wi wi-wind-beaufort-0'></i>
-               Wind: 0 kph
-            </ul>
-            <ul class="weather__cloud">
-               <i style="width:20; text-align:center" class='wi wi-sunrise'></i>
-               Clouds: 0%
-            </ul>
-            <ul class="weather__pressure">
-               <i style="width:20; text-align:center" class='wi wi-barometer'></i>
-               Pressure: 0 hpa
-            </ul>
-            <ul class="weather__humidity">
-               <i style="width:20; text-align:center" class='wi wi-humidity'></i>
-               Humidity: 0%
-            </ul>
-         </li>
+         <div class="back">
+            <h1 class="weather__title">Current Weather</h1>
+         </div>
       </div>
+
+      <div class="weather__info">
+
+         <div class="_card _card__icon">
+            <div class="front">
+               <div class="weather__icon shadow--full">
+                  <!-- <i class="wi wi-rain"></i> -->
+                  <!-- <i class='wi wi-day-rain'></i> -->
+                  <i class='wi wi-day-sunny'></i>
+               </div>
+            </div>
+            <div class="back">
+               <div class="weather__icon shadow--full">
+                  <i class='wi wi-day-sunny'></i>
+               </div>
+            </div>
+         </div>
+
+         <div class="_card _card__stat">
+
+            <div class="front">
+               <div class="weather__stat shadow--full">
+                  <div class="weather__temp">
+                     <span class="weather__tempStat">0&deg;C</span>
+                     <span class="weather__tempIcon">
+                        <i class='fa fa-thermometer-empty'></i>
+                     </span>
+                  </div>
+                  <li class="weather__list">
+                     <!-- <ul class="weather__wind">Wind: 148 kph, West</ul> -->
+                     <ul class="weather__wind">
+                        <i style="width:20; text-align:center" class='wi wi-wind-beaufort-0'></i> Wind: 0 kph
+                     </ul>
+                     <ul class="weather__cloud">
+                        <i style="width:20; text-align:center" class='wi wi-sunrise'></i> Clouds: 0%
+                     </ul>
+                     <ul class="weather__pressure">
+                        <i style="width:20; text-align:center" class='wi wi-barometer'></i> Pressure: 0 hpa
+                     </ul>
+                     <ul class="weather__humidity">
+                        <i style="width:20; text-align:center" class='wi wi-humidity'></i> Humidity: 0%
+                     </ul>
+                  </li>
+               </div> <!-- weather__stat -->
+            </div> <!-- .front -->
+
+            <div class="back">
+               <div class="weather__stat shadow--full">
+                  <div class="weather__temp">
+                     <span class="weather__tempStat">N/A</span>
+                     <span class="weather__tempIcon">
+                        <i class='fa fa-thermometer-empty'></i>
+                     </span>
+                  </div>
+                  <li class="weather__list">
+                     <ul class="weather__wind">N/A</ul>
+                     <ul class="weather__cloud">N/A</ul>
+                     <ul class="weather__pressure">N/A</ul>
+                     <ul class="weather__humidity">N/A</ul>
+                  </li>
+               </div> <!-- .weather__stat -->
+            </div> <!-- .back -->
+
+         </div> <!-- ._card -->
+
+      </div>
+
+      <div class="_card _card__miscInfo">
+         <div class="front">
+            <div class="weather__miscInfo shadow--full">
+               <div class="weather__desc">Weather: N/A</div>
+               <div class="weather__city">Location: N/A</div>
+            </div>
+         </div>
+         <div class="back">
+            <div class="weather__miscInfo shadow--full">
+               <div class="weather__desc">N/A</div>
+               <div class="weather__city">N/A</div>
+            </div>
+         </div>
+      </div>
+
    </div>
 
-   <div class="weather__miscInfo">
-      <div class="weather__desc">Weather: N/A</div>
-      <div class="weather__city">Location: N/A</div>
+   <div class="footer">
+      <span class="footer__info">
+         <i class="tooltip-trigger icon fa fa-info-circle"></i>
+         <span class="tooltip tooltip--top footer__infoTooltip">
+            Click the temperature to convert between &deg;C and &deg;F<br>
+            Click the wind speed to convert between kph and mph<br>
+         </span>
+      </span>
+      <span class="footer__portfolio">
+         <a class="tooltip-trigger footer__portfLink" href="https://nearhuscarl.github.io/Portfolio/Portfolio.html" target=_blank>
+            <i class="icon fa fa-id-badge"></i>
+         </a>
+         <span class="tooltip tooltip--top footer__portfolioTooltip">
+            Visit my portfolio
+         </span>
+      </span>
+      <span class="footer__debug">
+         <i class="tooltip-trigger icon fa fa-bug"></i>
+         <span id="copy-target" class="tooltip tooltip--top footer__bugTooltip">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--Debug Info--<br>latitude:  N/A<br>longitude: N/A<br>address_0: N/A<br>address_1: N/A<br>address_2: N/A<br>address_3: N/A<br>address_4: N/A<br>address_5: N/A<br>address_6: N/A<br>address_7: N/A<br>weather: N/A<br>&nbsp;&nbsp;id: N/A<br>&nbsp;&nbsp;main: N/A<br>&nbsp;&nbsp;desc: N/A<br>&nbsp;&nbsp;temp: N/A<br>&nbsp;&nbsp;pressure: N/A<br>&nbsp;&nbsp;humidity: N/A<br>&nbsp;&nbsp;wind: N/A<br>&nbsp;&nbsp;&nbsp;&nbsp;speed: N/A<br>&nbsp;&nbsp;&nbsp;&nbsp;deg: N/A<br>&nbsp;&nbsp;clouds: N/A<br>
+         </span>
+         <span class="tooltip tooltip--left footer__copyTooltip">Copied!</span>
+      </span>
+      <span class="footer__localWeather">
+         <i class="tooltip-trigger icon fa fa-map-marker"></i>
+         <span class="tooltip tooltip--top footer__localTooltip">
+            If you have clicked the button on the left <br>
+            Click me to show to your current local weather again
+         </span>
+      </span>
+      <span class="footer__randWeather">
+         <i class="tooltip-trigger icon wi wi-cloud-refresh"></i>
+         <span class="tooltip tooltip--top footer__randTooltip">
+            Display weather on a random location
+         </span>
+      </span>
+      <span class="copyright footer__cpr">
+         Near Huscarl &copy; <span class="cpr-year"></span>
+      </span>
    </div>
-
-</div>
-
-<div class="footer">
-   <span class="footer__info">
-      <i class="icon fa fa-info-circle"></i>
-      <span class="tooltip tooltip--top footer__infoTooltip">
-         Click the temperature to convert between &deg;C and &deg;F<br>
-         Click the wind speed to convert between kph and mph<br>
-      </span>
-   </span>
-   <span class="footer__portfolio">
-      <a class="footer__portfLink" href="https://nearhuscarl.github.io/Portfolio/Portfolio.html" target=_blank>
-         <i class="icon fa fa-id-badge"></i>
-      </a>
-      <span class="tooltip tooltip--top footer__portfolioTooltip">
-         Visit my portfolio
-      </span>
-   </span>
-   <span class="footer__debug">
-      <i class="icon fa fa-bug"></i>
-      <span class="tooltip tooltip--top footer__bugTooltip">
-         --Debug Info--<br>
-         N/A
-      </span>
-   </span>
-   <span class="footer__localWeather">
-      <i class="icon fa fa-map-marker"></i>
-      <span class="tooltip tooltip--top footer__localTooltip">
-         If you have clicked the button on the left <br>
-         Click me to show to your current local weather again
-      </span>
-   </span>
-   <span class="footer__randWeather">
-      <i class="icon wi wi-cloud-refresh"></i>
-      <span class="tooltip tooltip--top footer__randTooltip">
-         Display weather on a random location
-      </span>
-   </span>
-   <span class="copyright footer__cpr">
-      Near Huscarl &copy; <span class="cpr-year"></span>
-   </span>
-</div>
-
-<!-- info -->
-<!--    click on the temperature to convert between celcius and friejl -->
-<!--    written by near huscarl -->
-
-<!-- my portfolio -->
-
-<!-- debug -->
-<!--    show debug info -->
-<!--       lat, lon -->
-<!--       country, city, district, street name -->
-<!--    act as copy debug info button -->
-
-<!-- randomize weather stat -->
-<!-- display current location weather again -->
-
-<!--    <1!-- weather --1> -->
-<!--    <1!-- temperature --1> -->
-<!--    <1!-- icon for each component --1> -->
-
-<!--    <1!-- color-effect --1> -->
-<!--    <1!--  clear-day -   orange --1> -->
-<!--    <1!--  clear-night - purple --1> -->
-<!--    <1!--  cloudy -      blue --1> -->
-<!--    <1!--  rain -        grey --1> -->
-<!--    <1!--  storm -       black --1> -->
-<!--    <1!--  snow -        lightblue --1> -->
-<!--    <1!--  mist -        brown --1> -->
 
 <!-- loading screen when get json -->
-
-<!-- <1!-- change from C <-> F --1> -->
 <!-- smooth transition from C to F -->
-<!-- randomzie location button icon reload -->
-<!-- show current weather location again icon umbrella -->

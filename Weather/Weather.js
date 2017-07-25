@@ -4,42 +4,32 @@
       lat: 0.0,
       lon: 0.0
    },
-      date = new Date(),
-      tempUnit = "C",
-      windUnit = "kph",
-      debug = {
-         lat: 0.0,
-         lon: 0.0,
-         address: ["N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"],
-         weather: {
-            id: 0,
-            main: "N/A",
-            desc: "N/A",
-            temp: 0,
-            pressure: 0,
-            humidity: 0,
-            wind: {
-               speed: 0.0,
-               deg: 0
-            },
-            clouds: 0
-         }
-      },
-      localLocationInfo = {},
-      localWeatherInfo = {};
-
-   function initBackgroundColor(color)
-   {
-      let cssValue = "";
-
-      for(let i = 0; i < color.length - 1; i++)
-      {
-         cssValue += "linear-gradient(to right, " + color[i] + ", " + color[i] + "), ";
+   date = new Date(),
+   tempUnit = "C",
+   windUnit = "kph",
+   bgColorState = false,
+   isFrontWeather = true,
+   isFrontLocation = true,
+   debug = {
+      lat: 0.0,
+      lon: 0.0,
+      address: ["N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"],
+      weather: {
+         id: 0,
+         main: "N/A",
+         desc: "N/A",
+         temp: 0,
+         pressure: 0,
+         humidity: 0,
+         wind: {
+            speed: 0.0,
+            deg: 0
+         },
+         clouds: 0
       }
-      cssValue += "linear-gradient(to right, " + color[color.length-1] + ", " + color[color.length-1] + ")";
-
-      $("body").css("background-image", cssValue);
-   }
+   },
+   localLocationInfo = {},
+   localWeatherInfo = {};
 
    function initWeatherHTML(json)
    {
@@ -52,9 +42,8 @@
          pressure    = json.main.pressure,
          humidity    = json.main.humidity;
 
-      let bgColor = getBackgroundColor(id),
-         thermoIcon = getThermoIcon(temp, tempUnit),
-         attr = " style='width: 20; text-align:center' ",
+      let thermoIcon = getThermoIcon(temp, tempUnit),
+         attr = " style='width: 20; text-align:center; backface-visibility: hidden' ",
          windIcon = getWindScaleIcon(wind, windUnit),
          cloudIcon =    "<i" + attr + "class='wi wi-sunrise'></i>",
          pressureIcon = "<i" + attr + "class='wi wi-barometer'></i>",
@@ -62,15 +51,39 @@
 
       windIcon = windIcon.slice(0, 2) + attr + windIcon.slice(2); // add attribute to wind icon
 
-      initBackgroundColor(bgColor);
-      $(".weather__desc").html(description);
-      $(".weather__tempStat").html(temp + "&deg;" + tempUnit);
-      $(".weather__tempIcon").html(thermoIcon);
-      $(".weather__icon").html(getWeatherIcon(id, wind, windUnit));
-      $(".weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + ", " + getWindDir(degree));
-      $(".weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
-      $(".weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
-      $(".weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
+      if(isFrontWeather) {
+         $(".back .weather__icon").html(getWeatherIcon(id, wind, windUnit));
+         $(".back .weather__tempStat").html(temp + "&deg;" + tempUnit);
+         $(".back .weather__tempIcon").html(thermoIcon);
+         $(".back .weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + ", " + getWindDir(degree));
+         $(".back .weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
+         $(".back .weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
+         $(".back .weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
+         $(".back .weather__desc").html(description);
+         isFrontWeather = false;
+      }
+      else {
+         $(".front .weather__icon").html(getWeatherIcon(id, wind, windUnit));
+         $(".front .weather__tempStat").html(temp + "&deg;" + tempUnit);
+         $(".front .weather__tempIcon").html(thermoIcon);
+         $(".front .weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + ", " + getWindDir(degree));
+         $(".front .weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
+         $(".front .weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
+         $(".front .weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
+         $(".front .weather__desc").html(description);
+         isFrontWeather = true;
+      }
+
+      // --ANIMATE--
+      // a workaround to style :after element since there is no :after selector
+      $(".style__temp").remove();
+      $("<style class='style__temp'> .shadow--full:after { opacity: 0.1; visibility: visible; } </style> ").appendTo("body");
+
+      setTimeout(function(){
+         $("._card__icon, ._card__stat, ._card__miscInfo").flip("toggle");
+         animateBackgroundColor(id);
+      }, 0.3);
+
    }
 
    function initCityHTML(json)
@@ -83,12 +96,10 @@
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
-         if(Number.isInteger(parseInt(json.results[0].address_components[i].long_name))) 
-         {
+         if((json.results[0].address_components[i].long_name).search(/\d/) !== -1) {
             fallback++;
          }
-         else
-         {
+         else {
             break;
          }
       }
@@ -99,7 +110,14 @@
       let district = json.results[0].address_components[districtIndex].long_name,
          city      = json.results[0].address_components[cityIndex].long_name;
 
-      $(".weather__city").html(city + " - " + district);
+      if(isFrontLocation) {
+         $(".back .weather__city").html(district + " - " + city);
+         isFrontLocation = false;
+      }
+      else {
+         $(".front .weather__city").html(district + " - " + city);
+         isFrontLocation = true;
+      }
    }
 
    function initCountryHTML(json)
@@ -114,12 +132,10 @@
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
-         if(Number.isInteger(parseInt(json.results[0].address_components[i].long_name))) 
-         {
+         if((json.results[0].address_components[i].long_name).search(/\d/) !== -1) {
             fallback++;
          }
-         else
-         {
+         else {
             break;
          }
       }
@@ -129,7 +145,24 @@
       let city   = json.results[0].address_components[cityIndex].long_name,
          country = json.results[0].address_components[countryIndex].long_name;
 
-      $(".weather__city").html(city + " - " + country);
+      if(isFrontLocation) {
+         $(".back .weather__city").html(city + " - " + country);
+         isFrontLocation = false;
+      }
+      else {
+         $(".front .weather__city").html(city + " - " + country);
+         isFrontLocation = true;
+      }
+   }
+
+   function getSpace(numOfSpace)
+   {
+      let spaceStr = "";
+
+      for(let i = 0; i < numOfSpace; i++) {
+         spaceStr += "&nbsp;";
+      }
+      return spaceStr;
    }
 
    function initDebugHTML(geocodeJson, weatherJson)
@@ -161,10 +194,11 @@
       debug.weather.wind.deg    = weatherJson.wind.deg;
       debug.weather.clouds      = weatherJson.clouds.all;
 
-      var sp = "&nbsp;&nbsp;";
+      var sp = getSpace(2),
+         indentTitle = getSpace(13);
 
       $(".footer__bugTooltip").html(
-         "---Debug Info---<br>" +
+         indentTitle + "---Debug Info---<br>" +
          "latitude:  " + debug.lat + "<br>" +
          "longitude: " + debug.lon + "<br>" +
          "address_0: " + debug.address[0] + "<br>" +
@@ -425,6 +459,7 @@
    {
       coords.lon = geocodeJson.results[0].geometry.location.lng;
       coords.lat = geocodeJson.results[0].geometry.location.lat;
+      console.log(coords);
 
       let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
          url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
@@ -439,11 +474,15 @@
          initDebugHTML(geocodeJson, weatherJson);
          callback(geocodeJson);
          callback2(weatherJson);
+
+         $(".loader-wrapper").css({"z-index": -3});
       });
    }
 
    function getLocationInfo(coords, callback, callback2, isLocal)
    {
+      $(".loader-wrapper").css({"z-index": 1});
+
       let apiKey = "AIzaSyASk8XzwvoBEBwhQU4SfA84ENUoECNWvRE",
          url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords.lat + "," + coords.lon + "&key=" + apiKey;
 
@@ -490,6 +529,50 @@
       else if(801 <= id && id <= 804) // cloud
       {
          return ["#226982", "#287088", "#2f788e", "#358094", "#3c889a", "#4290a0", "#4998a6"] // darkblue
+      }
+   }
+
+   function animateBackgroundColor(weatherId)
+   {
+      let colorArr = getBackgroundColor(weatherId),
+         cssValue = "";
+
+      for(let i = 0; i < colorArr.length-1; i++) {
+         cssValue+= "linear-gradient(to right, " + colorArr[i] + ", " + colorArr[i] + "), ";
+      }
+      cssValue+= "linear-gradient(to right, " + colorArr[colorArr.length-1] + ", " + colorArr[colorArr.length-1] + ")";
+
+      // bgColorState == true  -> show background--two
+      // bgColorState == false -> show background--one
+      if(bgColorState) {
+
+         $(".background--two").css({
+            "opacity": 1,
+            "background-image": cssValue
+         })
+
+         // animate
+         $(".background--two").css({"opacity": 1});
+         $(".background--one").animate({"opacity": 0}, function(){
+
+            $(".background--one").css({"z-index": -2});
+            $(".background--two").css({"z-index": -1});
+            bgColorState = false;
+         });
+      }
+      else {
+
+         $(".background--one").css({
+            "opacity": 1,
+            "background-image": cssValue
+         });
+
+         // animate
+         $(".background--two").animate({"opacity": 0}, function(){
+            $(".background--one").css({"z-index": -1});
+            $(".background--two").css({"z-index": -2});
+            bgColorState = true;
+         });
       }
    }
 
@@ -553,11 +636,6 @@
       return month[date.getMonth()];
    }
 
-   function animateShow()
-   {
-      $("h1").css("transform", "rotateX(0deg)");
-   }
-
    function onClickTemp()
    {
       let temp = parseInt($(".weather__tempStat").text()),
@@ -571,7 +649,7 @@
 
    function onClickWind()
    {
-      let windIcon = $(".weather__wind").html().match(/^.*?(<\/i>)/)[0],
+      let windIcon = $(".weather__wind").html().trim().match(/^.*?(<\/i>)/)[0],
          windSpeed = parseFloat($(".weather__wind").text().trim().slice(6)),
          windDir = $(".weather__wind").html().match(/,.*$/)[0];
 
@@ -582,6 +660,8 @@
 
    function onClickRandom()
    {
+      $(".loader-wrapper").css({"z-index": 1});
+
       let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/city_list.mini.json";
 
       $.getJSON(url, function(cityJson){
@@ -605,10 +685,95 @@
       initDebugHTML(localLocationInfo, localWeatherInfo);
    }
 
+   function onClickDebug()
+   {
+      copyToClipboard("copy-target", function(){
+
+         $(".footer__copyTooltip").css({"visibility": "visible", "opacity": 0.9});
+
+         setTimeout(function(){
+            $(".footer__copyTooltip").css({"visibility": "hidden", "opacity": 0});
+         }, 2000);
+
+      });
+   }
+
+   function copyToClipboard(elementId, success, error)
+   {
+      // copy works on selectable element, in this case textarea element 
+      // (or using input element with attr value)
+      let targetElement = document.createElement("textarea"),
+         copyContent = document.getElementById(elementId).innerHTML;
+
+      copyContent = copyContent.replace(/\<br\>/gi, "\r\n");
+      copyContent = copyContent.replace(/(&npsp;)/gi, " ");
+
+      targetElement.innerHTML = copyContent;
+      document.body.appendChild(targetElement);
+      targetElement.select();
+
+      try {
+         document.execCommand("copy")
+         if(typeof success === "function") {
+            success();
+         }
+      } 
+      catch (e) {
+         console.log(e);
+         if(typeof error === "function") {
+            error();
+         }
+      }
+      finally {
+         document.body.removeChild(targetElement);
+      }
+   }
+
    $(document).ready(function(){
 
       setTime();
       $(".cpr-year").text(new Date().getFullYear());
+
+      // reset display in css which was display:none to hide the back while loading
+      $(".back").css("display", "inline-block");
+
+      $("._card").flip({
+         trigger: "manual",
+         speed: 400,
+         autoSize: false
+      });
+
+      $("._card__title").flip({axis: "x"});
+      $("._card__icon").flip({reverse: true});
+      $("._card__stat").flip({});
+      $("._card__miscInfo").flip({axis: "x", reverse: true});
+
+      $("._card__icon").on("flip:done", function(){
+
+         let flipInfoIcon = $("._card__icon").data("flip-model");
+
+         // always flip in one direction
+         $("._card__icon").flip({ reverse: flipInfoIcon.setting.reverse === true ? false : true });
+         $("<style class='style__temp'> ._card__icon .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+      });
+
+      $("._card__stat").on("flip:done", function(){
+
+         let flipInfoStat = $("._card__stat").data("flip-model");
+
+         // always flip in one direction
+         $("._card__stat").flip({ reverse: flipInfoStat.setting.reverse === true ? false : true });
+         $("<style class='style__temp'> ._card__stat .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+      });
+
+      $("._card__miscInfo").on("flip:done", function(){
+
+         let flipInfoMiscInfo = $("._card__miscInfo").data("flip-model");
+
+         // always flip in one direction
+         $("._card__miscInfo").flip({ reverse: flipInfoMiscInfo.setting.reverse === true ? false : true });
+         $("<style class='style__temp'> ._card__miscInfo .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+      });
 
       if(navigator.geolocation)
       {
@@ -616,22 +781,24 @@
 
             coords.lon = position.coords.longitude;
             coords.lat = position.coords.latitude;
+            console.log(coords);
 
             $("h1").text("Current Weather");
 
             getLocationInfo(coords, initCityHTML, initWeatherHTML, true);
             setInterval(setTime, 60000); // Update time every 60 seconds
 
-            $(".weather__temp").on("click", onClickTemp);
-            $(".weather__wind").on("click", onClickWind);
             $(".footer__randWeather").on("click", onClickRandom);
             $(".footer__localWeather").on("click", onClickLocal);
          });
       }
       else
       {
-         $(".test").html("Geolocation is not supported on this browser");
+         alert("Geolocation is not supported on this browser");
       }
+      $(".weather__temp").on("click", onClickTemp);
+      $(".weather__wind").on("click", onClickWind);
+      $(".footer__debug").on("click", onClickDebug);
 
    });
 
