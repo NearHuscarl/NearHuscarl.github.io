@@ -48,13 +48,13 @@ body {
 .background--two {
    z-index: -1;
    background-image:
-   linear-gradient(to right, #e55d87, #e55d87), 
-   linear-gradient(to right, #ce6e96, #ce6e96),
-   linear-gradient(to right, #b87fa6, #b87fa6),
-   linear-gradient(to right, #a290b5, #a290b5),
-   linear-gradient(to right, #8ba1c5, #8ba1c5),
-   linear-gradient(to right, #75b2d4, #75b2d4),
-   linear-gradient(to right, #5fc4e4, #5fc4e4);
+   linear-gradient(to right, #f09819, #4ca1af), 
+   linear-gradient(to right, #f28c1c, #60abb8),
+   linear-gradient(to right, #f58020, #74b6c1),
+   linear-gradient(to right, #f77424, #88c0ca),
+   linear-gradient(to right, #fa6827, #9ccbd3),
+   linear-gradient(to right, #fc5c2b, #b0d5dc),
+   linear-gradient(to right, #ff512f, #c4e0e5);
 }
 
 .loader-wrapper {
@@ -191,7 +191,7 @@ body {
    font-size: 85px;
    line-height: 85%;
    cursor: pointer;
-   font-family: monospace;
+   font-family: 'Droid Sans Mono', monospace;
    text-shadow: 0px 0.5px 0px #adadad;
 }
 
@@ -239,7 +239,7 @@ body {
    font-size: 50px;
 }
 
-.weather__city {
+.weather__location {
    font-size: 25px;
 }
 
@@ -268,9 +268,9 @@ body {
 .footer__randTooltip      { left:   2px; }
 .footer__localTooltip     { left: -80px; }
 .footer__bugTooltip       { 
-   left: -65px;
+   left: -85px;
    text-align: left;
-   width: 200px;
+   width: 250px;
 }
 
 .footer__infoTooltip:after      { left:  6%; }

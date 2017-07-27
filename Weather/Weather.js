@@ -1,35 +1,34 @@
 (function(){
 
-   let coords = {
-      lat: 0.0,
-      lon: 0.0
-   },
-   date = new Date(),
-   tempUnit = "C",
-   windUnit = "kph",
-   bgColorState = false,
-   isFrontWeather = true,
-   isFrontLocation = true,
-   debug = {
-      lat: 0.0,
-      lon: 0.0,
-      address: ["N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"],
-      weather: {
-         id: 0,
-         main: "N/A",
-         desc: "N/A",
-         temp: 0,
-         pressure: 0,
-         humidity: 0,
-         wind: {
-            speed: 0.0,
-            deg: 0
-         },
-         clouds: 0
-      }
-   },
-   localLocationInfo = {},
-   localWeatherInfo = {};
+      date = new Date(),
+      tempUnit = "C",
+      windUnit = "kph",
+      bgColorState = false,
+      isFrontWeather = true,
+      isFrontLocation = true,
+      debug = {
+         lat: 0.0,
+         lon: 0.0,
+         offset: 0,
+         address: ["N/A","N/A","N/A","N/A","N/A","N/A","N/A","N/A"],
+         weather: {
+            id: 0,
+            main: "N/A",
+            desc: "N/A",
+            temp: 0,
+            pressure: 0,
+            humidity: 0,
+            wind: {
+               speed: 0.0,
+               deg: 0
+            },
+            clouds: 0
+         }
+      },
+      localLocationInfo = {},
+      localWeatherInfo = {},
+      currentDate = {}, // current date display in html
+      localDate = {}; // current date at your location
 
    function initWeatherHTML(json)
    {
@@ -37,42 +36,46 @@
          description = json.weather[0].description,
          temp        = Math.round(json.main.temp),
          wind        = parseFloat((json.wind.speed * 3600 / 1000).toFixed(1)), // convert from m/s to k/h
-         degree      = json.wind.deg, 
+         degree      = json.wind.deg,
          cloud       = json.clouds.all,
          pressure    = json.main.pressure,
          humidity    = json.main.humidity;
 
       let thermoIcon = getThermoIcon(temp, tempUnit),
-         attr = " style='width: 20; text-align:center; backface-visibility: hidden' ",
+         attr = " style='width: 20; text-align:center' ",
          windIcon = getWindScaleIcon(wind, windUnit),
+         windDir = getWindDir(degree),
          cloudIcon =    "<i" + attr + "class='wi wi-sunrise'></i>",
          pressureIcon = "<i" + attr + "class='wi wi-barometer'></i>",
          humidityIcon = "<i" + attr + "class='wi wi-humidity'></i>";
 
       windIcon = windIcon.slice(0, 2) + attr + windIcon.slice(2); // add attribute to wind icon
 
+      let side = "";
       if(isFrontWeather) {
-         $(".back .weather__icon").html(getWeatherIcon(id, wind, windUnit));
-         $(".back .weather__tempStat").html(temp + "&deg;" + tempUnit);
-         $(".back .weather__tempIcon").html(thermoIcon);
-         $(".back .weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + ", " + getWindDir(degree));
-         $(".back .weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
-         $(".back .weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
-         $(".back .weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
-         $(".back .weather__desc").html(description);
+         // fix windDir style backface-visibility:hidden not working in chrome
+         $(".front .wi").css("opacity", 0);
+         $(".back .wi").css("opacity", 1);
+
+         side = ".back";
          isFrontWeather = false;
       }
       else {
-         $(".front .weather__icon").html(getWeatherIcon(id, wind, windUnit));
-         $(".front .weather__tempStat").html(temp + "&deg;" + tempUnit);
-         $(".front .weather__tempIcon").html(thermoIcon);
-         $(".front .weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + ", " + getWindDir(degree));
-         $(".front .weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
-         $(".front .weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
-         $(".front .weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
-         $(".front .weather__desc").html(description);
+         $(".front .wi").css("opacity", 1);
+         $(".back .wi").css("opacity", 0);
+
+         side = ".front";
          isFrontWeather = true;
       }
+
+      $(side + " .weather__icon").html(getWeatherIcon(id, wind, windUnit));
+      $(side + " .weather__tempStat").html(temp + "&deg;" + tempUnit);
+      $(side + " .weather__tempIcon").html(thermoIcon);
+      $(side + " .weather__wind").html(windIcon + " Wind: " + wind + " " + windUnit + windDir);
+      $(side + " .weather__cloud").html(cloudIcon + " Clouds: " + cloud + "%");
+      $(side + " .weather__pressure").html(pressureIcon + " Pressure: " + pressure + " hpa");
+      $(side + " .weather__humidity").html(humidityIcon + " Humidity: " + humidity + "%");
+      $(side + " .weather__desc").html(description);
 
       // --ANIMATE--
       // a workaround to style :after element since there is no :after selector
@@ -81,76 +84,73 @@
 
       setTimeout(function(){
          $("._card__icon, ._card__stat, ._card__miscInfo").flip("toggle");
-         animateBackgroundColor(id);
+         animateBackgroundColor(id, cloud, temp);
       }, 0.3);
 
    }
 
-   function initCityHTML(json)
+   function getNameList(geoJson)
    {
       // not every country has this administrative level (5 or 6..) -> if so long_name will return a number
-      let numOfAddressComp = json.results[0].address_components.length,
-         cityIndex = numOfAddressComp - 2,
-         districtIndex = cityIndex - 1,
+      let numOfAddressComp = geoJson.results[0].address_components.length,
+         countryIndex  = numOfAddressComp - 1,
+         provinceIndex     = numOfAddressComp - 2,
+         cityIndex = numOfAddressComp - 3,
          fallback = 0;
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
-         if((json.results[0].address_components[i].long_name).search(/\d/) !== -1) {
+         if((geoJson.results[0].address_components[i].long_name).search(/\d/) !== -1) {
             fallback++;
          }
          else {
             break;
          }
       }
-
+      countryIndex -= fallback;
+      provinceIndex    -= fallback;
       cityIndex-= fallback;
-      districtIndex-= fallback;
 
-      let district = json.results[0].address_components[districtIndex].long_name,
-         city      = json.results[0].address_components[cityIndex].long_name;
+      return {
+         city:     geoJson.results[0].address_components[cityIndex].long_name,
+         province: geoJson.results[0].address_components[provinceIndex].long_name,
+         country:  geoJson.results[0].address_components[countryIndex].long_name
+      };
+   }
+
+   function initCityHTML(geoJson)
+   {
+      let location = getNameList(geoJson),
+         offset = geoJson.timezoneOffset,
+         localDate = getDateFromOffset(offset);
+
+      setLocalDate(localDate);
 
       if(isFrontLocation) {
-         $(".back .weather__city").html(district + " - " + city);
+         $(".back .weather__location").html(location.city + " - " + location.province);
          isFrontLocation = false;
       }
       else {
-         $(".front .weather__city").html(district + " - " + city);
+         $(".front .weather__location").html(location.city + " - " + location.province);
          isFrontLocation = true;
       }
    }
 
-   function initCountryHTML(json)
+   function initCountryHTML(geoJson)
    {
-      console.log(json);
+      console.log(geoJson);
+      let location = getNameList(geoJson),
+         offset = geoJson.timezoneOffset,
+         localDate = getDateFromOffset(offset);
 
-      // not every country has this administrative level (5 or 6..) -> if so long_name will return a number
-      let numOfAddressComp = json.results[0].address_components.length,
-         countryIndex = numOfAddressComp - 1,
-         cityIndex = countryIndex - 1,
-         fallback = 0;
-
-      for(let i = numOfAddressComp-1; i >= 1; i--)
-      {
-         if((json.results[0].address_components[i].long_name).search(/\d/) !== -1) {
-            fallback++;
-         }
-         else {
-            break;
-         }
-      }
-      countryIndex-= fallback;
-      cityIndex-= fallback;
-
-      let city   = json.results[0].address_components[cityIndex].long_name,
-         country = json.results[0].address_components[countryIndex].long_name;
+      setLocalDate(localDate);
 
       if(isFrontLocation) {
-         $(".back .weather__city").html(city + " - " + country);
+         $(".back .weather__location").html(location.province + " - " + location.country);
          isFrontLocation = false;
       }
       else {
-         $(".front .weather__city").html(city + " - " + country);
+         $(".front .weather__location").html(location.province + " - " + location.country);
          isFrontLocation = true;
       }
    }
@@ -192,15 +192,17 @@
       debug.weather.humidity    = weatherJson.main.humidity;
       debug.weather.wind.speed  = parseFloat((weatherJson.wind.speed * 3600 / 1000).toFixed(1)); // convert from m/s to k/h
       debug.weather.wind.deg    = weatherJson.wind.deg;
-      debug.weather.clouds      = weatherJson.clouds.all;
+      debug.weather.clouds      = weatherJson.clouds.all,
+      debug.offset = geocodeJson.timezoneOffset / 3600;
 
       var sp = getSpace(2),
-         indentTitle = getSpace(13);
+         indentTitle = getSpace(20);
 
       $(".footer__bugTooltip").html(
          indentTitle + "---Debug Info---<br>" +
          "latitude:  " + debug.lat + "<br>" +
          "longitude: " + debug.lon + "<br>" +
+         "offset: " + debug.offset + "<br>" +
          "address_0: " + debug.address[0] + "<br>" +
          "address_1: " + debug.address[1] + "<br>" +
          "address_2: " + debug.address[2] + "<br>" +
@@ -249,12 +251,12 @@
 
    function getWeatherIcon(id, windSpeed, windUnit)
    {
-      let currentTime = "",
+      let hour = currentDate.getHours(),
          wind = "",
          windy = "";
 
-      if(date.getHours() >= 18 || date.getHours() <= 5) {
-         currentTime = "night";
+      if(hour >= 18 || hour <= 5) {
+         currentTime = "night-alt";
       }
       else {
          currentTime = "day";
@@ -273,43 +275,116 @@
 
       // https://openweathermap.org/weather-conditions
       if(200 <= id && id <= 232) {
-         return "<i class='wi wi-" + currentTime + "-thunderstorm'></i>";
+         switch(id)
+         {
+            // thunderstorm
+            case 210:
+            case 211:
+            case 212:
+               return "<i class='wi wi-" + currentTime + "lightning'></i>";
+            // thunderstorm + light rain
+            case 200:
+               return "<i class='wi wi-" + currentTime + "-storm-showers'></i>";
+            // thunderstorm + rain - storm with drizzle
+            case 201:
+            case 230:
+            case 231:
+            case 232:
+               return "<i class='wi wi-" + currentTime + "-sleet-storm'></i>";
+            // thunderstorm + heavy rain
+            case 202:
+               return "<i class='wi wi-" + currentTime + "-thunderstorm'></i>";
+            // ragged thunderstorm
+            case 221:
+               return "<i class='wi wi-lightning'></i>";
+         }
       }
       else if(300 <= id && id <= 321) {
-         return "<i class='wi wi-" + currentTime + "-rain-mix'></i>";
+         switch(id)
+         {
+            // drizzle
+            case 300:
+            case 301:
+            case 310:
+            case 311:
+            case 313:
+            case 321:
+               return "<i class='wi wi-" + currentTime + "-sprinkle'></i>";
+            // heavy drizzle
+            case 302:
+            case 312:
+            case 314:
+               return "<i class='wi wi-" + currentTime + "-rain-mix'></i>";
+         }
       }
-      else if(500 <= id && id <= 504) {
-         return "<i class='wi wi-" + currentTime + "-rain" + wind + "'></i>";
-      }
-      else if(511 <= id && id <= 531) {
-         return "<i class='wi wi-" + currentTime + "-showers'></i>";
+      else if(500 <= id && id <= 531) {
+         switch(id)
+         {
+            // light rain - shower
+            case 500:
+            case 520:
+            case 521:
+            case 522:
+            case 531:
+               return "<i class='wi wi-" + currentTime + "-showers'></i>";
+            // moderate rain
+            case 501:
+               return "<i class='wi wi-" + currentTime + "-rain-mix'></i>";
+            // heavy rain
+            case 502:
+            case 503:
+               return "<i class='wi wi-" + currentTime + "-rain'></i>";
+            // extreme rain
+            case 504:
+               return "<i class='wi wi-" + currentTime + "-rain-wind'></i>";
+            case 511:
+            // freezing rain
+               return "<i class='wi wi-" + currentTime + "-hail'></i>";
+         }
       }
       else if(600 <= id && id <= 622) {
-         return "<i class='wi wi-" + currentTime + "-snow" + wind + "'></i>";
+         switch(id)
+         {
+            // snow
+            case 600:
+            case 601:
+            case 602:
+               return "<i class='wi wi-" + currentTime + "-snow" + wind + "'></i>";
+            // sleet
+            case 611:
+            case 612:
+               return "<i class='wi wi-" + currentTime + "-hail'></i>";
+            // snow + rain
+            case 615:
+            case 616:
+            case 620:
+            case 621:
+            case 622:
+               return "<i class='wi wi-" + currentTime + "-sleet'></i>";
+         }
       }
       else if(701 <= id && id <= 781) {
          switch(id)
          {
+            // mist - fog
             case 701:
+            case 741:
                return "<i class='wi wi-" + currentTime + "-fog'></i>";
             case 711:
                return "<i class='wi wi-smoke'></i>";
-            case 721:
-               return "<i class='wi wi-dust'></i>";
+            // sand, dust whirl - tornado
             case 731:
+            case 781:
                return "<i class='wi wi-tornado'></i>";
-            case 741:
-               return "<i class='wi wi-" + currentTime + "-fog'></i>";
             case 751:
                return "<i class='wi wi-sandstorm'></i>";
+            case 721:
             case 761:
                return "<i class='wi wi-dust'></i>";
             case 762:
                return "<i class='wi wi-volcano'></i>";
             case 771:
                return "<i class='wi wi-strong-wind'></i>";
-            case 781:
-               return "<i class='wi wi-tornado'></i>";
             default:
                break;
          }
@@ -323,8 +398,11 @@
             return "<i class='wi wi-night-clear'></i>";
          }
       }
-      else if(801 <= id && id <= 804) {
+      else if(801 <= id && id <= 803) {
          return "<i class='wi wi-" + currentTime + "-cloudy" + windy + "'></i>";
+      }
+      else if(id === 804) {
+         return "<i class='wi wi-cloudy" + windy + "'></i>";
       }
       else if(900 <= id && id <= 906) {
          switch(id)
@@ -332,7 +410,6 @@
             case 900:
                return "<i class='wi wi-tornado'></i>";
             case 901:
-               return "<i class='wi wi-hurricane'></i>";
             case 902:
                return "<i class='wi wi-hurricane'></i>";
             case 903:
@@ -340,12 +417,35 @@
             case 904:
                return "<i class='wi wi-hot'></i>";
             case 905:
-               return "<i class='wi wi-cloudy-windy'></i>";
+               return "<i class='wi wi-windy'></i>";
             case 906:
                return "<i class='wi wi-" + currentTime + "-hail'></i>";
             default:
                break;
          }
+      }
+      else if(951 <= id && id <= 962) {
+         switch(id)
+         {
+            case 951:
+            case 952:
+            case 953:
+            case 954:
+            case 955:
+               return "<i class='wi wi-windy'></i>";
+            case 956:
+            case 957:
+            case 958:
+               return "<i class='wi wi-strong-wind'></i>";
+            case 959:
+            case 960:
+            case 961:
+            case 962:
+               return "<i class='wi wi-hurricane'></i>";
+         }
+      }
+      else {
+         alert("Weather condition not in any cases");
       }
    }
 
@@ -406,63 +506,64 @@
          return "";
       }
       if(349 <= deg && deg < 11) {
-         return "<i class='wi wi-wind towards-0-deg'></i> North";
+         return ", <i class='wi wi-wind towards-0-deg'></i> North";
       }
       else if(11 <= deg && deg < 34) {
-         return "<i class='wi wi-wind towards-23-deg'></i> North-northeast";
+         return ", <i class='wi wi-wind towards-23-deg'></i> North-northeast";
       }
       else if(34 <= deg && deg < 56) {
-         return "<i class='wi wi-wind towards-45-deg'></i> Northeast";
+         return ", <i class='wi wi-wind towards-45-deg'></i> Northeast";
       }
       else if(56 <= deg && deg < 79) {
-         return "<i class='wi wi-wind towards-68-deg'></i> East-Northeast";
+         return ", <i class='wi wi-wind towards-68-deg'></i> East-Northeast";
       }
       else if(79 <= deg && deg < 101) {
-         return "<i class='wi wi-wind towards-90-deg'></i> East";
+         return ", <i class='wi wi-wind towards-90-deg'></i> East";
       }
       else if(101 <= deg && deg < 124) {
-         return "<i class='wi wi-wind towards-113-deg'></i> East-southeast";
+         return ", <i class='wi wi-wind towards-113-deg'></i> East-southeast";
       }
       else if(124 <= deg && deg < 146) {
-         return "<i class='wi wi-wind towards-135-deg'></i> Southeast";
+         return ", <i class='wi wi-wind towards-135-deg'></i> Southeast";
       }
       else if(146 <= deg && deg < 169) {
-         return "<i class='wi wi-wind towards-158-deg'></i> South-southeast";
+         return ", <i class='wi wi-wind towards-158-deg'></i> South-southeast";
       }
       else if(169 <= deg && deg < 191) {
-         return "<i class='wi wi-wind towards-180-deg'></i> South";
+         return ", <i class='wi wi-wind towards-180-deg'></i> South";
       }
       else if(191 <= deg && deg < 214) {
-         return "<i class='wi wi-wind towards-203-deg'></i> South-southwest";
+         return ", <i class='wi wi-wind towards-203-deg'></i> South-southwest";
       }
       else if(214 <= deg && deg < 236) {
-         return "<i class='wi wi-wind towards-225-deg'></i> Southwest";
+         return ", <i class='wi wi-wind towards-225-deg'></i> Southwest";
       }
       else if(236 <= deg && deg < 259) {
-         return "<i class='wi wi-wind towards-248-deg'></i> West-southwest";
+         return ", <i class='wi wi-wind towards-248-deg'></i> West-southwest";
       }
       else if(259 <= deg && deg < 281) {
-         return "<i class='wi wi-wind towards-270-deg'></i> West";
+         return ", <i class='wi wi-wind towards-270-deg'></i> West";
       }
       else if(281 <= deg && deg < 304) {
-         return "<i class='wi wi-wind towards-293-deg'></i> West-northwest";
+         return ", <i class='wi wi-wind towards-293-deg'></i> West-northwest";
       }
       else if(304 <= deg && deg < 326) {
-         return "<i class='wi wi-wind towards-313-deg'></i> Northwest";
+         return ", <i class='wi wi-wind towards-313-deg'></i> Northwest";
       }
       else if(326 <= deg && deg < 349) {
-         return "<i class='wi wi-wind towards-336-deg'></i> North-northwest";
+         return ", <i class='wi wi-wind towards-336-deg'></i> North-northwest";
       }
    }
 
-   function getWeatherInfo(geocodeJson, callback, callback2, isLocal)
+   function getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal)
    {
-      coords.lon = geocodeJson.results[0].geometry.location.lng;
-      coords.lat = geocodeJson.results[0].geometry.location.lat;
-      console.log(coords);
-
       let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
-         url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+         // url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+         coords = {
+            lon: geocodeJson.results[0].geometry.location.lng,
+            lat: geocodeJson.results[0].geometry.location.lat
+         },
+         url = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
 
       $.getJSON(url, function(weatherJson){
 
@@ -472,69 +573,176 @@
          }
 
          initDebugHTML(geocodeJson, weatherJson);
-         callback(geocodeJson);
-         callback2(weatherJson);
+         initLocation(geocodeJson);
+         initWeather(weatherJson);
 
          $(".loader-wrapper").css({"z-index": -3});
       });
    }
 
-   function getLocationInfo(coords, callback, callback2, isLocal)
+   function getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal)
+   {
+      try {
+         let coords = {
+            lon: geocodeJson.results[0].geometry.location.lng,
+            lat: geocodeJson.results[0].geometry.location.lat
+         };
+         console.log(coords);
+
+         let apiKey = "AIzaSyAbviveMIP8emBiLlQ4aFLQEanKkkF9cI0",
+            timestamp = Date.now() / 1000,
+            url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + coords.lat + "," + coords.lon + "&timestamp=" + timestamp + "&key=" + apiKey;
+
+         $.getJSON(url, function(timezoneJson) {
+            console.log(geocodeJson.results[0].address_components + " " + timezoneJson);
+
+            geocodeJson.timezoneOffset = timezoneJson.rawOffset;
+            currentDate = getDateFromOffset(geocodeJson.timezoneOffset);
+
+            if(isLocal) {
+               localDate = currentDate;
+               $.extend(localLocationInfo, geocodeJson);
+            }
+            getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal);
+
+         });
+      }
+      catch(e) {
+         $(".loader-wrapper").css("z-index") === -3;
+         alert("Unable to get data, try again");
+      }
+   }
+
+   function getLocationInfo(coords, initLocation, initWeather, isLocal)
    {
       $(".loader-wrapper").css({"z-index": 1});
 
-      let apiKey = "AIzaSyASk8XzwvoBEBwhQU4SfA84ENUoECNWvRE",
-         url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords.lat + "," + coords.lon + "&key=" + apiKey;
+      try {
+         let apiKey = "AIzaSyASk8XzwvoBEBwhQU4SfA84ENUoECNWvRE",
+            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords.lat + "," + coords.lon + "&key=" + apiKey;
 
-      $.getJSON(url, function(geocodeJson){
-
-         if(isLocal)
-         {
-            $.extend(localLocationInfo, geocodeJson);
-         }
-
-         getWeatherInfo(geocodeJson, callback, callback2, isLocal);
-      })
+         $.getJSON(url, function(geocodeJson){
+            getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal);
+         })
+      }
+      catch(e) {
+         $(".loader-wrapper").css("z-index") === -3;
+         alert("Unable to get data, try again");
+      }
    }
 
-   function getBackgroundColor(id)
+   function getBackgroundColor(id, cloud, temp)
    {
+      let hour = currentDate.getHours();
+
       if((200 <= id && id <= 232) || id === 901 || id === 902) // storm
       {
          return ["#282828", "#272c2e", "#263034", "#25353a", "#243940", "#233d46", "#23424c"]; // black
       }
-      else if(300 <= id && id <= 531) // rain
+      else if(300 <= id && id <= 531 || id === 906) // rain
       {
-         return ["#687a8b", "#6e8191", "#758897", "#7c8f9d", "#8396a3", "#8a9da9", "#91a4af"]; // lightgrey
+         switch(id)
+         {
+            // light rain
+            case 300:
+            case 310:
+            case 500:
+            case 520:
+               return ["#687a8b", "#6e8191", "#758897", "#7c8f9d", "#8396a3", "#8a9da9", "#91a4af"]; // lightgrey
+            // rain
+            case 301:
+            case 311:
+            case 313:
+            case 321:
+            case 501:
+            case 511:
+            case 521:
+            case 531:
+            case 906:
+               return ["#485c6e", "#4e6477", "#546c81", "#5b758b", "#617d94", "#67859e", "#6e8ea8"];
+            // heavy rain
+            case 302:
+            case 312:
+            case 314:
+            case 502:
+            case 503:
+            case 504:
+            case 522:
+               return ["#283e51", "#2d475e", "#33516b", "#395b79", "#3f6586", "#456f93", "#4b79a1"];
+            default:
+               break;
+         }
       }
       else if((600 <= id && id <= 622) || id === 903) // snow
       {
-         return ["#40e0d0", "#53e3d4", "#66e6d9", "#79e9de", "#8cece2", "#9fefe7", "#b2f2ec"]; // lightcyan
+         return ["#9bc2cf", "#a5c5ca", "#b0c8c6", "#bbcbc1", "#c5cebd", "#d0d1b8", "#dbd4b4"]; // lightblue -> white
       }
-      else if((701 <= id && id <= 781) || id === 900) // atmosphere
+      else if((701 <= id && id <= 781) || id === 900 || id === 905) // atmosphere
       {
-         return ["#865356", "#855461", "#84566d", "#835779", "#825984", "#815a90", "#815c9c"]; // brown
-      }
-      else if(id === 800 || id === 904) // clear
-      {
-         if(date.getHours() >= 18 || date.getHours() <= 5)
+         switch(id)
          {
-            return ["#601e9e", "#6429ac", "#6835ba", "#6c41c8", "#704cd6", "#7458e4", "#7864f2"]; // purple
+            case 701:
+            case 741:
+            case 771:
+            case 905:
+               return ["#44ad9f", "#51b2a3", "#5eb8a8", "#6bbead", "#78c4b1", "#85cab6", "#93d0bb"];
+            default:
+               // dust - smoke
+               return ["#865356", "#855461", "#84566d", "#835779", "#825984", "#815a90", "#815c9c"]; // brown
          }
-         else
-         {
-            return ["#ff5d39", "#ff692f", "#ff7526", "#ff811c", "#ff8d13", "#ff9909", "#ffa500"]; // orange
+      }
+      else if(id === 800 || id === 903 || id === 904) // clear
+      {
+         if(hour >= 18 || hour <= 5) {
+            if(temp > 20) {
+               return ["#601e9e", "#6429ac", "#6835ba", "#6c41c8", "#704cd6", "#7458e4", "#7864f2"]; // purple
+            }
+            else if(temp > 10) {
+               return ["#53346d", "#47406f", "#3b4d71", "#2f5a74", "#236776", "#177478", "#0c817b"];
+            }
+            return ["#422957", "#413e61", "#41536b", "#406976", "#407e80", "#3f938a", "#3fa995"];
+         }
+         else {
+            if(temp > 30 || id === 904) {
+               return ["#ff5d39", "#ff692f", "#ff7526", "#ff811c", "#ff8d13", "#ff9909", "#ffa500"]; // orange
+            }
+            else if(temp > 15) {
+               return ["#ffcc33", "#eec734", "#dec336", "#cebf38", "#bdbb39", "#adb73b", "#9db33d"];
+            }
+            return ["#40e0d0", "#53e3d4", "#66e6d9", "#79e9de", "#8cece2", "#9fefe7", "#b2f2ec"];
          }
       }
       else if(801 <= id && id <= 804) // cloud
       {
-         return ["#226982", "#287088", "#2f788e", "#358094", "#3c889a", "#4290a0", "#4998a6"] // darkblue
+         // https://www.weather.gov/media/pah/ServiceGuide/A-forecast.pdf
+         if(hour >= 18 || hour <= 5) {
+            if(cloud >= 88) {
+               return ["#29323c", "#2e2d47", "#342952", "#3a255d", "#402068", "#461c73", "#4c187e"];
+            }
+            else if(cloud > 50) {
+               return ["#000073", "#0e0477", "#1c097c", "#2b0d80", "#391285", "#471689", "#561b8e"];
+            }
+            else {
+               return ["#601e9e", "#6429ac", "#6835ba", "#6c41c8", "#704cd6", "#7458e4", "#7864f2"]; // purple
+            }
+         }
+         else {
+            if(cloud >= 88) { // overcast
+               return ["#487a6e", "#4f8272", "#568b77", "#5e947c", "#659d80", "#6ca685", "#74af8a"];
+            }
+            else if(cloud > 50) { // cloudy
+               return ["#35709b", "#3b799d", "#4183a0", "#478da3", "#4d96a5", "#53a0a8", "#5aaaab"];
+            }
+            else { // clear - mostly sunny
+               return ["#2f80ed", "#358ced", "#3c99ee", "#42a6ef", "#49b2f0", "#4fbff1", "#56ccf2"];
+            }
+         }
       }
    }
 
-   function animateBackgroundColor(weatherId)
+   function animateBackgroundColor(weatherId, cloudCoverage, temp)
    {
-      let colorArr = getBackgroundColor(weatherId),
+      let colorArr = getBackgroundColor(weatherId, cloudCoverage, temp),
          cssValue = "";
 
       for(let i = 0; i < colorArr.length-1; i++) {
@@ -600,16 +808,29 @@
       }
    }
 
-   function setTime()
+   function setLocalDate(date)
    {
-      $(".dateTime__date").html(getDay() + " " + date.getDate() + " " + getMonth());
-      $(".dateTime__time").html(getTime());
+      $(".dateTime__date").html(getDay(date) + " " + date.getDate() + " " + getMonth(date));
+      $(".dateTime__time").html(convertToPeriod(date));
    }
 
-   function getTime()
+   function getUTCDate(date)
    {
-      date = new Date();
+      return new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(),  date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds());
+   }
 
+   function getDateFromOffset(timezoneOffset)
+   {
+      let dateNow = new Date(),
+         hourOffset = timezoneOffset / 3600,
+         localDate = getUTCDate(dateNow);
+
+      localDate.setHours(localDate.getHours() + hourOffset);
+      return localDate;
+   }
+
+   function convertToPeriod(date)
+   {
       let hour = date.getHours(),
          minute = ("0" + date.getMinutes()).slice(-2);
 
@@ -624,13 +845,13 @@
       }
    }
 
-   function getDay()
+   function getDay(date)
    {
       let day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
       return day[date.getDay()];
    }
 
-   function getMonth()
+   function getMonth(date)
    {
       let month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
       return month[date.getMonth()];
@@ -638,8 +859,15 @@
 
    function onClickTemp()
    {
-      let temp = parseInt($(".weather__tempStat").text()),
-         thermoIcon = $(".weather__tempIcon").html();
+      if(isFrontWeather) {
+         var side = ".front";
+      }
+      else {
+         var side = ".back";
+      }
+
+      let temp = parseInt($(side + " .weather__tempStat").text()),
+         thermoIcon = $(side + " .weather__tempIcon").html();
 
       tempUnit = (tempUnit === "C" ? "F" : "C");
       temp = convertTempUnit(temp, tempUnit);
@@ -649,9 +877,16 @@
 
    function onClickWind()
    {
-      let windIcon = $(".weather__wind").html().trim().match(/^.*?(<\/i>)/)[0],
-         windSpeed = parseFloat($(".weather__wind").text().trim().slice(6)),
-         windDir = $(".weather__wind").html().match(/,.*$/)[0];
+      if(isFrontWeather) {
+         var side = ".front";
+      }
+      else {
+         var side = ".back";
+      }
+
+      let windIcon = $(side + " .weather__wind").html().trim().match(/^.*?(<\/i>)/)[0],
+         windSpeed = parseFloat($(side + " .weather__wind").text().trim().slice(6)),
+         windDir = $(side + " .weather__wind").html().match(/,.*$/)[0];
 
       windUnit = (windUnit === "kph" ? "mph" : "kph");
       windSpeed = convertWindSpeedUnit(windSpeed, windUnit);
@@ -660,16 +895,14 @@
 
    function onClickRandom()
    {
-      $(".loader-wrapper").css({"z-index": 1});
-
-      let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/city_list.mini.json";
+      let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/city-list.min.json";
 
       $.getJSON(url, function(cityJson){
-         let randNum = Math.floor(Math.random() * (1947 + 1)),
+         let randNum = Math.floor(Math.random() * (7404 + 1)),
             coords = {
                lat: cityJson[randNum].lat,
                lon: cityJson[randNum].lon
-            }
+            };
 
          debug.lon = coords.lon;
          debug.lat = coords.lat;
@@ -718,7 +951,7 @@
             success();
          }
       } 
-      catch (e) {
+      catch(e) {
          console.log(e);
          if(typeof error === "function") {
             error();
@@ -731,10 +964,10 @@
 
    $(document).ready(function(){
 
-      setTime();
       $(".cpr-year").text(new Date().getFullYear());
 
       // reset display in css which was display:none to hide the back while loading
+      // comment to see what I mean
       $(".back").css("display", "inline-block");
 
       $("._card").flip({
@@ -750,28 +983,18 @@
 
       $("._card__icon").on("flip:done", function(){
 
-         let flipInfoIcon = $("._card__icon").data("flip-model");
+         let flipInfoIcon = $("._card__icon").data("flip-model"),
+            flipInfoStat = $("._card__stat").data("flip-model"),
+            flipInfoMiscInfo = $("._card__miscInfo").data("flip-model");
 
          // always flip in one direction
          $("._card__icon").flip({ reverse: flipInfoIcon.setting.reverse === true ? false : true });
-         $("<style class='style__temp'> ._card__icon .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
-      });
-
-      $("._card__stat").on("flip:done", function(){
-
-         let flipInfoStat = $("._card__stat").data("flip-model");
-
-         // always flip in one direction
          $("._card__stat").flip({ reverse: flipInfoStat.setting.reverse === true ? false : true });
-         $("<style class='style__temp'> ._card__stat .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
-      });
-
-      $("._card__miscInfo").on("flip:done", function(){
-
-         let flipInfoMiscInfo = $("._card__miscInfo").data("flip-model");
-
-         // always flip in one direction
          $("._card__miscInfo").flip({ reverse: flipInfoMiscInfo.setting.reverse === true ? false : true });
+
+         // workaround fade-out animation of shadow since there is not :after alement selector
+         $("<style class='style__temp'> ._card__icon .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+         $("<style class='style__temp'> ._card__stat .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
          $("<style class='style__temp'> ._card__miscInfo .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
       });
 
@@ -779,14 +1002,14 @@
       {
          navigator.geolocation.getCurrentPosition(function(position){
 
+            let coords = {};
             coords.lon = position.coords.longitude;
             coords.lat = position.coords.latitude;
-            console.log(coords);
-
-            $("h1").text("Current Weather");
 
             getLocationInfo(coords, initCityHTML, initWeatherHTML, true);
-            setInterval(setTime, 60000); // Update time every 60 seconds
+            setInterval(function(){
+               setLocalDate(currentDate);
+            }, 60000); // Update time every 60 seconds
 
             $(".footer__randWeather").on("click", onClickRandom);
             $(".footer__localWeather").on("click", onClickLocal);
