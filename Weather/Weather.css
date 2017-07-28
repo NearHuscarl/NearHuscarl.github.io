@@ -188,6 +188,7 @@ body {
 }
 
 .weather__temp {
+   white-space: nowrap;
    font-size: 85px;
    line-height: 85%;
    cursor: pointer;
