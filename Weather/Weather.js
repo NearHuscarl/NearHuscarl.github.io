@@ -1,4 +1,4 @@
-(function(){
+var weatherApp = (function(){
 
       date = new Date(),
       tempUnit = "C",
@@ -34,7 +34,7 @@
    {
       let id         = json.weather[0].id,
          description = json.weather[0].description,
-         temp        = Math.round(json.main.temp),
+         temp        = ("0" + Math.round(json.main.temp)).slice(-2), // add a zero before if has only 1 digit
          wind        = parseFloat((json.wind.speed * 3600 / 1000).toFixed(1)), // convert from m/s to k/h
          degree      = json.wind.deg,
          cloud       = json.clouds.all,
@@ -83,7 +83,7 @@
       $("<style class='style__temp'> .shadow--full:after { opacity: 0.1; visibility: visible; } </style> ").appendTo("body");
 
       setTimeout(function(){
-         $("._card__icon, ._card__stat, ._card__miscInfo").flip("toggle");
+         $("._card__icon, ._card__stat, ._card__miscInfo, ._card__dateTime").flip("toggle");
          animateBackgroundColor(id, cloud, temp);
       }, 0.3);
 
@@ -93,10 +93,10 @@
    {
       // not every country has this administrative level (5 or 6..) -> if so long_name will return a number
       let numOfAddressComp = geoJson.results[0].address_components.length,
-         countryIndex  = numOfAddressComp - 1,
+         countryIndex      = numOfAddressComp - 1,
          provinceIndex     = numOfAddressComp - 2,
-         cityIndex = numOfAddressComp - 3,
-         fallback = 0;
+         cityIndex         = numOfAddressComp - 3,
+         fallback          = 0;
 
       for(let i = numOfAddressComp-1; i >= 1; i--)
       {
@@ -107,9 +107,9 @@
             break;
          }
       }
-      countryIndex -= fallback;
-      provinceIndex    -= fallback;
-      cityIndex-= fallback;
+      countryIndex  -= fallback;
+      provinceIndex -= fallback;
+      cityIndex     -= fallback;
 
       return {
          city:     geoJson.results[0].address_components[cityIndex].long_name,
@@ -121,10 +121,10 @@
    function initCityHTML(geoJson)
    {
       let location = getNameList(geoJson),
-         offset = geoJson.timezoneOffset,
+         offset    = geoJson.timezoneOffset,
          localDate = getDateFromOffset(offset);
 
-      setLocalDate(localDate);
+      initDateHTML(localDate);
 
       if(isFrontLocation) {
          $(".back .weather__location").html(location.city + " - " + location.province);
@@ -138,12 +138,11 @@
 
    function initCountryHTML(geoJson)
    {
-      console.log(geoJson);
       let location = getNameList(geoJson),
-         offset = geoJson.timezoneOffset,
+         offset    = geoJson.timezoneOffset,
          localDate = getDateFromOffset(offset);
 
-      setLocalDate(localDate);
+      initDateHTML(localDate);
 
       if(isFrontLocation) {
          $(".back .weather__location").html(location.province + " - " + location.country);
@@ -170,14 +169,13 @@
       console.log(geocodeJson);
       console.log(weatherJson);
 
-      for(let i = 0; i < 8; i++)
-      {
+      for(let i = 0; i < 8; i++) {
          debug.address[i] = "N/A";
       }
 
       let numOfAddressComp = geocodeJson.results[0].address_components.length;
-      for(let i = 0; i < numOfAddressComp; i++)
-      {
+
+      for(let i = 0; i < numOfAddressComp; i++) {
          debug.address[i] = geocodeJson.results[0].address_components[i].long_name;
       }
 
@@ -281,7 +279,7 @@
             case 210:
             case 211:
             case 212:
-               return "<i class='wi wi-" + currentTime + "lightning'></i>";
+               return "<i class='wi wi-" + currentTime + "-lightning'></i>";
             // thunderstorm + light rain
             case 200:
                return "<i class='wi wi-" + currentTime + "-storm-showers'></i>";
@@ -557,27 +555,32 @@
 
    function getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal)
    {
-      let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
-         // url = "https://crossorigin.me/http://api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
-         coords = {
-            lon: geocodeJson.results[0].geometry.location.lng,
-            lat: geocodeJson.results[0].geometry.location.lat
-         },
-         url = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+      try {
+         let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
+            coords = {
+               lon: geocodeJson.results[0].geometry.location.lng,
+               lat: geocodeJson.results[0].geometry.location.lat
+            }, // https://crossorigin.me/
+            url = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
 
-      $.getJSON(url, function(weatherJson){
+         $.getJSON(url, function(weatherJson){
 
-         if(isLocal)
-         {
-            $.extend(localWeatherInfo, weatherJson);
-         }
+            if(isLocal)
+            {
+               $.extend(localWeatherInfo, weatherJson);
+            }
 
-         initDebugHTML(geocodeJson, weatherJson);
-         initLocation(geocodeJson);
-         initWeather(weatherJson);
+            initDebugHTML(geocodeJson, weatherJson);
+            initLocation(geocodeJson);
+            initWeather(weatherJson);
 
-         $(".loader-wrapper").css({"z-index": -3});
-      });
+            $(".loader-wrapper").css({"z-index": -3});
+         });
+      }
+      catch(e) {
+         $(".loader-wrapper").css("z-index") === -3;
+         alert("Unable to get data, try again");
+      }
    }
 
    function getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal)
@@ -587,14 +590,12 @@
             lon: geocodeJson.results[0].geometry.location.lng,
             lat: geocodeJson.results[0].geometry.location.lat
          };
-         console.log(coords);
 
          let apiKey = "AIzaSyAbviveMIP8emBiLlQ4aFLQEanKkkF9cI0",
             timestamp = Date.now() / 1000,
             url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + coords.lat + "," + coords.lon + "&timestamp=" + timestamp + "&key=" + apiKey;
 
          $.getJSON(url, function(timezoneJson) {
-            console.log(geocodeJson.results[0].address_components + " " + timezoneJson);
 
             geocodeJson.timezoneOffset = timezoneJson.rawOffset;
             currentDate = getDateFromOffset(geocodeJson.timezoneOffset);
@@ -800,18 +801,24 @@
    {
       if(unit === "C")
       {
-         return Math.round((num - 32) / 1.8);
+         return ("0" + Math.round((num - 32) / 1.8)).slice(-2);
       }
       else if(unit === "F")
       {
-         return Math.round(num * 1.8 + 32);
+         return ("0" + Math.round(num * 1.8 + 32)).slice(-2);
       }
    }
 
-   function setLocalDate(date)
+   function initDateHTML(date)
    {
-      $(".dateTime__date").html(getDay(date) + " " + date.getDate() + " " + getMonth(date));
-      $(".dateTime__time").html(convertToPeriod(date));
+      if(isFrontWeather) {
+         var side = ".back";
+      }
+      else {
+         var side = ".front";
+      }
+      $(side + " .dateTime__date").html(getDay(date) + " " + date.getDate() + " " + getMonth(date));
+      $(side + " .dateTime__time").html(convertToPeriod(date));
    }
 
    function getUTCDate(date)
@@ -871,8 +878,8 @@
 
       tempUnit = (tempUnit === "C" ? "F" : "C");
       temp = convertTempUnit(temp, tempUnit);
-      $(".weather__tempStat").html(temp + "&deg;" + tempUnit);
-      $(".weather__tempIcon").html(thermoIcon);
+      $(side + " .weather__tempStat").html(temp + "&deg;" + tempUnit);
+      $(side + " .weather__tempIcon").html(thermoIcon);
    }
 
    function onClickWind()
@@ -886,11 +893,20 @@
 
       let windIcon = $(side + " .weather__wind").html().trim().match(/^.*?(<\/i>)/)[0],
          windSpeed = parseFloat($(side + " .weather__wind").text().trim().slice(6)),
-         windDir = $(side + " .weather__wind").html().match(/,.*$/)[0];
+         windDir = "";
 
-      windUnit = (windUnit === "kph" ? "mph" : "kph");
-      windSpeed = convertWindSpeedUnit(windSpeed, windUnit);
-      $(".weather__wind").html(windIcon + " Wind: " + windSpeed + " " + windUnit + windDir);
+      // see if there is wind direction info
+      try {
+         windDir = $(side + " .weather__wind").html().match(/,.*$/)[0];
+      }
+      catch(e) {
+         windDir = "";
+      }
+      finally {
+         windUnit = (windUnit === "kph" ? "mph" : "kph");
+         windSpeed = convertWindSpeedUnit(windSpeed, windUnit);
+         $(side + " .weather__wind").html(windIcon + " Wind: " + windSpeed + " " + windUnit + windDir);
+      }
    }
 
    function onClickRandom()
@@ -976,23 +992,27 @@
          autoSize: false
       });
 
-      $("._card__title").flip({axis: "x"});
+      $("._card__dateTime").flip({axis: "x"});
       $("._card__icon").flip({reverse: true});
       $("._card__stat").flip({});
       $("._card__miscInfo").flip({axis: "x", reverse: true});
 
+      // set action after flip
       $("._card__icon").on("flip:done", function(){
 
-         let flipInfoIcon = $("._card__icon").data("flip-model"),
-            flipInfoStat = $("._card__stat").data("flip-model"),
-            flipInfoMiscInfo = $("._card__miscInfo").data("flip-model");
+         let flipInfoDate = $("._card__dateTime").data("flip-model"),
+            flipInfoIcon  = $("._card__icon").data("flip-model"),
+            flipInfoStat  = $("._card__stat").data("flip-model"),
+            flipInfoMisc  = $("._card__miscInfo").data("flip-model");
 
          // always flip in one direction
+         $("._card__dateTime").flip({ reverse: flipInfoDate.setting.reverse === true ? false : true });
          $("._card__icon").flip({ reverse: flipInfoIcon.setting.reverse === true ? false : true });
          $("._card__stat").flip({ reverse: flipInfoStat.setting.reverse === true ? false : true });
-         $("._card__miscInfo").flip({ reverse: flipInfoMiscInfo.setting.reverse === true ? false : true });
+         $("._card__miscInfo").flip({ reverse: flipInfoMisc.setting.reverse === true ? false : true });
 
-         // workaround fade-out animation of shadow since there is not :after alement selector
+         // workaround: fade-out animation of shadow since there is not :after alement selector
+         $("<style class='style__temp'> ._card__dateTime .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
          $("<style class='style__temp'> ._card__icon .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
          $("<style class='style__temp'> ._card__stat .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
          $("<style class='style__temp'> ._card__miscInfo .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
@@ -1008,7 +1028,7 @@
 
             getLocationInfo(coords, initCityHTML, initWeatherHTML, true);
             setInterval(function(){
-               setLocalDate(currentDate);
+               initDateHTML(currentDate);
             }, 60000); // Update time every 60 seconds
 
             $(".footer__randWeather").on("click", onClickRandom);
@@ -1024,5 +1044,14 @@
       $(".footer__debug").on("click", onClickDebug);
 
    });
+
+   return {
+      onClickLocal: onClickLocal,
+      onClickDebug: onClickDebug,
+      onClickWind: onClickWind,
+      onClickTemp: onClickTemp,
+      onClickRandom: onClickRandom,
+      animateBackgroundColor: animateBackgroundColor
+   }
 
 })();
