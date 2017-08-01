@@ -54,15 +54,15 @@ var weatherApp = (function(){
       let side = "";
       if(isFrontWeather) {
          // fix windDir style backface-visibility:hidden not working in chrome
-         $(".front .wi").css("opacity", 0);
-         $(".back .wi").css("opacity", 1);
+         $(".front [class*='towards']").css("opacity", 0);
+         $(".back [class*='towards']").css("opacity", 1);
 
          side = ".back";
          isFrontWeather = false;
       }
       else {
-         $(".front .wi").css("opacity", 1);
-         $(".back .wi").css("opacity", 0);
+         $(".front [class*='towards']").css("opacity", 1);
+         $(".back [class*='towards']").css("opacity", 0);
 
          side = ".front";
          isFrontWeather = true;
@@ -79,8 +79,7 @@ var weatherApp = (function(){
 
       // --ANIMATE--
       // a workaround to style :after element since there is no :after selector
-      $(".style__temp").remove();
-      $("<style class='style__temp'> .shadow--full:after { opacity: 0.1; visibility: visible; } </style> ").appendTo("body");
+      fadeIn(".shadow--full:after");
 
       setTimeout(function(){
          $("._card__icon, ._card__stat, ._card__miscInfo, ._card__dateTime").flip("toggle");
@@ -503,7 +502,7 @@ var weatherApp = (function(){
       if(deg === undefined) {
          return "";
       }
-      if(349 <= deg && deg < 11) {
+      if(349 <= deg || deg < 11) {
          return ", <i class='wi wi-wind towards-0-deg'></i> North";
       }
       else if(11 <= deg && deg < 34) {
@@ -555,81 +554,74 @@ var weatherApp = (function(){
 
    function getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal)
    {
-      try {
-         let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
-            coords = {
-               lon: geocodeJson.results[0].geometry.location.lng,
-               lat: geocodeJson.results[0].geometry.location.lat
-            }, // https://crossorigin.me/
-            url = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
+      let weatherApiKey = "&APPID=828ae1247f478a35f20c2a9303c677c2",
+         coords = {
+            lon: geocodeJson.results[0].geometry.location.lng,
+            lat: geocodeJson.results[0].geometry.location.lat
+         }, // https://crossorigin.me/
+         url = "https://cors-anywhere.herokuapp.com/api.openweathermap.org/data/2.5/weather?lat=" + coords.lat + "&lon=" + coords.lon + weatherApiKey + "&units=metric";
 
-         $.getJSON(url, function(weatherJson){
+      $.getJSON(url, function(weatherJson){
 
-            if(isLocal)
-            {
-               $.extend(localWeatherInfo, weatherJson);
-            }
+         if(isLocal) {
+            $.extend(localWeatherInfo, weatherJson);
+         }
 
-            initDebugHTML(geocodeJson, weatherJson);
-            initLocation(geocodeJson);
-            initWeather(weatherJson);
-
+         initDebugHTML(geocodeJson, weatherJson);
+         initLocation(geocodeJson);
+         initWeather(weatherJson);
+      })
+         .always(function() {
             $(".loader-wrapper").css({"z-index": -3});
+         })
+         .fail(function(){
+            alert("Unable to get data, try again");
          });
-      }
-      catch(e) {
-         $(".loader-wrapper").css("z-index") === -3;
-         alert("Unable to get data, try again");
-      }
    }
 
    function getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal)
    {
-      try {
-         let coords = {
-            lon: geocodeJson.results[0].geometry.location.lng,
-            lat: geocodeJson.results[0].geometry.location.lat
-         };
+      let coords = {
+         lon: geocodeJson.results[0].geometry.location.lng,
+         lat: geocodeJson.results[0].geometry.location.lat
+      };
 
-         let apiKey = "AIzaSyAbviveMIP8emBiLlQ4aFLQEanKkkF9cI0",
-            timestamp = Date.now() / 1000,
-            url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + coords.lat + "," + coords.lon + "&timestamp=" + timestamp + "&key=" + apiKey;
+      let apiKey = "AIzaSyAbviveMIP8emBiLlQ4aFLQEanKkkF9cI0",
+         timestamp = Date.now() / 1000,
+         url = "https://maps.googleapis.com/maps/api/timezone/json?location=" + coords.lat + "," + coords.lon + "&timestamp=" + timestamp + "&key=" + apiKey;
 
-         $.getJSON(url, function(timezoneJson) {
+      $.getJSON(url, function(timezoneJson) {
 
-            geocodeJson.timezoneOffset = timezoneJson.rawOffset;
-            currentDate = getDateFromOffset(geocodeJson.timezoneOffset);
+         geocodeJson.timezoneOffset = timezoneJson.rawOffset;
+         currentDate = getDateFromOffset(geocodeJson.timezoneOffset);
 
-            if(isLocal) {
-               localDate = currentDate;
-               $.extend(localLocationInfo, geocodeJson);
-            }
-            getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal);
+         if(isLocal) {
+            localDate = currentDate;
+            $.extend(localLocationInfo, geocodeJson);
+         }
+         getWeatherInfo(geocodeJson, initLocation, initWeather, isLocal);
 
+      })
+         .fail(function(){
+            $(".loader-wrapper").css("z-index") === -3;
+            alert("Unable to get data, try again");
          });
-      }
-      catch(e) {
-         $(".loader-wrapper").css("z-index") === -3;
-         alert("Unable to get data, try again");
-      }
    }
 
    function getLocationInfo(coords, initLocation, initWeather, isLocal)
    {
       $(".loader-wrapper").css({"z-index": 1});
 
-      try {
-         let apiKey = "AIzaSyASk8XzwvoBEBwhQU4SfA84ENUoECNWvRE",
-            url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords.lat + "," + coords.lon + "&key=" + apiKey;
+      let apiKey = "AIzaSyASk8XzwvoBEBwhQU4SfA84ENUoECNWvRE",
+         url = "https://maps.googleapis.com/maps/api/geocode/json?latlng=" + coords.lat + "," + coords.lon + "&key=" + apiKey;
 
-         $.getJSON(url, function(geocodeJson){
-            getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal);
-         })
-      }
-      catch(e) {
-         $(".loader-wrapper").css("z-index") === -3;
-         alert("Unable to get data, try again");
-      }
+      $.getJSON(url, function(geocodeJson){
+         getTimezoneInfo(geocodeJson, initLocation, initWeather, isLocal);
+      })
+         .fail(function(){
+            $(".loader-wrapper").css("z-index") === -3;
+            alert("Unable to get data, try again");
+         });
    }
 
    function getBackgroundColor(id, cloud, temp)
@@ -785,6 +777,18 @@ var weatherApp = (function(){
       }
    }
 
+   function fadeOut(selector)
+   {
+      $(".style__temp").remove();
+      $("<style class='style__temp'>" + selector + " { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+   }
+
+   function fadeIn(selector)
+   {
+      $(".style__temp").remove();
+      $("<style class='style__temp'>" + selector + " { opacity: 0.1; visibility: visible; } </style> ").appendTo("body");
+   }
+
    function convertWindSpeedUnit(num, unit)
    {
       if(unit === "kph")
@@ -911,6 +915,8 @@ var weatherApp = (function(){
 
    function onClickRandom()
    {
+      $(".loader-wrapper").css({"z-index": 1});
+
       let url = "https://raw.githubusercontent.com/NearHuscarl/NearHuscarl.github.io/master/Weather/city-list.min.json";
 
       $.getJSON(url, function(cityJson){
@@ -1012,10 +1018,10 @@ var weatherApp = (function(){
          $("._card__miscInfo").flip({ reverse: flipInfoMisc.setting.reverse === true ? false : true });
 
          // workaround: fade-out animation of shadow since there is not :after alement selector
-         $("<style class='style__temp'> ._card__dateTime .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
-         $("<style class='style__temp'> ._card__icon .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
-         $("<style class='style__temp'> ._card__stat .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
-         $("<style class='style__temp'> ._card__miscInfo .shadow--full:after { opacity: 0; visibility: hidden; } </style> ").appendTo("body");
+         fadeOut("._card__dateTime .shadow--full:after");
+         fadeOut("._card__icon .shadow--full:after");
+         fadeOut("._card__stat .shadow--full:after");
+         fadeOut("._card__miscInfo .shadow--full:after");
       });
 
       if(navigator.geolocation)
