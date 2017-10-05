@@ -38,13 +38,13 @@ h1 {
    color: #6e5691;
 }
 
-.content {
+#content {
   -webkit-animation-duration: .5s;
   -webkit-animation-delay: 0s;
   -webkit-animation-fill-mode: forwards;
 }
 
-#display-author {
+.display-author {
    font-weight: bold;
    text-align: right;
    margin-top: 1em;
@@ -66,26 +66,23 @@ button {
    outline: none;
 
    transition: all .2s;
-   transition-timing-function: ease-out;
-}
 
-#btn-quote {
    background-color: #cdbfe3;
    color: #412f5d;
 }
 
-#btn-quote:hover {
+.btn-quote:hover {
    background-color: #412f5d;
    color: #cdbfe3;
 }
 
-#btn-tweet {
-   background-color: #cdbfe3;
-   color: #412f5d;
+.btn-tweet:hover {
+   background-color: #48aae6;
+   color: #e1f1fb;
 }
 
-#btn-tweet:hover {
-   background-color: #48aae6;
+.btn-copy:hover {
+   background-color: #ff7373;
    color: #e1f1fb;
 }
 
