@@ -7,16 +7,21 @@
    <script src="wikipedia-viewer.js"></script>
 </head>
 
-<div class="container">
+<div class="container main">
+   <h1 class="text-center">Wikipedia Viewer</h1>
    <div class="row">
-      <div class="col-md-4 col-sm-8">
-         <form class="form-inline">
-            <label class="sr-only" for="inlineFormInputGroup">Search</label>
-            <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-               <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
-               <div class="input-group-addon"><i class="fa fa-search" aria-hidden="true"></i></div>
-            </div>
-         </form>
+
+      <div class="col-md-3 offset-md-4">
+         <label class="sr-only" for="inlineFormInputGroup">Search</label>
+         <div class="input-group">
+            <input type="text" class="form-control" id="inlineFormInputGroup" placeholder="Search">
+            <span class="input-group-addon icon__search"><i class="fa fa-search" aria-hidden="true"></i></span>
+         </div>
       </div>
+
+      <div class="col-md-1">
+         <button class="btn btn__random" type="button">Random</button>
+      </div>
+
    </div>
 </div>
