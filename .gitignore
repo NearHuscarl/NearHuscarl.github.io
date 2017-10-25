@@ -1,0 +1,5 @@
+# vim: ft=conf
+# test/
+**/tags
+.git/
+node_modules/

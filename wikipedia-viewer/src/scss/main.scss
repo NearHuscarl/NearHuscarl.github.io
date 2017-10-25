@@ -1,0 +1,52 @@
+// body               { background-color: #198c8c !important; }
+// body *             { background-color: #008080 !important; }
+// body * *           { background-color: #007373 !important; }
+// body * * *         { background-color: #006666 !important; }
+// body * * * *       { background-color: #005959 !important; }
+// body * * * * *     { background-color: #004c4c !important; }
+// body * * * * * *   { background-color: #004040 !important; }
+// body * * * * * * * { background-color: #003333 !important; }
+
+$padtop:     40px;
+$dark-grey:  #333333;
+$grey:       #808080;
+$bg-color:   $dark-grey;
+$fg-color:   $grey;
+$light-grey: #c1c1c1;
+$hl-color:   #16a085;
+
+body {
+   background-color: $bg-color;
+   color: $fg-color;
+   cursor: default;
+   padding-top: $padtop;
+}
+
+.inputBox {
+   background-color: $light-grey;
+   border-color: $light-grey;
+
+   &:focus {
+      background-color: $light-grey;
+      border-color: $hl-color;
+   }
+}
+
+.btn {
+   background-color: $light-grey;
+   color: $dark-grey;
+
+   &:hover {
+      background-color: $hl-color;
+      color: $light-grey;
+   }
+}
+
+.btn__random--ml {
+   margin-left: -20px;
+}
+
+.btn,
+.icon {
+   cursor: pointer;
+}

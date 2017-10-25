@@ -1,0 +1,26 @@
+body {
+  background-color: #333333;
+  color: #808080;
+  cursor: default;
+  padding-top: 40px; }
+
+.inputBox {
+  background-color: #c1c1c1;
+  border-color: #c1c1c1; }
+  .inputBox:focus {
+    background-color: #c1c1c1;
+    border-color: #16a085; }
+
+.btn {
+  background-color: #c1c1c1;
+  color: #333333; }
+  .btn:hover {
+    background-color: #16a085;
+    color: #c1c1c1; }
+
+.btn__random--ml {
+  margin-left: -20px; }
+
+.btn,
+.icon {
+  cursor: pointer; }
