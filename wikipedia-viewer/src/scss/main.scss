@@ -35,6 +35,7 @@ body {
 .btn {
    background-color: $light-grey;
    color: $dark-grey;
+   border: unset;
 
    &:hover {
       background-color: $hl-color;
@@ -46,7 +47,20 @@ body {
    margin-left: -20px;
 }
 
+.btn__link {
+   text-align: right;
+}
+
 .btn,
 .icon {
    cursor: pointer;
+}
+
+.result {
+   padding-top: 60px;
+}
+
+.result__review {
+   color: $dark-grey;
+   background-color: $grey;
 }

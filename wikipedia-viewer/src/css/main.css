@@ -13,7 +13,8 @@ body {
 
 .btn {
   background-color: #c1c1c1;
-  color: #333333; }
+  color: #333333;
+  border: unset; }
   .btn:hover {
     background-color: #16a085;
     color: #c1c1c1; }
@@ -21,6 +22,16 @@ body {
 .btn__random--ml {
   margin-left: -20px; }
 
+.btn__link {
+  text-align: right; }
+
 .btn,
 .icon {
   cursor: pointer; }
+
+.result {
+  padding-top: 60px; }
+
+.result__review {
+  color: #333333;
+  background-color: #808080; }
