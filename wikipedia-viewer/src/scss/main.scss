@@ -22,20 +22,55 @@ body {
    padding-top: $padtop;
 }
 
-.inputBox {
-   background-color: $light-grey;
-   border-color: $light-grey;
-
-   &:focus {
-      background-color: $light-grey;
-      border-color: $hl-color;
+article {
+   margin: {
+      bottom: 10px;
+      top: 10px;
    }
+}
+
+.container {
+
+   .search-bar {
+
+      .search-bar__input-box {
+         background-color: $light-grey;
+         border: none;
+
+         &:focus {
+            background-color: $light-grey;
+         }
+      }
+
+      .search-bar__icon {
+         border: {
+            bottom-right-radius: 4px;
+            top-right-radius: 4px;
+         }
+      }
+
+      // chained class (.form-control) to override bootstrap css
+      .form-control.search-bar__dropdown {
+         border-radius: 4px;
+         max-width: 50px;
+      }
+
+      .search-bar__btn--pos {
+         border: thick;
+         // fix border height not aligned with input bar and dropdown
+         height: 2.3em;
+         margin-left: 10px;
+         top: 10px;
+      }
+
+   }
+
 }
 
 .btn {
    background-color: $light-grey;
-   color: $dark-grey;
    border: unset;
+   color: $dark-grey;
 
    &:hover {
       background-color: $hl-color;
@@ -43,16 +78,12 @@ body {
    }
 }
 
-.btn__random--ml {
-   margin-left: -20px;
-}
-
 .btn__link {
    text-align: right;
 }
 
 .btn,
-.icon {
+.fa {
    cursor: pointer;
 }
 
@@ -61,6 +92,6 @@ body {
 }
 
 .result__review {
-   color: $dark-grey;
    background-color: $grey;
+   color: $dark-grey;
 }

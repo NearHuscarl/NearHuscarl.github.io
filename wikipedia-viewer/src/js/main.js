@@ -1,27 +1,28 @@
-var wikipediaViewer = (function(){
+let wikipediaViewer = (() => {
    // option for number of search result (dropdown)
 
-   $(document).ready(function(){
-      $('.btn__random').on('click', function() {
-         var url = 'https://en.wikipedia.org/wiki/Special:Random';
+   $(document).ready(() => {
+      $('.btn__random').on('click', () => {
+         let url = 'https://en.wikipedia.org/wiki/Special:Random';
          window.open(url, '_blank');
       });
-      $('.icon__search').on('click', function() {
-         var crossover = 'https://cors-anywhere.herokuapp.com';
-         var query = $('#inlineFormInputGroup').val();
-         var apiSearch =  crossover + '/en.wikipedia.org/w/api.php?action=opensearch&search='
-            + query + '&format=json';
+      $('.icon__search').on('click', () => {
+         let numOfResults = $('.search-bar__dropdown').val();
 
-         $.getJSON(apiSearch, function(searchData){
-            var title   = searchData[1][0];
-            var summary = searchData[2][0];
+         let crossover = 'https://cors-anywhere.herokuapp.com';
+         let baseLink = '/en.wikipedia.org/w/api.php?action=opensearch&format=json&search=';
+         let query = $('#inlineFormInputGroup').val();
+         let apiSearch =  crossover + baseLink + query;
 
-            alert(title);
-            alert(summary);
-            alert(link);
+         $.getJSON(apiSearch, searchData => {
+            let title   = searchData[1][0];
+            let summary = searchData[2][0];
+            let link    = searchData[3][0];
+
+            // alert(title);
+            // alert(summary);
+            // alert(link);
          });
-
       });
    });
-
 })();

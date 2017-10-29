@@ -1,6 +1,6 @@
 const gulp       = require('gulp');
 const uglifyCss  = require('gulp-clean-css');
-const uglifyJs   = require('gulp-uglify');
+const uglifyJs   = require('gulp-uglify-es').default;
 const lintScss   = require('gulp-scss-lint');
 const lintJs     = require('gulp-eslint');
 const sass       = require('gulp-sass');
@@ -55,8 +55,9 @@ gulp.task('scss', function() {
 
 gulp.task('js', function() {
    return gulp.src(path.src.js)
-      .pipe(newer(path.dist.js))
       .pipe(lintJs())
+      .pipe(lintJs.format())
+      .pipe(newer(path.dist.js))
       .pipe(uglifyJs())
       .pipe(gulp.dest(path.dist.js));
 });

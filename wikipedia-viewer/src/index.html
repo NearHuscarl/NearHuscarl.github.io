@@ -7,26 +7,56 @@
    <script src="js/main.js"></script>
 </head>
 
-<section class="container searchBar">
+<div class="container">
    <h1 class="text-center">Wikipedia Viewer</h1>
-   <div class="row">
 
-      <div class="col-md-3 offset-md-4">
-         <label class="sr-only" for="inlineFormInputGroup">Search</label>
-         <div class="input-group">
-            <input type="text" class="form-control inputBox" id="inlineFormInputGroup" placeholder="Search">
-            <span class="input-group-addon icon icon__search">
-               <i class="fa fa-search" aria-hidden="true"></i>
+   <section class="search-bar">
+      <div class="row">
+         <div class="col-md-6 offset-md-3">
+
+            <label class="sr-only" for="inlineFormInputGroup">Search</label>
+            <span class="input-group">
+               <input type="text" class="form-control search-bar__input-box" id="inlineFormInputGroup" placeholder="Search">
+               <span class="input-group-addon search-bar__icon">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+               </span>
+
+               <select class="form-control search-bar__dropdown">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+               </select>
+
+               <span>
+                  <button class="btn search-bar__btn search-bar__btn--pos" type="button">Random</button>
+               </span>
             </span>
+
          </div>
       </div>
+   </section>
 
-      <div class="col-md-1">
-         <button class="btn btn__random btn__random--ml" type="button">Random</button>
-      </div>
+   <section class="result">
+      <div class="row">
+         <div class="col-md-8 offset-md-2">
 
-      <div class="col-md-8 offset-md-2">
-         <section class="result">
             <h5 class="result__headline">Search result</h5>
 
             <article class="card card-block result__review">
@@ -37,9 +67,25 @@
                </span>
             </article>
 
-         </section>
-      </div>
+            <article class="card card-block result__review">
+               <h5 class="card-title result__title">Title wiki</h5>
+               <p class="card-text result__description">Short description of wikipage</p>
+               <span class="btn__link">
+                  <button class="btn btn-primary ">Read More</button>
+               </span>
+            </article>
 
-   </div>
-</section>
+            <article class="card card-block result__review">
+               <h5 class="card-title result__title">Title wiki</h5>
+               <p class="card-text result__description">Short description of wikipage</p>
+               <span class="btn__link">
+                  <button class="btn btn-primary ">Read More</button>
+               </span>
+            </article>
+
+         </div>
+      </div>
+   </section>
+
+</div>
 
