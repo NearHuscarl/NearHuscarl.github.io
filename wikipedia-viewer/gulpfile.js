@@ -58,7 +58,7 @@ gulp.task('js', function() {
       .pipe(lintJs())
       .pipe(lintJs.format())
       .pipe(newer(path.dist.js))
-      .pipe(uglifyJs())
+      // .pipe(uglifyJs())
       .pipe(gulp.dest(path.dist.js));
 });
 

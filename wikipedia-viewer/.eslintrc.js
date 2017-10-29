@@ -4,6 +4,7 @@ const ERROR = 2;
 
 module.exports = exports = {
    "env": {
+      // dont warn about document or window not defined
       "browser": true,
       "es6": true,
       "jquery": true
@@ -66,6 +67,7 @@ module.exports = exports = {
       "no-lone-blocks": WARN,
       "no-loop-func": ERROR,
       "no-magic-numbers": [WARN, {"ignore": [1]} ],
+      // allow multiple spaces for aligned comments, aligned variable value assignment, ...
       "no-multi-spaces": [ERROR, {
          "ignoreEOLComments": true,
          "exceptions": { 
@@ -150,7 +152,7 @@ module.exports = exports = {
       "object-shorthand": [ WARN, "never" ],
       "prefer-arrow-callback": WARN,
       "prefer-spread": WARN,
-      "prefer-template": WARN,
+      "prefer-template": OFF,
       "require-yield": ERROR,
 
       // Stylistic - everything here is a warning because of style.
@@ -165,7 +167,12 @@ module.exports = exports = {
       "eol-last": WARN,
       "func-names": WARN,
       "func-style": [ WARN, "declaration" ],
-      "id-length": [ WARN, { "min": 2, "max": 32 } ],
+      // ignore i (index) in for loop
+      "id-length": [ WARN, {
+         "min": 2,
+         "max": 32,
+         "exceptions": ["i"]
+      }],
       "indent": [ WARN, 3 ],
       "jsx-quotes": [ WARN, "prefer-double" ],
       "keyword-spacing":  WARN,
