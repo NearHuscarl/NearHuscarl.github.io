@@ -66,6 +66,7 @@ module.exports = exports = {
       "no-labels": WARN,
       "no-lone-blocks": WARN,
       "no-loop-func": ERROR,
+      // ignore sth like data[data.length - 1]
       "no-magic-numbers": [WARN, {"ignore": [1]} ],
       // allow multiple spaces for aligned comments, aligned variable value assignment, ...
       "no-multi-spaces": [ERROR, {

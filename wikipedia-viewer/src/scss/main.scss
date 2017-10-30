@@ -49,10 +49,9 @@ article {
          }
       }
 
-      // chained class (.form-control) to override bootstrap css
-      .form-control.search-bar__dropdown {
-         border-radius: 4px;
-         max-width: 50px;
+      .search-bar__dropdown--pos {
+         background-color: $light-grey;
+         margin-left: 5px;
       }
 
       .search-bar__btn--pos {
@@ -89,9 +88,19 @@ article {
 
 .result {
    padding-top: 60px;
+
+   [class*=result__review] {
+      background-color: $grey;
+      color: $dark-grey;
+   }
+
+   .result__warning {
+      text-align: center;
+      font-size: 50px;
+      
+      &::before {
+         content: "No result found :("
+      }
+   }
 }
 
-.result__review {
-   background-color: $grey;
-   color: $dark-grey;
-}
