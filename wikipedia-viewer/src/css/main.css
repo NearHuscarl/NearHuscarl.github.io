@@ -1,6 +1,9 @@
+h1 {
+  margin: 20px; }
+
 body {
   background-color: #333333;
-  color: #808080;
+  color: #c1c1c1;
   cursor: default;
   padding-top: 40px; }
 
@@ -28,19 +31,25 @@ article {
   margin-left: 10px;
   top: 10px; }
 
-.btn {
+.search-bar__btn,
+.result__btn {
   background-color: #c1c1c1;
   border: unset;
-  color: #333333; }
-  .btn:hover {
-    background-color: #16a085;
-    color: #c1c1c1; }
+  color: #333333;
+  transition: all 0.15s ease-out; }
+
+.search-bar__btn:hover {
+  background-color: #808080; }
+
+.result__btn:hover {
+  background-color: #333333;
+  color: #c1c1c1; }
 
 .btn__link {
   text-align: right; }
 
-.btn,
-.fa {
+.search-bar__btn,
+.search-bar__icon {
   cursor: pointer; }
 
 .result {
@@ -48,8 +57,6 @@ article {
   .result [class*=result__review] {
     background-color: #808080;
     color: #333333; }
-  .result .result__warning {
-    text-align: center;
-    font-size: 50px; }
-    .result .result__warning::before {
-      content: "No result found :("; }
+
+.copyright__text {
+  font-size: 12px; }

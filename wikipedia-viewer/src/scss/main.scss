@@ -10,10 +10,13 @@
 $padtop:     40px;
 $dark-grey:  #333333;
 $grey:       #808080;
-$bg-color:   $dark-grey;
-$fg-color:   $grey;
 $light-grey: #c1c1c1;
-$hl-color:   #16a085;
+$bg-color:   $dark-grey;
+$fg-color:   $light-grey;
+
+h1 {
+   margin: 20px;
+}
 
 body {
    background-color: $bg-color;
@@ -66,13 +69,24 @@ article {
 
 }
 
-.btn {
+.search-bar__btn,
+.result__btn {
    background-color: $light-grey;
    border: unset;
    color: $dark-grey;
+   transition: all 0.15s ease-out;
 
+}
+
+.search-bar__btn {
    &:hover {
-      background-color: $hl-color;
+      background-color: $grey;
+   }
+}
+
+.result__btn {
+   &:hover {
+      background-color: $dark-grey;
       color: $light-grey;
    }
 }
@@ -81,8 +95,8 @@ article {
    text-align: right;
 }
 
-.btn,
-.fa {
+.search-bar__btn,
+.search-bar__icon {
    cursor: pointer;
 }
 
@@ -93,14 +107,17 @@ article {
       background-color: $grey;
       color: $dark-grey;
    }
-
-   .result__warning {
-      text-align: center;
-      font-size: 50px;
-      
-      &::before {
-         content: "No result found :("
-      }
-   }
 }
 
+@mixin center-bottom() {
+   position: fixed;
+   left: 50%;
+   bottom: 5px;
+   transform: translate(-50%, -50%);
+   margin: 0 auto;
+}
+
+.copyright__text {
+   // @include center-bottom();
+   font-size: 12px;
+}

@@ -3,8 +3,19 @@ let wikipediaViewer = (() => {
    const SUMMARY = 2;
    const LINK = 3;
    const ENTER_CODE = 13;
+
    /**
-    * @summary Generate result content after clicking search or press enter
+    * @summary show no result text when cant retrieve result
+    */
+   function alertNoResult() {
+      let warningTag = $('<h1>No Result Found :(</h1>')
+         .css({ 'text-align': 'center', 'font-size': 50 });
+
+      warningTag.appendTo($('.result__list'));
+   }
+
+   /**
+    * @summary Generate result reviews after clicking search or press enter
     */
    function onEventSearch() {
       let numOfResults = $('.search-bar__dropdown').val();
@@ -17,10 +28,13 @@ let wikipediaViewer = (() => {
       // remove all previous results before generating new elements
       $('.result__list').children().remove();
 
-      let resultHeaderTag = '<h5 class="result__headline">Search result</h5>';
-      $(resultHeaderTag).appendTo($('.result__list'));
-
       $.getJSON(apiSearch, searchData => {
+         // no result found
+         if (searchData[TITLE].length === 0) {
+            alertNoResult();
+            return;
+         }
+
          // insert 'No Description' in empty result description
          searchData[SUMMARY] = searchData[SUMMARY].map(summary => {
             if (!summary) {
@@ -28,6 +42,14 @@ let wikipediaViewer = (() => {
             }
             return summary;
          });
+
+         // show all results
+         if (numOfResults === '0') {
+            numOfResults = searchData[SUMMARY].length;
+         }
+
+         let resultHeaderTag = '<h5 class="result__headline">Search result</h5>';
+         $(resultHeaderTag).appendTo($('.result__list'));
 
          for (let i = 0; i < numOfResults; i++) {
             let title   = searchData[TITLE][i];
@@ -48,7 +70,7 @@ let wikipediaViewer = (() => {
             let paraTag = '<p class="card-text result__description">' + summary + '</p>';
             let buttonTag = `
                <span class="btn__link">
-               <a class="btn btn-primary" href="${link}" target="_blank">Read More</a>
+               <a class="btn result__btn" href="${link}" target="_blank">Read More</a>
                </span>`;
 
             $(articleTag).appendTo($('.result__list'));
@@ -56,17 +78,17 @@ let wikipediaViewer = (() => {
             $(paraTag).appendTo($('.result__review' + i));
             $(buttonTag).appendTo($('.result__review' + i));
          }
-
-         // no result found
-         if ($('.result__list').children().length === 0) {
-            let warningTag = '<h1 class="card-title result__warning"></h1>';
-
-            $(warningTag).appendTo($('.result__list'));
-         }
+      }).fail(() => {
+         // cant get json for some reason
+         alertNoResult();
       });
    }
 
    $(document).ready(() => {
+      // get copyright year
+      $('.copyright__year').text(new Date().getFullYear());
+
+      // when click random button
       $('.search-bar__btn').on('click', () => {
          let url = 'https://en.wikipedia.org/wiki/Special:Random';
          window.open(url, '_blank');
