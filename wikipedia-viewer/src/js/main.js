@@ -69,7 +69,7 @@ let wikipediaViewer = (() => {
                </h5>`;
             let paraTag = '<p class="card-text result__description">' + summary + '</p>';
             let buttonTag = `
-               <span class="btn__link">
+               <span class="result__btn-wrapper">
                <a class="btn result__btn" href="${link}" target="_blank">Read More</a>
                </span>`;
 

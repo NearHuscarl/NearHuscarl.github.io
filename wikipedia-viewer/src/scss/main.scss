@@ -1,18 +1,21 @@
-// body               { background-color: #198c8c !important; }
-// body *             { background-color: #008080 !important; }
-// body * *           { background-color: #007373 !important; }
-// body * * *         { background-color: #006666 !important; }
-// body * * * *       { background-color: #005959 !important; }
-// body * * * * *     { background-color: #004c4c !important; }
-// body * * * * * *   { background-color: #004040 !important; }
-// body * * * * * * * { background-color: #003333 !important; }
+// body               { background-color: #198c8c !important; color: #ffffff !important;}
+// body *             { background-color: #008080 !important; color: #ffffff !important;}
+// body * *           { background-color: #007373 !important; color: #ffffff !important;}
+// body * * *         { background-color: #006666 !important; color: #ffffff !important;}
+// body * * * *       { background-color: #005959 !important; color: #ffffff !important;}
+// body * * * * *     { background-color: #004c4c !important; color: #ffffff !important;}
+// body * * * * * *   { background-color: #004040 !important; color: #ffffff !important;}
+// body * * * * * * * { background-color: #003333 !important; color: #ffffff !important;}
 
-$padtop:     40px;
-$dark-grey:  #333333;
-$grey:       #808080;
-$light-grey: #c1c1c1;
-$bg-color:   $dark-grey;
-$fg-color:   $light-grey;
+@import 'variable.scss';
+
+@mixin center-bottom() {
+   position: fixed;
+   left: 50%;
+   bottom: 5px;
+   transform: translate(-50%, -50%);
+   margin: 0 auto;
+}
 
 h1 {
    margin: 20px;
@@ -25,6 +28,19 @@ body {
    padding-top: $padtop;
 }
 
+a {
+   &:link,
+   &:visited {
+      color: $light-grey;
+      text-decoration: none;
+   }
+
+   &:hover {
+      color: $grey;
+      text-decoration: none;
+   }
+}
+
 article {
    margin: {
       bottom: 10px;
@@ -32,10 +48,17 @@ article {
    }
 }
 
+.btn {
+   background-color: $light-grey;
+   border: unset;
+   color: $dark-grey;
+   cursor: pointer;
+   transition: all 0.15s ease-out;
+}
+
 .container {
 
    .search-bar {
-
       .search-bar__input-box {
          background-color: $light-grey;
          border: none;
@@ -49,6 +72,13 @@ article {
          border: {
             bottom-right-radius: 4px;
             top-right-radius: 4px;
+         }
+         cursor: pointer;
+      }
+
+      .search-bar__btn {
+         &:hover {
+            background-color: $grey;
          }
       }
 
@@ -64,60 +94,34 @@ article {
          margin-left: 10px;
          top: 10px;
       }
-
    }
 
-}
+   .result {
+      padding-top: 60px;
 
-.search-bar__btn,
-.result__btn {
-   background-color: $light-grey;
-   border: unset;
-   color: $dark-grey;
-   transition: all 0.15s ease-out;
+      [class*=result__review] {
+         background-color: $grey;
+         color: $dark-grey;
+      }
 
-}
+      .result__btn-wrapper {
+         text-align: right;
+      }
 
-.search-bar__btn {
-   &:hover {
-      background-color: $grey;
+      .result__btn {
+         color: $dark-grey;
+
+         &:hover {
+            background-color: $dark-grey;
+            color: $light-grey;
+         }
+      }
    }
-}
 
-.result__btn {
-   &:hover {
-      background-color: $dark-grey;
-      color: $light-grey;
+   .copyright {
+      .copyright__text {
+         // @include center-bottom();
+         font-size: 12px;
+      }
    }
-}
-
-.btn__link {
-   text-align: right;
-}
-
-.search-bar__btn,
-.search-bar__icon {
-   cursor: pointer;
-}
-
-.result {
-   padding-top: 60px;
-
-   [class*=result__review] {
-      background-color: $grey;
-      color: $dark-grey;
-   }
-}
-
-@mixin center-bottom() {
-   position: fixed;
-   left: 50%;
-   bottom: 5px;
-   transform: translate(-50%, -50%);
-   margin: 0 auto;
-}
-
-.copyright__text {
-   // @include center-bottom();
-   font-size: 12px;
 }
