@@ -1,0 +1,14 @@
+// body               { background-color: #198c8c !important; color: #ffffff !important;}
+// body *             { background-color: #008080 !important; color: #ffffff !important;}
+// body * *           { background-color: #007373 !important; color: #ffffff !important;}
+// body * * *         { background-color: #006666 !important; color: #ffffff !important;}
+// body * * * *       { background-color: #005959 !important; color: #ffffff !important;}
+// body * * * * *     { background-color: #004c4c !important; color: #ffffff !important;}
+// body * * * * * *   { background-color: #004040 !important; color: #ffffff !important;}
+// body * * * * * * * { background-color: #003333 !important; color: #ffffff !important;}
+
+$black: #000000;
+
+body {
+	background-color: $black;
+}
