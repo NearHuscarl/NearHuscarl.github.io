@@ -10,118 +10,119 @@
 @import 'variable.scss';
 
 @mixin center-bottom() {
-   position: fixed;
-   left: 50%;
-   bottom: 5px;
-   transform: translate(-50%, -50%);
-   margin: 0 auto;
+	position: fixed;
+	left: 50%;
+	bottom: 5px;
+	transform: translate(-50%, -50%);
+	margin: 0 auto;
 }
 
 h1 {
-   margin: 20px;
+	font-size: 2.25em;
+	margin: 20px;
 }
 
 body {
-   background-color: $bg-color;
-   color: $fg-color;
-   cursor: default;
-   padding-top: $padtop;
+	background-color: $bg-color;
+	color: $fg-color;
+	cursor: default;
+	padding-top: $padtop;
 }
 
 a {
-   &:link,
-   &:visited {
-      color: $light-grey;
-      text-decoration: none;
-   }
+	&:link,
+	&:visited {
+		color: $light-grey;
+		text-decoration: none;
+	}
 
-   &:hover {
-      color: $grey;
-      text-decoration: none;
-   }
+	&:hover {
+		color: $grey;
+		text-decoration: none;
+	}
 }
 
 article {
-   margin: {
-      bottom: 10px;
-      top: 10px;
-   }
+	margin: {
+		bottom: 10px;
+		top: 10px;
+	}
 }
 
 .btn {
-   background-color: $light-grey;
-   border: unset;
-   color: $dark-grey;
-   cursor: pointer;
-   transition: all 0.15s ease-out;
+	background-color: $light-grey;
+	border: unset;
+	color: $dark-grey;
+	cursor: pointer;
+	transition: all 0.15s ease-out;
 }
 
 .container {
 
-   .search-bar {
-      .search-bar__input-box {
-         background-color: $light-grey;
-         border: none;
+	.search-bar {
+		.search-bar__input-box {
+			background-color: $light-grey;
+			border: none;
 
-         &:focus {
-            background-color: $light-grey;
-         }
-      }
+			&:focus {
+				background-color: $light-grey;
+			}
+		}
 
-      .search-bar__icon {
-         border: {
-            bottom-right-radius: 4px;
-            top-right-radius: 4px;
-         }
-         cursor: pointer;
-      }
+		.search-bar__icon {
+			border: {
+				bottom-right-radius: 4px;
+				top-right-radius: 4px;
+			}
+			cursor: pointer;
+		}
 
-      .search-bar__btn {
-         &:hover {
-            background-color: $grey;
-         }
-      }
+		.search-bar__btn {
+			&:hover {
+				background-color: $grey;
+			}
+		}
 
-      .search-bar__dropdown--pos {
-         background-color: $light-grey;
-         margin-left: 5px;
-      }
+		.search-bar__dropdown--pos {
+			background-color: $light-grey;
+			margin-left: 5px;
+		}
 
-      .search-bar__btn--pos {
-         border: thick;
-         // fix border height not aligned with input bar and dropdown
-         height: 2.3em;
-         margin-left: 10px;
-         top: 10px;
-      }
-   }
+		.search-bar__btn--pos {
+			border: thick;
+			// fix border height not aligned with input bar and dropdown
+			height: 2.3em;
+			margin-left: 10px;
+			top: 10px;
+		}
+	}
 
-   .result {
-      padding-top: 60px;
+	.result {
+		padding-top: 60px;
 
-      [class*=result__review] {
-         background-color: $grey;
-         color: $dark-grey;
-      }
+		[class*=result__review] {
+			background-color: $grey;
+			color: $dark-grey;
+		}
 
-      .result__btn-wrapper {
-         text-align: right;
-      }
+		.result__btn-wrapper {
+			text-align: right;
+		}
 
-      .result__btn {
-         color: $dark-grey;
+		.result__btn {
+			color: $dark-grey;
 
-         &:hover {
-            background-color: $dark-grey;
-            color: $light-grey;
-         }
-      }
-   }
+			&:hover {
+				background-color: $dark-grey;
+				color: $light-grey;
+			}
+		}
+	}
 
-   .copyright {
-      .copyright__text {
-         // @include center-bottom();
-         font-size: 12px;
-      }
-   }
+	.copyright {
+		.copyright__text {
+			// @include center-bottom();
+			font-size: 0.5em;
+		}
+	}
 }

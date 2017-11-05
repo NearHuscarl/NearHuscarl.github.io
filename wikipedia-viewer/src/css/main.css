@@ -1,4 +1,5 @@
 h1 {
+  font-size: 2.25em;
   margin: 20px; }
 
 body {
@@ -64,4 +65,4 @@ article {
       color: #c1c1c1; }
 
 .container .copyright .copyright__text {
-  font-size: 12px; }
+  font-size: 0.5em; }
