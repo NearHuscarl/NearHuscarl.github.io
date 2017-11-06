@@ -1,1 +1,1 @@
-let projectName=void $(document).ready(()=>{$(".copyright__year").text((new Date).getFullYear()),$(".search-bar__icon").on("click",()=>{})});
+let projectName=void $(document).ready(()=>{$(".copyright__year").text((new Date).getFullYear()),$(".search-bar__icon").on("click",()=>{}),$(".header__btn-all").on("click",()=>{}),$(".header__btn-online").on("click",()=>{}),$(".header__btn-offline").on("click",()=>{})});

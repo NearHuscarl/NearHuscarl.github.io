@@ -7,7 +7,7 @@ module.exports = exports = {
 		// dont warn about document or window not defined
 		"browser": true,
 		// require, process, console
-		"node": true,
+		// "node": true,
 		"es6": true,
 		"jquery": true
 	},

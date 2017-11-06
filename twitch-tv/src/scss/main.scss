@@ -7,8 +7,90 @@
 // body * * * * * *   { background-color: #004040 !important; color: #ffffff !important;}
 // body * * * * * * * { background-color: #003333 !important; color: #ffffff !important;}
 
-$black: #000000;
+@import 'variables.scss';
+@import 'animation.scss';
 
 body {
-	background-color: $black;
+	background-color: $bg;
 }
+
+.container-fluid {
+	padding-top: 50px;
+
+	.header__btn {
+		@include transition(background-color, 0.25s);
+		background: $btn-bg;
+		color: $btn-fg;
+		cursor: pointer;
+		display: inline-block;
+		font-size: 1em;
+		height: $btn-height;
+		line-height: $btn-height;
+		margin: {
+			left: -8px;
+			right: -8px;
+			};
+		min-width: 150px;
+		text-align: center;
+	}
+
+	.header__btn--left {
+		border: {
+			top-left-radius: $btn-border-radius;
+		}
+	}
+
+	.header__btn--right {
+		border: {
+			top-right-radius: $btn-border-radius;
+		}
+	}
+
+	// css input&label hack
+	input:hover + label {
+		background: $btn-hover-bg;
+		color: $btn-hover-fg;
+		// @include animation('changeColorBtnEnter', 0.2s);
+	}
+
+	// css input&label hack
+	input:checked + label {
+		background: $btn-checked-bg;
+		color: $btn-checked-fg;
+		position: relative;
+		z-index: 6;
+	}
+
+	input[type=radio] {
+		visibility: hidden;
+	}
+
+	.searchmenu {
+		text-align: center;
+		position: relative;
+		padding-top: 15px;
+		padding-bottom: 15px;
+		border-bottom: 1px solid grey;
+	}
+	.searchbar{
+		position: relative;
+		width: 90%;
+		text-align: left;
+		line-height: 20px;
+		border-radius: 20px;
+		border: 1px solid grey;
+		outline: none;
+		padding-left: 40px;
+		padding-right: 20px;
+		font-size: .8em;
+		color: grey;
+	}
+	.searchicon {
+		position: absolute;
+		z-index: 1;
+		padding-top: 5px;
+		left: 30px;
+		color: grey;
+	}
+}
+

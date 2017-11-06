@@ -1,8 +1,50 @@
 <head>
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- boostrap radio button dependencies -->
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
 
    <link rel="stylesheet" href="css/main.min.css" type="text/css">
    <script src="js/main.js"></script>
 </head>
+
+<div class="container-fluid">
+	<section class="header">
+		<div class="row">
+			<div class="col-md-8 offset-md-2 text-center">
+
+				<form>
+					<input type="radio" name="options" id="all" value="All" autocomplete="off">
+					<label class="header__btn header__btn--left" for="all">All</label>
+					<input type="radio" name="options" id="online" value="Online" autocomplete="off">
+					<label class="header__btn" for="online">Online</label>
+					<input type="radio" name="options" id="offline" value="Offline" autocomplete="off">
+					<label class="header__btn header__btn--right" for="offline">Offline</label>
+				</form>
+
+			</div>
+		</div>
+	</section>
+
+	<section>
+		<div class="row">
+			<div class="col-md-4 offset-md-4 text-center">
+				<div class="searchmenu">
+					<i class="fa fa-search searchicon"></i>
+					<input class="searchbar" type=text value="Search Users" ng-model="searchText">
+					</input>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <div class="btn-group btn-group-lg" role="group" aria-label="Twitch status"> -->
+		<!-- 	<button type="button" class="btn btn-secondary">All</button> -->
+		<!-- 	<button type="button" class="btn btn-secondary">Online</button> -->
+		<!-- 	<button type="button" class="btn btn-secondary">Offline</button> -->
+		<!-- </div> -->
+</div>
