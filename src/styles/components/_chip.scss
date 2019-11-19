@@ -1,0 +1,40 @@
+.chip {
+	background-color: color(grey-light-2);
+	font-size: 1.4rem;
+	font-weight: 600;
+	padding: 0.3rem 2rem;
+	border-radius: 2rem;
+	transition: all 0.3s;
+	cursor: pointer;
+
+	@include radial-out(color(primary), color('white'), 0.3s);
+
+	&--js {
+		@include radial-out(materialColor(yellow, 400), materialColor(grey, 900));
+	}
+	&--ts {
+		@include radial-out(materialColor(lightBlue, 800), color('white'));
+	}
+	&--scss {
+		@include radial-out(materialColor(pink, 700), color('white'));
+	}
+	&--dart {
+		@include radial-out(
+			materialColor(lightBlue, 400),
+			materialColor(blue, 900)
+		);
+	}
+	&--css {
+		@include radial-out(materialColor(deepPurple, 500), color('white'));
+	}
+	&--cs {
+		@include radial-out(materialColor(purple, 500), color('white'));
+	}
+	&--py {
+		@include radial-out(materialColor(indigo, 500), color('white'));
+		// border-color: materialColor(yellow, 700);
+	}
+	&--bs {
+		@include radial-out(materialColor(blueGrey, 900), color('white'));
+	}
+}

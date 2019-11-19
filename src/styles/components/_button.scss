@@ -1,0 +1,24 @@
+.btn-link {
+	border: none;
+	background-color: transparent;
+	color: inherit;
+	font-size: inherit;
+	transition: all 0.2s;
+
+	display: inline-flex;
+	justify-content: center;
+
+	@include underlineExpandAnimation(0.3s);
+
+	&:hover,
+	&:focus {
+		outline: none;
+		color: color(primary);
+		// override bs hover
+		text-decoration: none;
+	}
+
+	&:active {
+		transform: translateY(0.1rem);
+	}
+}

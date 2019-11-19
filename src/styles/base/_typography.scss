@@ -1,0 +1,72 @@
+body {
+	color: color(grey-dark-2);
+	font-family: var(--font-display);
+	line-height: 1.6;
+}
+
+%heading {
+	font-family: var(--font-display);
+	font-weight: 700;
+	color: color(grey-dark-3);
+
+	&:hover .h-anchor {
+		opacity: 1;
+		transform: translateX(0) rotate(0);
+	}
+
+	&:hover .linebreak::before {
+		width: 100%;
+	}
+}
+
+.h-anchor {
+	float: left;
+	vertical-align: center;
+	margin-top: .5rem;
+
+	// change those values carefully as it may push the header to the right
+	font-size: 1.75rem;
+	margin-left: -3.25rem;
+	padding-right: 1.45rem;
+
+	opacity: 0;
+	transform: translateX(2rem) rotate(60deg);
+	transition: opacity .2s, transform .2s, color .2s;
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: color(secondary);
+		outline: none;
+	}
+}
+
+.h1 {
+	@extend %heading;
+	font-size: 4rem;
+
+	&--small {
+		font-size: 2rem;
+	}
+}
+
+.h2 {
+	@extend %heading;
+	font-size: 2.5rem;
+
+	&--small {
+		font-size: 1.5rem;
+	}
+}
+
+.h3 {
+	@extend %heading;
+	font-weight: 600;
+	font-size: 1.75rem;
+}
+
+.h4 {
+	@extend %heading;
+	font-weight: 500;
+	font-size: 1.5rem;
+}

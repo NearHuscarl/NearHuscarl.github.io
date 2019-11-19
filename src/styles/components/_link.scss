@@ -1,0 +1,43 @@
+.icon-link {
+    transition: color 0.2s;
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: color(primary);
+	}
+
+	&__icon {
+		margin-right: 0.2rem;
+	}
+	&__icon--mail {
+		margin-bottom: -0.07rem; // fix mail icon not perfectly vertical-aligned
+	}
+
+	&__link {
+		position: relative;
+		display: inline-flex;
+		justify-content: center;
+		color: inherit;
+		font-weight: inherit;
+	}
+
+	&__link::before {
+		content: '';
+		position: absolute;
+		display: block;
+		background-color: color(primary);
+		width: 0;
+		height: 1px;
+		margin: 0 auto;
+
+		bottom: 0;
+		transition: width 0.2s;
+	}
+
+	&:hover &__link:before,
+	&:focus &__link:before,
+	&:active &__link:before {
+		width: 100%;
+	}
+}

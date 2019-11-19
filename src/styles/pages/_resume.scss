@@ -1,0 +1,78 @@
+.resume-header {
+	display: grid;
+	grid-template-columns: 1fr max-content;
+	grid-template-rows: repeat(3, min-content);
+	padding: 3rem 5rem;
+	background-color: materialColor(blueGrey, 900);
+	color: color(grey-light-3);
+
+	h1 {
+		margin: 0; // override normalize.css
+	}
+
+	.h1 {
+		font-weight: 400;
+		color: color(grey-light-3);
+		text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.8);
+	}
+	.h2 {
+		font-weight: 400;
+		color: color(secondary);
+		text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.6);
+	}
+
+	&__contact {
+		display: grid;
+		grid-template-columns: repeat(3, max-content);
+		gap: 1rem;
+		// width: 60rem;
+	}
+
+	&__media {
+		grid-row: 1 / -1;
+		grid-column: 2 / -1;
+
+		display: grid;
+		align-items: center;
+		font-size: 1.15rem;
+	}
+}
+
+.resume-summary {
+	padding: 4rem 5rem;
+	padding-bottom: 2rem;
+
+	&__text {
+		font-size: 1.5rem;
+	}
+}
+
+.resume-skill {
+	padding: 2rem 5rem;
+	width: 100%;
+
+	&__info {
+		display: grid;
+		grid-template-columns: max-content 1fr;
+		align-items: center;
+		gap: 2rem 6rem;
+	}
+
+	&__language,
+	&__framework {
+		grid-column: 1 / -1;
+	}
+
+	&__list {
+		display: flex;
+
+		& > :not(:last-child) {
+			margin-right: 1rem;
+		}
+	}
+}
+
+.resume-project {
+	padding: 2rem 5rem;
+	font-size: 1.5rem;
+}

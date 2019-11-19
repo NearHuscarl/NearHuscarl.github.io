@@ -1,0 +1,12 @@
+.footer {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    padding: 3rem;
+    background-color: materialColor(blueGrey, 900);
+    color: color(grey-light-2);
+
+    &__copyright {
+        text-align: center;
+    }
+}

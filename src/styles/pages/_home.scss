@@ -1,0 +1,44 @@
+.intro {
+	padding: 4rem;
+	background-color: color(grey-light-1);
+	height: 70vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	// align-items: center;
+	// text-align: center;
+	align-items: flex-start;
+
+	&__title {
+		// remove normalize default
+		margin-top: 0;
+
+		color: materialColor($secondaryColor, 500);
+		// color: transparent;
+		// background-image: linear-gradient(
+		// 	to right,
+		// 	materialColor($primaryColor),
+		// 	materialColor($primaryColor, 700)
+		// );
+		// background-clip: text;
+
+		text-shadow: 1px 1px 2px
+			transparentize($color: map-get($colors, grey-dark-2), $amount: 0.75);
+		transition: all .25s;
+
+		&:hover {
+			text-shadow: 1px 2px 10px
+				transparentize($color: materialColor($secondaryColor, 500), $amount: 0.75);
+		}
+	}
+
+	&__description {
+		// background-color: color(grey-dark-3);
+		color: color(grey-dark-1);
+	}
+}
+
+.portfolio {
+	padding: 6rem 3rem;
+}

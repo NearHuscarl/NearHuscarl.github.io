@@ -1,0 +1,8 @@
+// https://stackoverflow.com/a/16878602/9449426
+// somewhat mitigate blurried text when applying scaling transform
+@mixin applyScale() {
+	backface-visibility: hidden;
+	transform: translateZ(0);
+	-webkit-font-smoothing: subpixel-antialiased;
+	@content;
+}

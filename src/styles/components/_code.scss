@@ -1,0 +1,10 @@
+.inline-code {
+    font-family: var(--font-code);
+    font-size: 1.25rem;
+    background-image: linear-gradient(to right, color(grey-light-1), color(grey-light-2));
+    // background-color: color(grey-light-1);
+	padding: 0.25rem 0.55rem;
+	border-radius: 0.5rem;
+	// border: 0.1rem solid color(grey-light-3);
+	color: materialColor(red, 400);
+}
