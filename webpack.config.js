@@ -85,12 +85,19 @@ module.exports = (env) => {
 		},
 		plugins: (isProduction
 			? []
-			: [ /* new BundleAnalyzerPlugin() */ ]
+			: [
+					/* new BundleAnalyzerPlugin() */
+			  ]
 		).concat([
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
 				template: 'public/index.html',
 				favicon: 'public/images/favicon.png',
+			}),
+			new HtmlWebpackPlugin({
+				filename: '404.html',
+				template: 'public/404.html',
+				inject: false,
 			}),
 			new MiniCssExtractPlugin({
 				filename: isProduction
