@@ -11,14 +11,13 @@ import {
 	faLinkedin,
 	faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
+import IconLink from '../components/IconLink';
+import { H2, H3 } from '../components/Headings';
 import contact from '../data/contact';
 import media from '../data/media';
 import projects from '../data/projects';
 import ProjectPreview from '../components/ProjectPreview';
-import IconLink from '../components/IconLink';
-import { H2 } from '../components/Headers';
-
-const chopSchema = (url) => url.replace(/^https?:\/\//, '');
+import chopSchema from '../helpers/chopSchema';
 
 const summary = `Senior at UIT, perfectionist, have great attention to details, love
 coding and open source. Very eager to learn new trending frameworks
@@ -26,7 +25,6 @@ and technologies. Technologies used: [React], [SCSS], [Webpack], [Gulp], [Flutte
 on the project's requirement, I can seek to learn new technology
 quickly and integrate to the team's workflow.`;
 
-// .split(/(\[)/)
 const ResumePage = () => (
 	<main className='resume'>
 		<div className='resume-header'>
@@ -84,6 +82,7 @@ const ResumePage = () => (
 				</li>
 			</ul>
 		</div>
+		<div className='resume-header__line' />
 		<div className='resume-summary'>
 			<H2 id='summary' anchor='#summary' linebreak>
 				Summary
@@ -154,13 +153,29 @@ const ResumePage = () => (
 				</div>
 			</div>
 		</div>
-		<div className='resume-project'>
+		<section className='resume-project'>
 			<H2 id='projects' anchor='#projects' linebreak>
-			Projects
+				Personal Projects
 			</H2>
-			{projects.map((p) => (
-				<ProjectPreview key={p.title} project={p} />
-			))}
+			<section className='project-grid'>
+				{projects.map((p) => (
+					<ProjectPreview key={p.title} project={p} />
+				))}
+			</section>
+		</section>
+		<div className='resume-education'>
+			<H2 id='education' anchor='#education' linebreak>
+				Education
+			</H2>
+			<div className='resume-education__content'>
+				<H3>Software Engineering</H3>
+				<H3 light>
+					<a href='https://en.uit.edu.vn' className='btn-link btn-link--dark'>
+						University of Information Technology
+					</a>
+				</H3>
+				<div className='resume-education__date'>06/2016 - Present</div>
+			</div>
 		</div>
 	</main>
 );

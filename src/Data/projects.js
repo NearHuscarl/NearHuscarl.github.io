@@ -69,7 +69,7 @@ const projects = [
 		technologies: ['Shell'],
 		tags: ['Linux', 'Script'],
 		description:
-			'Utility script to manage and edit theme in termite terminal',
+			'Utility script to manage and edit themes in termite terminal',
 		date: 'Mar 2018',
 		link: 'https://github.com/NearHuscarl/termite-color-switcher',
 	},

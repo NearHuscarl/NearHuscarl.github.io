@@ -1,3 +1,9 @@
+.resume {
+	// A4 size: 210 x 297 mm
+	// 0.70707070707070707070707070707071‬
+	height: calc(var(--page-container-width) / 0.707070707);
+}
+
 .resume-header {
 	display: grid;
 	grid-template-columns: 1fr max-content;
@@ -35,6 +41,17 @@
 		display: grid;
 		align-items: center;
 		font-size: 1.15rem;
+	}
+
+	&__line {
+		height: 0.75rem;
+		width: 100%;
+		$slightlyDarker: materialColor($primaryColor, 600);
+		background-image: linear-gradient(
+			to right,
+			color(primary),
+			$slightlyDarker
+		);
 	}
 }
 
@@ -75,4 +92,18 @@
 .resume-project {
 	padding: 2rem 5rem;
 	font-size: 1.5rem;
+}
+
+.resume-education {
+	padding: 2rem 5rem;
+
+	&__content {
+		line-height: 1.75;
+	}
+
+	&__date {
+		color: materialColor($primaryColor, 700);
+		font-size: 1.4rem;
+		font-weight: 600;
+	}
 }
