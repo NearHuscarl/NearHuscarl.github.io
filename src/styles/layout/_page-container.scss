@@ -1,6 +1,6 @@
 .page-container {
     max-width: var(--page-container-width);
-    margin: 4rem auto;
+    margin: var(--page-container-vert-padding) auto;
     background-color: color('white');
     border-radius: var(--border-round);
     box-shadow: var(--shadow-dark);

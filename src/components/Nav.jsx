@@ -7,7 +7,7 @@ export default function Nav() {
 		<nav>
 			<ul className='nav'>
 				<li>
-					<Link className='btn-link' to='/#portfolio' smooth>
+					<Link className='btn-link' to='/' smooth>
 						Portfolio
 					</Link>
 				</li>
@@ -17,9 +17,9 @@ export default function Nav() {
 					</Link>
 				</li>
 				<li>
-					<a className='btn-link' href='#about'>
-						About
-					</a>
+					<Link className='btn-link' to='/about'>
+					About
+					</Link>
 				</li>
 			</ul>
 		</nav>

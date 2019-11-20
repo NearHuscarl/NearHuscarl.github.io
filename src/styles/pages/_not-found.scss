@@ -1,0 +1,31 @@
+.not-found {
+	height: calc(
+		100vh - 11rem - 7.6rem - var(--page-container-vert-padding) * 2
+	);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: color(grey-light-1);
+
+	.h1 {
+		margin: 0;
+		line-height: 1;
+		font-weight: 500;
+	}
+
+	&__404 {
+		color: color(primary);
+    }
+
+    &__life-advice {
+        font-size: 1.8rem;
+        text-align: center;
+        width: 80%;
+    }
+
+	&__go-back {
+        font-size: 2rem;
+        font-weight: 500;
+	}
+}
