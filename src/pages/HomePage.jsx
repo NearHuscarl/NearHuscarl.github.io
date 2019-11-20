@@ -1,6 +1,6 @@
 import React from 'react';
 import ProjectCard from '../components/ProjectCard';
-import projects from '../Data/projects';
+import projects from '../data/projects';
 
 const HomePage = () => (
 	<main>

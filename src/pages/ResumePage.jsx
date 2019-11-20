@@ -11,9 +11,9 @@ import {
 	faLinkedin,
 	faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
-import contact from '../Data/contact';
-import media from '../Data/media';
-import projects from '../Data/projects';
+import contact from '../data/contact';
+import media from '../data/media';
+import projects from '../data/projects';
 import ProjectPreview from '../components/ProjectPreview';
 import IconLink from '../components/IconLink';
 import { H2 } from '../components/Headers';

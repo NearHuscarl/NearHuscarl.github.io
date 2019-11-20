@@ -1,5 +1,5 @@
 import React from 'react';
-import { propjectProps } from '../Data/projects';
+import { propjectProps } from '../data/projects';
 
 export default function ProjectPreview({ project }) {
 	return (

@@ -10,7 +10,7 @@ if (!has(process, 'env.npm_config_M')) {
 	console.error('Missing commit message');
 	console.error('Please add a commit message like this:');
 	// Use npm instead of yarn because up until now (20/11/2019)
-	// yarn does not support passing argument to npm script
+	// yarn does not support passing arguments to npm script
 	console.error("npm run deploy --M='your commit message'");
 } else {
 	const commitMessage = process.env.npm_config_M;
