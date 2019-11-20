@@ -29,7 +29,7 @@ function lowerCaseFirstChar(string) {
 	return string.charAt(0).toLowerCase() + string.slice(1);
 }
 
-function getQuote() {
+function getRandomQuote() {
 	const type = randomBetween(1, 3);
 
 	switch (type) {
@@ -48,7 +48,7 @@ const NotFoundPage = () => (
 	<main className='not-found'>
 		<h1 className='h1 not-found__404'>404</h1>
 		<h2 className='h2'>Page not found :(</h2>
-		<div className='not-found__life-advice'>{`${getQuote()}`}</div>
+		<div className='not-found__life-advice'>{getRandomQuote()}</div>
 		<Link className='not-found__go-back btn-link' to='/'>
 			Go home
 		</Link>
