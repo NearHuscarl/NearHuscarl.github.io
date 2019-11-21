@@ -3,4 +3,22 @@
 	justify-content: space-between;
 	align-items: center;
 	padding: 2rem;
+
+	&__logo {
+		display: flex;
+		align-items: center;
+
+		.logo {
+			margin-right: 1.5rem;
+		}
+	}
+
+	.h1 {
+		// override from normalize's h1
+		margin: 0;
+	}
+
+	.h2 {
+		font-weight: 500;
+	}
 }

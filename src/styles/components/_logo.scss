@@ -1,26 +1,3 @@
-.logo-group {
-	display: flex;
-	align-items: center;
-
-	.logo {
-	    margin-right: 1.5rem;
-	}
-
-	&__text {
-	    display: flex;
-	    flex-direction: column;
-	}
-
-	.h1 {
-	    // override from normalize's h1
-	    margin: 0;
-	}
-
-	.h2 {
-		font-weight: 500;
-	}
-}
-
 .logo {
 	width: 7rem;
 	height: 7rem;
@@ -43,5 +20,10 @@
 		background-color: materialColor($secondaryColor, 600);
 		transform: translateY(-100%);
 		clip-path: polygon(50% 50%, 50% 50%, 100% 100%, 0 100%);
+	}
+
+	&--small {
+		width: 1.5rem;
+		height: 1.5rem;
 	}
 }

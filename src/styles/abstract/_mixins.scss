@@ -6,3 +6,10 @@
 	-webkit-font-smoothing: subpixel-antialiased;
 	@content;
 }
+
+@mixin centerAbsolute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

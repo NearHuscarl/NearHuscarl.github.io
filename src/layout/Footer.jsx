@@ -1,24 +1,28 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBalanceScale } from '@fortawesome/free-solid-svg-icons';
+import ExpandableIcon from '../components/ExpandableIcon';
+import Logo from '../components/Logo';
 
 export default function Footer() {
 	return (
 		<footer className='footer'>
-			<p className='footer__copyright'>
-				{`Near Huscarl © ${new Date().getFullYear()} | All Rights Reserved`}
-			</p>
-			<div className='footer__source'>
+			<div className='footer__copyright'>
+				<Logo small />
+				<span>{`Near Huscarl © ${new Date().getFullYear()}`}</span>
+			</div>
+			<div className='footer__icons'>
 				<a
-					className='footer__icon-background'
+					className='footer__link'
+					href='https://github.com/NearHuscarl/portfolio/blob/master/LICENSE.md'
+				>
+					<ExpandableIcon icon={faBalanceScale} text='MIT License' />
+				</a>
+				<a
+					className='footer__link'
 					href='https://github.com/nearhuscarl/portfolio'
 				>
-					<FontAwesomeIcon
-						className='footer__icon'
-						size='2x'
-						icon={faGithub}
-					/>
-					<span>Source Code</span>
+					<ExpandableIcon icon={faGithub} text='Source Code' rotate />
 				</a>
 			</div>
 		</footer>

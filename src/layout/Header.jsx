@@ -2,15 +2,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../components/Nav';
+import Logo from '../components/Logo';
 
 function Header() {
 	return (
 		<header className='header'>
-			<div className='logo-group'>
+			<div className='header__logo'>
 				<Link to='/'>
-					<div className='logo' />
+					<Logo />
 				</Link>
-				<div className='logo-group__text'>
+				<div>
 					<h1 className='h1 h1--small'>Near Huscarl</h1>
 					<h2 className='h2 h2--small'>Front-end Developer</h2>
 				</div>

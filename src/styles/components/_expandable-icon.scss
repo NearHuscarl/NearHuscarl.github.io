@@ -1,0 +1,76 @@
+$icon-size: 2rem;
+
+@mixin expandIconAnimation($iconRotate) {
+	$duration: null;
+	$reverse-duration: null;
+
+	$curve: null;
+	$reverse-curve: null;
+	$rotate: null;
+
+	@if $iconRotate {
+		$duration: 0.6s;
+		$reverse-duration: 0.65s;
+		$curve: $easeOutBack;
+		$reverse-curve: $easeOutBackward;
+		$rotate: true;
+	} @else {
+		$duration: 0.4;
+		$reverse-duration: 0.4s;
+		$curve: $easeOutQuart;
+		$reverse-curve: $easeOutQuart;
+		$rotate: false;
+	}
+
+	transition: width $reverse-duration $reverse-curve,
+		color $reverse-duration $reverse-curve;
+
+	&:hover {
+		width: 9.5rem;
+		color: color(primary);
+		transition: width $duration $curve, color $duration;
+	}
+
+	// nested class to override font-awesome css width
+	& &__icon {
+		width: $icon-size;
+		height: $icon-size;
+		transition: transform $reverse-duration $reverse-curve;
+	}
+
+	&:hover &__icon {
+		transform: if($rotate, rotate(-360deg), rotate(0));
+		transition: transform $duration $curve;
+	}
+}
+
+.expd-icon {
+	background-color: materialColor(blueGrey, 800);
+	overflow: hidden;
+
+	text-overflow: clip;
+	white-space: nowrap;
+
+	width: $icon-size;
+	height: $icon-size;
+	border-radius: 50rem;
+
+	display: flex;
+	align-items: center;
+
+	&__icon-background {
+		display: inline-flex;
+		justify-content: center;
+		align-items: center;
+
+		margin-right: 0.7rem;
+		background-color: materialColor(blueGrey, 900);
+		border-radius: 50rem;
+	}
+
+	@include expandIconAnimation($iconRotate: false);
+
+	&--rotate {
+		@include expandIconAnimation($iconRotate: true);
+	}
+}

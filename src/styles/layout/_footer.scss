@@ -6,56 +6,32 @@
 	background-color: materialColor(blueGrey, 900);
 	color: color(grey-light-2);
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-end;
 	align-items: center;
 
+	position: relative;
+
 	&__copyright {
-		text-align: center;
-	}
-
-	$icon-size: 2rem;
-	$duration: 0.6s;
-	$reverse-duration: 0.65s;
-	$curve: $easeOutBack;
-	$reverse-curve: $easeOutBackward;
-
-	&__source {
-		background-color: materialColor(blueGrey, 800);
-		overflow: hidden;
-
-		text-overflow: clip;
-		white-space: nowrap;
-
-		width: $icon-size;
-		height: $icon-size;
-		border-radius: 50rem;
-		transition: width $reverse-duration $reverse-curve,
-			color $reverse-duration $reverse-curve;
-
-		&:hover {
-			width: 9.5rem;
-			color: color(primary);
-			transition: width $duration $curve, color $duration;
-		}
-	}
-
-	&__source:hover &__icon {
-		transform: rotate(-360deg);
-		transition: transform $duration $curve;
-	}
-
-	&__icon-background {
+		@include centerAbsolute();
 		display: flex;
 		align-items: center;
 
-		width: $icon-size;
-		height: $icon-size;
-		background-color: materialColor(blueGrey, 900);
-		border-radius: 50rem;
+		& > :not(:last-child) {
+			margin-right: .5rem;
+		}
 	}
 
-	&__icon {
-		margin-right: 0.7rem;
-		transition: transform $reverse-duration $reverse-curve;
+	&__icons {
+		display: flex;
+
+		& > :not(:last-child) {
+			margin-right: 1.2rem;
+		}
+	}
+
+	&__link:focus,
+	&__link:active {
+		outline: none;
+		color: color(primary);
 	}
 }
