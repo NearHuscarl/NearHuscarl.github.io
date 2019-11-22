@@ -15,7 +15,7 @@ $icon-size: 2rem;
 		$reverse-curve: $easeOutBackward;
 		$rotate: true;
 	} @else {
-		$duration: 0.4;
+		$duration: 0.4s;
 		$reverse-duration: 0.4s;
 		$curve: $easeOutQuart;
 		$reverse-curve: $easeOutQuart;
@@ -26,15 +26,13 @@ $icon-size: 2rem;
 		color $reverse-duration $reverse-curve;
 
 	&:hover {
+		// TODO: cannot animate width to width: auto (yet). Need a workaround
 		width: 9.5rem;
 		color: color(primary);
 		transition: width $duration $curve, color $duration;
 	}
 
-	// nested class to override font-awesome css width
 	& &__icon {
-		width: $icon-size;
-		height: $icon-size;
 		transition: transform $reverse-duration $reverse-curve;
 	}
 
@@ -66,6 +64,17 @@ $icon-size: 2rem;
 		margin-right: 0.7rem;
 		background-color: materialColor(blueGrey, 900);
 		border-radius: 50rem;
+		height: 100%;
+	}
+
+	// nested class to override font-awesome css width
+	& &__icon {
+		width: $icon-size;
+		height: $icon-size - .5rem;
+	}
+
+	&--no-padding &__icon {
+		height: $icon-size;
 	}
 
 	@include expandIconAnimation($iconRotate: false);

@@ -4,4 +4,10 @@
     background-color: color('white');
     border-radius: var(--border-round);
     box-shadow: var(--shadow-dark);
+
+    &--no-vert-margin {
+        margin-top: 0;
+        margin-bottom: 0;
+        border-radius: 0;
+    }
 }

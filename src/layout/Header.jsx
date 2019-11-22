@@ -6,7 +6,10 @@ import Logo from '../components/Logo';
 
 function Header() {
 	return (
-		<header className='header'>
+		// add this sejda's class to remove this element when converting from
+		// html to pdf
+		// https://www.sejda.com/developers#html-pdf-api-options
+		<header className='header --hide-from-pdf'>
 			<div className='header__logo'>
 				<Link to='/'>
 					<Logo />

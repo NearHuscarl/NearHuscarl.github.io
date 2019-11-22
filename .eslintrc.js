@@ -37,7 +37,7 @@ module.exports = {
         'react/jsx-indent': [1, 'tab'],
         'react/jsx-one-expression-per-line': 'off',
         'no-tabs': 0, // disable error (airbnb will throw error when using tab)
-        'allowIndentationTabs': true,
+        'allowIndentationTabs': 0,
         'import/no-extraneous-dependencies': [2, {
             'devDependencies': ["./src/tests/**", "./webpack.config.js"],
             'optionalDependencies': false,

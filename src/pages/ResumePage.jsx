@@ -95,7 +95,6 @@ const ResumePage = () => (
 						.split(/[[\]]/)
 						.map((p, index) => {
 							const i1 = index + 1;
-
 							if (p.startsWith('<code>')) {
 								return (
 									<code key={i1} className='inline-code'>
@@ -170,7 +169,10 @@ const ResumePage = () => (
 			<div className='resume-education__content'>
 				<H3>Software Engineering</H3>
 				<H3 light>
-					<a href='https://en.uit.edu.vn' className='btn-link btn-link--dark'>
+					<a
+						href='https://en.uit.edu.vn'
+						className='btn-link btn-link--dark'
+					>
 						University of Information Technology
 					</a>
 				</H3>

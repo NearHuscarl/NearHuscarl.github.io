@@ -3,6 +3,7 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
@@ -85,9 +86,7 @@ module.exports = (env) => {
 		},
 		plugins: (isProduction
 			? []
-			: [
-					/* new BundleAnalyzerPlugin() */
-			  ]
+			: [ /* new BundleAnalyzerPlugin() */ ]
 		).concat([
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
@@ -107,6 +106,7 @@ module.exports = (env) => {
 					? '[name].[contenthash:8].chunk.css'
 					: '[name].chunk.css',
 			}),
+			new CopyWebpackPlugin([{ from: 'public/resume.pdf', to: 'documents/' }]),
 		]),
 		devtool: isProduction ? 'source-map' : 'inline-source-map',
 		devServer: {

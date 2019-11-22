@@ -1,4 +1,5 @@
 import React from 'react';
+import ShinyBox from '../components/ShinyBox';
 
 const links = {
 	'University of Information Technology': 'https://en.uit.edu.vn',
@@ -17,7 +18,11 @@ function componentize(paragraph) {
 			if (p.startsWith('<a>')) {
 				const text = p.replace(/<a>/g, '');
 				return (
-					<a key={i1} href={links[text]} className='btn-link btn-link--blue'>
+					<a
+						key={i1}
+						href={links[text]}
+						className='btn-link btn-link--blue'
+					>
 						{text}
 					</a>
 				);
@@ -31,16 +36,10 @@ export default function AboutPage() {
 		<main className='about'>
 			<div className='about-header' />
 			<header className='about-intro'>
-				<div className='about-intro__shadow-tl-wrap'>
-					<div className='about-intro__shadow-tl' />
-				</div>
-				<div className='about-intro__shadow-br-wrap'>
-					<div className='about-intro__shadow-br' />
-				</div>
-				<div className='about-intro__shadow-mask'>
+				<ShinyBox>
 					<h1 className='h1'>Near Huscarl</h1>
 					<h2 className='h2'>Front-end developer in the making</h2>
-				</div>
+				</ShinyBox>
 			</header>
 			<div className='about-body'>
 				<p className='mb-md'>
