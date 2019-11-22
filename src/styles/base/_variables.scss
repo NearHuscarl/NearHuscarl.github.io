@@ -32,8 +32,8 @@ $colors: (
 	--border-round: 0.6rem;
 
 	// fonts
-	--font-primary: 'Ubuntu', sans-serif;
-	--font-display: 'Quicksand', sans-serif;
+	--font-primary: 'Noto Sans', sans-serif;
+	--font-display: 'Quicksand', 'Noto Sans', Helvetica, sans-serif;
 	--font-code: 'Fira Code', monospace;
 
 	// responsive breakpoint

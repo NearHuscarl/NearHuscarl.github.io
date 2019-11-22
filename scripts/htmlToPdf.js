@@ -20,8 +20,7 @@ const opts = {
 		Authorization: 'Token: ' + apiKey,
 	},
 	json: {
-		url: 'https://nearhuscarl.github.io/portfolio/resume',
-		// pageSize: 'a4',
+		url: 'https://nearhuscarl.github.io/portfolio/resume-full',
 		viewportWidth,
 	},
 };

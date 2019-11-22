@@ -86,7 +86,9 @@ module.exports = (env) => {
 		},
 		plugins: (isProduction
 			? []
-			: [ /* new BundleAnalyzerPlugin() */ ]
+			: [
+					/* new BundleAnalyzerPlugin() */
+			  ]
 		).concat([
 			new HtmlWebpackPlugin({
 				filename: 'index.html',
@@ -106,7 +108,10 @@ module.exports = (env) => {
 					? '[name].[contenthash:8].chunk.css'
 					: '[name].chunk.css',
 			}),
-			new CopyWebpackPlugin([{ from: 'public/resume.pdf', to: 'documents/' }]),
+			new CopyWebpackPlugin([
+				{ from: 'public/resume.pdf', to: 'documents/' },
+				{ from: 'public/resume-fallback.pdf', to: 'documents/' },
+			]),
 		]),
 		devtool: isProduction ? 'source-map' : 'inline-source-map',
 		devServer: {

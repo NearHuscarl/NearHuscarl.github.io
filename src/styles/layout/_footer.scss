@@ -11,6 +11,14 @@
 
 	position: relative;
 
+	&__actions {
+		display: flex;
+
+		& > :not(:last-child) {
+			margin-right: .8rem;
+		}
+	}
+
 	&__btn {
 		cursor: pointer;
 		background-color: transparent;
@@ -18,10 +26,12 @@
 		color: color('white');
 		padding: 0.1rem;
 
-		&--html {
-			.expd-icon:hover {
-				width: 11.5rem;
-			}
+		&--html .expd-icon:hover {
+			width: 11.5rem;
+		}
+
+		&--pdf .expd-icon:hover {
+			width: 10.75rem;
 		}
 	}
 

@@ -38,9 +38,7 @@ const AppRouter = () => {
 			})}
 		>
 			<BrowserRouter basename={'/' + constants.repoName}>
-				<Route
-					render={(props) => notResumeFull(props, Header)}
-				/>
+				<Route render={(props) => notResumeFull(props, Header)} />
 				<Switch>
 					<Route
 						path='/'
@@ -54,7 +52,10 @@ const AppRouter = () => {
 					/>
 					<Route
 						path='/resume-full'
-						render={(props) => savePath(props, ResumePage, setFullPage)}
+						render={(props) => {
+							window.scrollTo(0, 0);
+							return savePath(props, ResumePage, setFullPage);
+						}}
 						exact
 					/>
 					<Route
