@@ -10,26 +10,16 @@
 
 	@include underlineExpandAnimation(0.3s);
 
-	&:hover,
-	&:focus {
-		outline: none;
-		color: color(primary);
-		// override bs hover
-		text-decoration: none;
-	}
-
 	&:active {
 		transform: translateY(0.1rem);
 	}
 
 	&--dark {
 		$darkShade: materialColor($primaryColor, 700);
-
 		@include underlineExpandAnimation(0.3s, $darkShade);
+	}
 
-		&:hover,
-		&:focus {
-			color: $darkShade;
-		}
+	&--blue {
+		@include underlineExpandAnimation(0.3s, materialColor(cyan));
 	}
 }

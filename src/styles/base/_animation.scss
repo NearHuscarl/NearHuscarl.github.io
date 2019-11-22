@@ -68,6 +68,15 @@ $easeOutBackward: cubic-bezier(0.27, 1.69, 0.18, 0.63);
 	&:active:before {
 		width: 100%;
 	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		outline: none;
+		color: $color;
+		// override bs hover
+		text-decoration: none;
+	}
 }
 
 // Icon Up
