@@ -26,7 +26,7 @@ export default function Footer() {
 				</button>
 				<a
 					className='footer__btn footer__btn--pdf'
-					href='/documents/resume.pdf'
+					href='documents/resume.pdf'
 				>
 					<ExpandableIcon icon={faFilePdf} text='Resumé in PDF' />
 				</a>
