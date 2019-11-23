@@ -22,7 +22,12 @@
 		clip-path: polygon(50% 50%, 50% 50%, 100% 100%, 0 100%);
 	}
 
-	&--small {
+	@include bp-small() {
+		width: 4rem;
+		height: 4rem;
+	}
+
+	&--tiny {
 		width: 1.5rem;
 		height: 1.5rem;
 	}

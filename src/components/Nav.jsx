@@ -1,10 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-export default function Nav() {
+export default function Nav({ show }) {
 	return (
-		<nav>
-			<ul className='nav'>
+		<nav
+			className={classNames({
+				nav: true,
+				'nav--open': show,
+			})}
+		>
+			<ul className='nav__menu'>
 				<li>
 					<Link className='btn-link' to='/'>
 						Portfolio
@@ -17,10 +24,18 @@ export default function Nav() {
 				</li>
 				<li>
 					<Link className='btn-link' to='/about'>
-					About
+						About
 					</Link>
 				</li>
 			</ul>
 		</nav>
 	);
 }
+
+Nav.propTypes = {
+	show: PropTypes.bool,
+};
+
+Nav.defaultProps = {
+	show: false,
+};

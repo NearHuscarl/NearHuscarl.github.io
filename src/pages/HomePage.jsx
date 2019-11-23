@@ -8,6 +8,7 @@ const HomePage = () => (
 			<h1 className='intro__title h1'>Front-end Developer</h1>
 			<h2 className='intro__description h2'>
 				<p>Senior at University of Information Technology</p>
+				<p className='intro__description--delimiter'>. </p>
 				<p>Looking for an internship in 2020</p>
 			</h2>
 		</header>

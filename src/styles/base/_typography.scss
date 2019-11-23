@@ -45,6 +45,10 @@ body {
 	@extend %heading;
 	font-size: 4rem;
 
+	@include bp-medium-large() {
+		font-size: 3rem;
+	}
+
 	&--small {
 		font-size: 2rem;
 	}
@@ -53,6 +57,10 @@ body {
 .h2 {
 	@extend %heading;
 	font-size: 2.5rem;
+
+	@include bp-medium-large() {
+		font-size: 2rem;
+	}
 
 	&--small {
 		font-size: 1.5rem;

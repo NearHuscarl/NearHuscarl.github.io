@@ -2,45 +2,115 @@
 	// A4 size: 210 x 297 mm
 	// 0.70707070707070707070707070707071‬
 	height: calc(var(--page-container-width) / 0.707070707);
+
+	@include bp-large() {
+		height: auto;
+	}
 }
 
 .resume-header {
 	display: grid;
 	grid-template-columns: 1fr max-content;
 	grid-template-rows: repeat(3, min-content);
+	grid-template-areas:
+		'name___ media__'
+		'title__ media__'
+		'contact media__';
 	padding: 3rem 5rem;
 	background-color: materialColor(blueGrey, 900);
 	color: color(grey-light-3);
+
+	@include bp-medium() {
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-areas:
+			'name___ name___'
+			'title__ title__'
+			'media__ contact';
+
+		padding: 3rem 3.5rem;
+		justify-items: center;
+		column-gap: 6rem;
+	}
+
+	@include bp-small() {
+		column-gap: 2rem;
+	}
+
+	@include bp-very-small() {
+		grid-template-columns: 1fr;
+		grid-template-areas:
+			'name___'
+			'title__'
+			'media__'
+			'contact';
+
+		padding: 1.5rem 3rem;
+		column-gap: 0;
+	}
 
 	h1 {
 		margin: 0; // override normalize.css
 	}
 
 	.h1 {
+		grid-area: name___;
 		font-weight: 400;
 		color: color(grey-light-3);
 		text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.8);
+
+		@include bp-medium() {
+			text-align: center;
+		}
 	}
 	.h2 {
+		grid-area: title__;
 		font-weight: 400;
 		color: color(secondary);
 		text-shadow: 0.1rem 0.1rem 0.3rem rgba(0, 0, 0, 0.6);
+
+		@include bp-medium() {
+			text-align: center;
+			margin-bottom: 1.5rem;
+		}
 	}
 
 	&__contact {
+		grid-area: contact;
+
 		display: grid;
 		grid-template-columns: repeat(3, max-content);
 		gap: 1rem;
 		// width: 60rem;
+
+		@include bp-medium() {
+			justify-self: flex-start;
+
+			grid-template-columns: 1fr;
+			align-content: flex-start;
+			font-size: 1.15rem;
+		}
+		@include bp-very-small() {
+			justify-self: center;
+		}
 	}
 
 	&__media {
-		grid-row: 1 / -1;
-		grid-column: 2 / -1;
+		grid-area: media__;
 
 		display: grid;
 		align-items: center;
 		font-size: 1.15rem;
+		gap: 1rem;
+
+		@include bp-medium() {
+			justify-self: flex-end;
+		}
+		@include bp-very-small() {
+			justify-self: center;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 4rem;
+			margin-bottom: 1.5rem;
+		}
 	}
 
 	&__line {
@@ -58,6 +128,10 @@
 .resume-summary {
 	padding: 4rem 5rem;
 	padding-bottom: 2rem;
+
+	@include bp-medium() {
+		padding: 2rem 3.5rem;
+	}
 
 	&__text {
 		font-size: 1.5rem;
@@ -82,9 +156,25 @@
 
 	&__list {
 		display: flex;
+		flex-wrap: wrap;
+		margin: -1rem;
+
+		& > * {
+			margin: 0.75rem 0;
+		}
 
 		& > :not(:last-child) {
 			margin-right: 1rem;
+		}
+	}
+
+	@include bp-medium() {
+		padding: 1rem 3.5rem;
+	}
+
+	@include bp-small() {
+		&__database {
+			grid-column: 1 / -1;
 		}
 	}
 }
@@ -92,10 +182,20 @@
 .resume-project {
 	padding: 2rem 5rem;
 	font-size: 1.5rem;
+
+	@include bp-medium() {
+		padding: 1rem 3.5rem;
+	}
 }
 
 .resume-education {
 	padding: 2rem 5rem;
+	padding-bottom: 4.5rem;
+
+	@include bp-medium() {
+		padding: 1rem 3.5rem;
+		padding-bottom: 3rem;
+	}
 
 	&__content {
 		line-height: 1.75;

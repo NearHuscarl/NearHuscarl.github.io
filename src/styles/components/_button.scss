@@ -23,3 +23,26 @@
 		@include underlineExpandAnimation(0.3s, materialColor(cyan));
 	}
 }
+
+.btn-icon {
+	border: none;
+	background-color: transparent;
+	cursor: pointer;
+
+	& > &__icon {
+		width: 2rem;
+		height: 2rem;
+		color: color(grey-dark-3);
+		transition: color 0.2s;
+	}
+
+	&:hover &__icon,
+	&:focus &__icon,
+	&:active &__icon {
+		color: color(primary);
+	}
+
+	&:focus {
+		outline: none;
+	}
+}

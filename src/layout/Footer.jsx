@@ -32,7 +32,7 @@ export default function Footer() {
 				</a>
 			</div>
 			<div className='footer__copyright'>
-				<Logo small />
+				<Logo size='tiny' />
 				<span>{`Near Huscarl © ${new Date().getFullYear()}`}</span>
 			</div>
 			<div className='footer__icons'>

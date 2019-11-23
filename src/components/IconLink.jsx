@@ -3,7 +3,13 @@ import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 
-export default function IconLink({ icon, href, children, className }) {
+export default function IconLink({
+	icon,
+	href,
+	children,
+	className,
+	canCollapse,
+}) {
 	const [animated, setAnimated] = useState(false);
 
 	return (
@@ -16,16 +22,25 @@ export default function IconLink({ icon, href, children, className }) {
 			onMouseEnter={() => setAnimated(() => true)}
 			onAnimationEnd={() => setAnimated(() => false)}
 		>
-			<FontAwesomeIcon
-				icon={icon}
+			<a href={href}>
+				<FontAwesomeIcon
+					icon={icon}
+					className={classNames({
+						'icon-link__icon': true,
+						'icon-link__icon--mail':
+							icon.prefix === 'fas' && icon.iconName === 'envelope',
+						'icon-link__icon--can-collapse': canCollapse,
+						'animation-icon-up': animated,
+					})}
+				/>
+			</a>{' '}
+			<a
 				className={classNames({
-					'icon-link__icon': true,
-					'icon-link__icon--mail':
-						icon.prefix === 'fas' && icon.iconName === 'envelope',
-					'animation-icon-up': animated,
+					'icon-link__link': true,
+					'icon-link__link--can-collapse': canCollapse,
 				})}
-			/>{' '}
-			<a className='icon-link__link' href={href}>
+				href={href}
+			>
 				{children}
 			</a>
 		</div>
@@ -37,8 +52,10 @@ IconLink.propTypes = {
 	href: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
 	className: PropTypes.node,
+	canCollapse: PropTypes.bool,
 };
 
 IconLink.defaultProps = {
 	className: '',
+	canCollapse: false,
 };

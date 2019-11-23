@@ -1,5 +1,6 @@
 .about {
 	.about-header {
+		position: relative;
 		height: 15rem;
 		background-image: linear-gradient(
 			to right,
@@ -10,10 +11,20 @@
 
 	.about-intro {
 		width: 50%;
-		transform: translate(50%, -50%);
+		position: absolute;
+		left: 50%;
+		transform: translate(-50%, -50%);
 		background-color: color('white');
 		text-align: center;
 		border-radius: var(--border-round);
+
+		@include bp-medium-small() {
+			width: 75%;
+			margin: 1rem auto;
+		}
+		@include bp-very-small() {
+			width: 90%;
+		}
 
 		// override h1's normalize.css
 		.h1 {
@@ -27,7 +38,7 @@
 
 	.about-body {
 		padding: 8rem 5rem;
-		padding-top: 0;
+		padding-top: 12rem;
 		margin-top: -1rem;
 		font-size: 1.5rem;
 

@@ -32,11 +32,7 @@ const ResumePage = () => (
 			<h2 className='h2 mb-sm'>Software Engineer Undergraduate</h2>
 			<ul className='resume-header__contact'>
 				<li>
-					<IconLink
-						icon={faEnvelope}
-						href={'mailto:' + contact.email}
-						className='icon-link__icon--mail'
-					>
+					<IconLink icon={faEnvelope} href={'mailto:' + contact.email}>
 						{contact.email}
 					</IconLink>
 				</li>
@@ -61,22 +57,22 @@ const ResumePage = () => (
 			</ul>
 			<ul className='resume-header__media'>
 				<li>
-					<IconLink icon={faGithub} href={media.github}>
+					<IconLink icon={faGithub} href={media.github} canCollapse>
 						{chopSchema(media.github)}
 					</IconLink>
 				</li>
 				<li>
-					<IconLink icon={faLinkedin} href={media.linkedIn}>
+					<IconLink icon={faLinkedin} href={media.linkedIn} canCollapse>
 						{chopSchema(media.linkedIn)}
 					</IconLink>
 				</li>
 				<li>
-					<IconLink icon={faStackOverflow} href={media.stackoverflow}>
+					<IconLink icon={faStackOverflow} href={media.stackoverflow} canCollapse>
 						{chopSchema(media.stackoverflow)}
 					</IconLink>
 				</li>
 				<li>
-					<IconLink icon={faFacebookF} href={media.facebook}>
+					<IconLink icon={faFacebookF} href={media.facebook} canCollapse>
 						{chopSchema(media.facebook)}
 					</IconLink>
 				</li>

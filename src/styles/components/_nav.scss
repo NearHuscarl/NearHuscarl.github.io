@@ -1,9 +1,45 @@
 .nav {
-    display: flex;
-    font-size: 1.5rem;
-    padding-right: 2rem;
+	&__menu {
+		display: flex;
+		font-size: 1.5rem;
+		padding-right: 2rem;
 
-    & > :not(:last-child) {
-        margin-right: 1.5rem;
-    }
+		& > :not(:last-child) {
+			margin-right: 1.5rem;
+		}
+
+		@include bp-medium-large() {
+			padding-right: 0;
+		}
+	}
+
+	@include bp-very-small() {
+		display: none;
+
+		&--open {
+			flex: 0 0 100%;
+			display: block;
+		}
+
+		&--open &__menu {
+			display: flex;
+			flex-direction: column;
+			padding-top: 1rem;
+
+			& > * {
+				width: 100%;
+				text-align: center;
+				padding: 1rem 0;
+			}
+
+			& > :nth-child(even) {
+				border-top: .1rem solid color(grey-light-1);
+				border-bottom: .1rem solid color(grey-light-1);
+			}
+
+			& > :last-child {
+				padding-bottom: 0;
+			}
+		}
+	}
 }

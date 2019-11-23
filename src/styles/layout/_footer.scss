@@ -58,4 +58,8 @@
 		outline: none;
 		color: color(primary);
 	}
+
+	@include bp-very-small() {
+		
+	}
 }
