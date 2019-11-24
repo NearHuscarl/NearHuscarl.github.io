@@ -15,7 +15,7 @@
 		display: flex;
 
 		& > :not(:last-child) {
-			margin-right: .8rem;
+			margin-right: 0.8rem;
 		}
 	}
 
@@ -38,7 +38,7 @@
 	&__copyright {
 		@include centerAbsolute();
 		display: flex;
-		align-items: center;
+		// align-items: center;
 
 		& > :not(:last-child) {
 			margin-right: 0.5rem;
@@ -60,6 +60,24 @@
 	}
 
 	@include bp-very-small() {
-		
+		justify-content: center;
+		flex-wrap: wrap;
+
+		&__actions {
+			margin-right: 1.2rem;
+		}
+
+		&__copyright {
+			flex: 0 0 100%;
+
+			justify-content: center;
+			margin-top: 2rem;
+
+			// reset from centerAbsolute()
+			position: unset;
+			top: unset;
+			left: unset;
+			transform: unset;
+		}
 	}
 }

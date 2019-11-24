@@ -52,3 +52,16 @@
 		}
 	}
 }
+
+a.link {
+    color: color(secondary);
+    text-decoration: none;
+    transition: color .2s;
+
+    &:hover,
+    &:focus,
+    &:active {
+        color: color(primary);
+        outline: none;
+    }
+}

@@ -42,8 +42,14 @@
 		margin-top: -1rem;
 		font-size: 1.5rem;
 
-		a {
-			color: materialColor(cyan);
+		@include bp-small() {
+			padding-left: 3rem;
+			padding-right: 3rem;
+		}
+
+		@include bp-very-small() {
+			padding-left: 2rem;
+			padding-right: 2rem;
 		}
 	}
 }

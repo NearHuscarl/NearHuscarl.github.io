@@ -18,11 +18,7 @@ function componentize(paragraph) {
 			if (p.startsWith('<a>')) {
 				const text = p.replace(/<a>/g, '');
 				return (
-					<a
-						key={i1}
-						href={links[text]}
-						className='btn-link btn-link--blue'
-					>
+					<a className='link' key={i1} href={links[text]}>
 						{text}
 					</a>
 				);

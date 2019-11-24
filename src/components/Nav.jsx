@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Link } from 'react-router-dom';
 
-export default function Nav({ show }) {
+export default function Nav({ show, hideNav }) {
 	return (
 		<nav
 			className={classNames({
@@ -13,17 +13,17 @@ export default function Nav({ show }) {
 		>
 			<ul className='nav__menu'>
 				<li>
-					<Link className='btn-link' to='/'>
+					<Link onClick={hideNav} className='btn-link' to='/'>
 						Portfolio
 					</Link>
 				</li>
 				<li>
-					<Link className='btn-link' to='/resume'>
+					<Link onClick={hideNav} className='btn-link' to='/resume'>
 						Resumé
 					</Link>
 				</li>
 				<li>
-					<Link className='btn-link' to='/about'>
+					<Link onClick={hideNav} className='btn-link' to='/about'>
 						About
 					</Link>
 				</li>
@@ -34,6 +34,7 @@ export default function Nav({ show }) {
 
 Nav.propTypes = {
 	show: PropTypes.bool,
+	hideNav: PropTypes.func.isRequired,
 };
 
 Nav.defaultProps = {

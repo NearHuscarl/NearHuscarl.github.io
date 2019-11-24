@@ -38,7 +38,7 @@ function Header() {
 				</div>
 				<FontAwesomeIcon className='btn-icon__icon' icon={faBars} />
 			</button>
-			<Nav show={showMenu} />
+			<Nav show={showMenu} hideNav={() => setShowMenu(() => false)} />
 		</header>
 	);
 }

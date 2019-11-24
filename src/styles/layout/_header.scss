@@ -54,7 +54,7 @@
 		&--open &--before {
 			& .btn-icon__icon {
 				opacity: 1;
-				transform: rotate(-360deg);
+				transform: rotate(360deg);
 			}
 		}
 	}

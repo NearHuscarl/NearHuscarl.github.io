@@ -31,10 +31,6 @@ export default function Footer() {
 					<ExpandableIcon icon={faFilePdf} text='Resumé in PDF' />
 				</a>
 			</div>
-			<div className='footer__copyright'>
-				<Logo size='tiny' />
-				<span>{`Near Huscarl © ${new Date().getFullYear()}`}</span>
-			</div>
 			<div className='footer__icons'>
 				<a
 					className='footer__link'
@@ -53,6 +49,10 @@ export default function Footer() {
 						noPadding
 					/>
 				</a>
+			</div>
+			<div className='footer__copyright'>
+				<Logo size='tiny' />
+				<span>{`Near Huscarl © ${new Date().getFullYear()}`}</span>
 			</div>
 		</footer>
 	);
