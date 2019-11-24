@@ -33,9 +33,8 @@
 		}
 
 		&--before {
-			position: absolute;
-			left: 0;
-			top: 0;
+			@include centerAbsolute();
+			width: 100%;
 			color: color(grey-dark-3);
 
 			& .btn-icon__icon {
