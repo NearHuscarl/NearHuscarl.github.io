@@ -1,59 +1,111 @@
 import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { faGithub, faHtml5 } from '@fortawesome/free-brands-svg-icons';
-import {
-	faBalanceScale,
-	faDownload,
-	faFilePdf,
-} from '@fortawesome/free-solid-svg-icons';
-import { useHistory } from 'react-router-dom';
+import { faBalanceScale, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 import ExpandableIcon from '../components/ExpandableIcon';
 import Logo from '../components/Logo';
+import theme, { colors } from '../styles/theme';
+import { centerAbsolute, maxWidth } from '../styles/util';
 
-export default function Footer() {
-	const history = useHistory();
+const Container = styled.footer`
+	border-bottom-left-radius: inherit;
+	border-bottom-right-radius: inherit;
+
+	padding: 3rem;
+	background-color: ${colors.blueGrey[900]};
+	color: ${theme.greyLight2};
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	position: relative;
+
+	a {
+		color: inherit;
+	}
+
+	a:hover,
+	a:focus,
+	a:active {
+		outline: none;
+		color: ${theme.primary};
+	}
+
+	${maxWidth(490)} {
+		justify-content: center;
+		flex-wrap: wrap;
+	}
+`;
+
+const Copyright = styled.div`
+	${centerAbsolute}
+	display: flex;
+	/* align-items: center; */
+
+	& > :not(:last-child) {
+		margin-right: 0.5rem;
+	}
+
+	${maxWidth(490)} {
+		flex: 0 0 100%;
+
+		justify-content: center;
+		margin-top: 2rem;
+
+		/* reset from centerAbsolute() */
+		position: unset;
+		top: unset;
+		left: unset;
+		transform: unset;
+	}
+`;
+
+const Row = styled.div`
+	display: flex;
+
+	& > :not(:last-child) {
+		margin-right: ${(props) => props.gap}rem;
+	}
+
+	${maxWidth(490)} {
+		margin-right: 1.2rem;
+	}
+`;
+
+function Footer({ location }) {
+	if (location.pathname === '/resume-full') {
+		return null;
+	}
 
 	return (
-		<footer className='footer --hide-from-pdf'>
-			<div className='footer__actions'>
-				<button
-					className='footer__btn footer__btn--html'
-					type='button'
-					onClick={() => {
-						history.push('/resume-full');
-					}}
-				>
+		<Container className='--hide-from-pdf'>
+			<Row gap={0.8}>
+				<Link to='/resume-full'>
 					<ExpandableIcon icon={faHtml5} text='Resumé in HTML' />
-				</button>
-				<a
-					className='footer__btn footer__btn--pdf'
-					href='documents/resume.pdf'
-				>
+				</Link>
+				<Link to='documents/resume.pdf'>
 					<ExpandableIcon icon={faFilePdf} text='Resumé in PDF' />
-				</a>
-			</div>
-			<div className='footer__icons'>
-				<a
-					className='footer__link'
-					href='https://github.com/NearHuscarl/portfolio/blob/master/LICENSE.md'
-				>
+				</Link>
+			</Row>
+			<Row gap={1.2}>
+				<a href='https://github.com/NearHuscarl/portfolio/blob/master/LICENSE.md'>
 					<ExpandableIcon icon={faBalanceScale} text='MIT License' />
 				</a>
-				<a
-					className='footer__link'
-					href='https://github.com/nearhuscarl/portfolio'
-				>
-					<ExpandableIcon
-						icon={faGithub}
-						text='Source Code'
-						rotate
-						noPadding
-					/>
+				<a href='https://github.com/nearhuscarl/portfolio'>
+					<ExpandableIcon icon={faGithub} text='Source Code' rotate />
 				</a>
-			</div>
-			<div className='footer__copyright'>
-				<Logo size='tiny' />
+			</Row>
+			<Copyright>
+				<Logo small />
 				<span>{`Near Huscarl © ${new Date().getFullYear()}`}</span>
-			</div>
-		</footer>
+			</Copyright>
+		</Container>
 	);
 }
+
+const FooterWithRouter = withRouter((props) => (
+	<Footer location={props.location} />
+));
+
+export default FooterWithRouter;

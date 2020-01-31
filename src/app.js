@@ -4,15 +4,22 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import AppRouter from './routers/AppRouter';
 import 'normalize.css/normalize.css';
-import './styles/main.scss';
+import Css from './styles';
+
+const App = () => (
+	<>
+		<Css />
+		<AppRouter />
+	</>
+);
 
 const renderApp = () => {
 	const rootElement = document.getElementById('app');
 
 	if (rootElement.hasChildNodes()) {
-		ReactDOM.hydrate(<AppRouter />, rootElement);
+		ReactDOM.hydrate(<App />, rootElement);
 	} else {
-		ReactDOM.render(<AppRouter />, rootElement);
+		ReactDOM.render(<App />, rootElement);
 	}
 };
 

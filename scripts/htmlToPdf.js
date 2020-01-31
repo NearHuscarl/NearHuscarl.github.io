@@ -9,7 +9,7 @@ const request = require('request');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const dotenv = require('dotenv');
 
-dotenv.config({ path: '.api_keys' });
+dotenv.config();
 
 const apiKey = process.env.SEJDA_API_KEY;
 const viewportWidth = 1000;

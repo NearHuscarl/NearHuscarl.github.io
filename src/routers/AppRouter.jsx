@@ -1,75 +1,31 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import classNames from 'classnames';
-import NotFoundPage from '../pages/NotFoundPage';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
+import PageContainer from '../components/PageContainer';
 import HomePage from '../pages/HomePage';
 import ResumePage from '../pages/ResumePage';
 import AboutPage from '../pages/AboutPage';
+import NotFoundPage from '../pages/NotFoundPage';
 import constants from '../constants';
 
-function notResumeFull(props, Component) {
-	// eslint-disable-next-line react/prop-types
-	return props.location.pathname !== '/resume-full' ? <Component /> : null;
-}
-
-function savePath(props, Component, setFullPage) {
-	// eslint-disable-next-line react/prop-types
-	const path = props.location.pathname;
-
-	if (path === '/resume-full') {
-		setFullPage(() => true);
-	} else {
-		setFullPage(() => false);
-	}
-
-	return <Component />;
-}
-
 const AppRouter = () => {
-	const [fullPage, setFullPage] = useState(false);
-
 	return (
-		<div
-			className={classNames({
-				'page-container': true,
-				'page-container--no-vert-margin': fullPage,
-			})}
-		>
+		// TODO: pass props.noPadding when migrating to gatsby
+		// https://github.com/gatsbyjs/gatsby/issues/8787#issuecomment-427216043
+		<PageContainer>
 			<BrowserRouter basename={'/' + constants.repoName}>
-				<Route render={(props) => notResumeFull(props, Header)} />
+				<Route component={Header} />
 				<Switch>
-					<Route
-						path='/'
-						render={(props) => savePath(props, HomePage, setFullPage)}
-						exact
-					/>
-					<Route
-						path='/resume'
-						render={(props) => savePath(props, ResumePage, setFullPage)}
-						exact
-					/>
-					<Route
-						path='/resume-full'
-						render={(props) => {
-							window.scrollTo(0, 0);
-							return savePath(props, ResumePage, setFullPage);
-						}}
-						exact
-					/>
-					<Route
-						path='/about'
-						render={(props) => savePath(props, AboutPage, setFullPage)}
-						exact
-					/>
-					<Route
-						render={(props) => savePath(props, NotFoundPage, setFullPage)}
-					/>
+					<Route path='/' component={HomePage} exact />
+					<Route path='/resume' component={ResumePage} exact />
+					<Route path='/resume-full' component={ResumePage} exact />
+					<Route path='/about' component={AboutPage} exact />
+					<Route component={NotFoundPage} />
 				</Switch>
-				<Route render={(props) => notResumeFull(props, Footer)} />
+				<Route component={Footer} />
 			</BrowserRouter>
-		</div>
+		</PageContainer>
 	);
 };
 

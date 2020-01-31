@@ -1,24 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { HashLink as Link } from 'react-router-hash-link';
+import styled from 'styled-components';
+import { HashLink } from 'react-router-hash-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
-import classNames from 'classnames';
+import { Linebreak } from './Toolkit';
+import theme from '../styles/theme';
+
+const Anchor = styled(HashLink)`
+	float: left;
+	margin-top: 0.5rem;
+
+	/* change those values carefully as it may push the header to the right */
+	font-size: 1.75rem;
+	margin-left: -3.25rem;
+	padding-right: 1.45rem;
+
+	opacity: 0;
+	transform: translateX(2rem) rotate(60deg);
+	transition: opacity 0.2s, transform 0.2s, color 0.2s;
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: ${theme.secondary};
+		outline: none;
+	}
+`;
 
 const headingProps = {
+	className: PropTypes.string,
 	id: PropTypes.string,
 	children: PropTypes.node.isRequired,
 	linebreak: PropTypes.bool,
 	anchor: PropTypes.string,
-	light: PropTypes.bool,
 };
 
 const headingDefaultProps = {
+	className: null,
 	id: null,
 	anchor: '',
 	linebreak: false,
-	light: false,
 };
+
+const Container = styled.div`
+	&:hover .anchor {
+		opacity: 1;
+		transform: translateX(0) rotate(0);
+	}
+
+	&:hover .linebreak::before {
+		width: 100%;
+	}
+`;
 
 function createHeading(Level) {
 	switch (Level) {
@@ -28,23 +62,18 @@ function createHeading(Level) {
 		case 'h4':
 		case 'h5':
 		case 'h6': {
-			const Heading = ({ id, children, linebreak, anchor, light }) => (
-				<Level
-					className={classNames({
-						[Level]: true,
-						[Level + '--lighter']: light,
-					})}
-					id={classNames(id)}
-				>
+			const Heading = ({ id, className, children, linebreak, anchor }) => (
+				<Container id={id} className={className}>
 					{anchor && (
-						<Link className='h-anchor' to={anchor} smooth>
+						<Anchor className='anchor' to={anchor} smooth>
 							<FontAwesomeIcon icon={faLink} />
-						</Link>
+						</Anchor>
 					)}
-					{children}
-					{linebreak && <div className='linebreak' />}
-				</Level>
+					<Level>{children}</Level>
+					{linebreak && <Linebreak className='linebreak' />}
+				</Container>
 			);
+
 			Heading.propTypes = headingProps;
 			Heading.defaultProps = headingDefaultProps;
 

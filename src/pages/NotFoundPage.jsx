@@ -1,6 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import sample from 'lodash/sample';
+import { Link } from '../components/Toolkit';
+import theme from '../styles/theme';
 
 // TODO: add life advices and jokes generator from reddit (askreddit)
 const lifeAdvices = [
@@ -44,15 +46,41 @@ function getRandomQuote() {
 	}
 }
 
+const Container = styled.main`
+	min-height: calc(100vh - 11rem - 8rem - ${theme.pageContainerVertPadding} * 2);
+	padding: 2rem;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background-color: ${theme.greyLight1};
+
+	h1 {
+		margin: 0;
+		line-height: 1;
+		font-weight: 500;
+		color: ${theme.primary};
+	}
+
+	p {
+		font-size: 1.8rem;
+		text-align: center;
+		width: 80%;
+	}
+
+	a {
+		font-size: 2rem;
+		font-weight: 500;
+	}
+`;
+
 const NotFoundPage = () => (
-	<main className='not-found'>
-		<h1 className='h1 not-found__404'>404</h1>
-		<h2 className='h2'>Page not found :(</h2>
-		<div className='not-found__life-advice'>{getRandomQuote()}</div>
-		<Link className='not-found__go-back btn-link' to='/'>
-			Go home
-		</Link>
-	</main>
+	<Container>
+		<h1>404</h1>
+		<h2>Page not found :(</h2>
+		<p>{getRandomQuote()}</p>
+		<Link to='/'>Go home</Link>
+	</Container>
 );
 
 export default NotFoundPage;
