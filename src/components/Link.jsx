@@ -1,4 +1,4 @@
-import { Link as ReactLink } from 'react-router-dom';
+import { Link as ReactLink } from 'gatsby';
 import styled from 'styled-components';
 import theme, { colors } from '../styles/theme';
 

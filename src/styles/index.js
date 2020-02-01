@@ -100,7 +100,7 @@ const Global = createGlobalStyle`
 	}
 `;
 
-export default function Css() {
+export default function CSS() {
 	return (
 		<>
 			<Global />

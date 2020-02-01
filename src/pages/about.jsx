@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ShinyBox from '../components/ShinyBox';
 import theme from '../styles/theme';
 import { maxWidth } from '../styles/util';
+import Layout from '../components/Layout';
 
 const links = {
 	'University of Information Technology': 'https://en.uit.edu.vn',
@@ -92,32 +93,33 @@ const Body = styled.div`
 
 export default function AboutPage() {
 	return (
-		<Container>
-			<HeaderBackground />
-			<Header>
-				<IntroBox>
-					<h1>Near Huscarl</h1>
-					<h2>Front-end developer in the making</h2>
-				</IntroBox>
-			</Header>
-			<Body>
-				<p>
-					{componentize(`My name is Nguyen. I am currently a senior at
+		<Layout>
+			<Container>
+				<HeaderBackground />
+				<Header>
+					<IntroBox>
+						<h1>Near Huscarl</h1>
+						<h2>Front-end developer in the making</h2>
+					</IntroBox>
+				</Header>
+				<Body>
+					<p>
+						{componentize(`My name is Nguyen. I am currently a senior at
 					[University of Information Technology]. In my four-year at uni,
 					I have written a lot of small and medium projects using various
 					programming languages and frameworks, ranging from terminal
 					utility scripts, web scrapers, libraries, UI mockups, some niché
 					android apps to desktop app, video games and web app.`)}
-				</p>
-				<p>
-					{componentize(`My largest project, [Castlevania] is a 2D game remake of the same
+					</p>
+					<p>
+						{componentize(`My largest project, [Castlevania] is a 2D game remake of the same
 					title. It is one of the only 2 projects (need citation) to achieve
 					the absolute score in Introduction to Game Development in 2018,
 					one of the most challenging courses in Software Engineering major
 					where I am taking.`)}
-				</p>
-				<p>
-					{`I care a lot about creating beautiful, intuitive,
+					</p>
+					<p>
+						{`I care a lot about creating beautiful, intuitive,
 					high-performance web apps using latest technologies and
 					frameworks. Coding is not easy, that is why I always try my best
 					to make my code as clean and readable as possible whenever I can,
@@ -125,14 +127,15 @@ export default function AboutPage() {
 					other people. My dream is to master Haskell and write a bot that
 					can fix all of the garbage code that I have written when I was
 					young.`}
-				</p>
-				<p>
-					{componentize(`When I am not coding. You can find me playing indie games,
+					</p>
+					<p>
+						{componentize(`When I am not coding. You can find me playing indie games,
 					hitting the gym, reading blogs or watching Black Mirror episodes
 					and contemplate about how the machine will one day kill us all
 					and the only escape is a [wizard hat].`)}
-				</p>
-			</Body>
-		</Container>
+					</p>
+				</Body>
+			</Container>
+		</Layout>
 	);
 }

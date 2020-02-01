@@ -5,6 +5,7 @@ import projects from '../data/projects';
 import { Linebreak } from '../components/Toolkit';
 import theme from '../styles/theme';
 import { opacity, maxWidth } from '../styles/util';
+import Layout from '../components/Layout';
 
 const Intro = styled.header`
 	padding: 4rem;
@@ -70,31 +71,33 @@ const CardGrid = styled.div`
 `;
 
 const HomePage = () => (
-	<main>
-		<Intro>
-			<h1>Front-end Developer</h1>
-			<h2>
-				<p>Senior at University of Information Technology</p>
-				<p className='delimiter'>. </p>
-				<p>Looking for an internship in 2020</p>
-			</h2>
-		</Intro>
-		<Portfolio>
-			<h2 id='portfolio'>Portfolio</h2>
-			<Linebreak />
-			<CardGrid>
-				{projects.map((p) => (
-					<ProjectCard
-						key={p.title}
-						image={p.image}
-						title={p.title}
-						technology={p.technologies}
-						link={p.link}
-					/>
-				))}
-			</CardGrid>
-		</Portfolio>
-	</main>
+	<Layout>
+		<main>
+			<Intro>
+				<h1>Front-end Developer</h1>
+				<h2>
+					<p>Senior at University of Information Technology</p>
+					<p className='delimiter'>.</p>
+					<p>Looking for an internship in 2020</p>
+				</h2>
+			</Intro>
+			<Portfolio>
+				<h2 id='portfolio'>Portfolio</h2>
+				<Linebreak />
+				<CardGrid>
+					{projects.map((p) => (
+						<ProjectCard
+							key={p.title}
+							image={p.image}
+							title={p.title}
+							technology={p.technologies}
+							link={p.link}
+						/>
+					))}
+				</CardGrid>
+			</Portfolio>
+		</main>
+	</Layout>
 );
 
 export default HomePage;

@@ -36,6 +36,7 @@ module.exports = {
         'react/destructuring-assignment': [0],
         'react/jsx-indent': [1, 'tab'],
         'react/jsx-one-expression-per-line': 'off',
+        "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
         'no-tabs': 0, // disable error (airbnb will throw error when using tab)
         'allowIndentationTabs': 0,
         'import/no-extraneous-dependencies': [2, {

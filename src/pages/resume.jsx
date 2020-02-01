@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { withRouter } from 'react-router-dom';
 import {
 	faEnvelope,
 	faGlobe,
@@ -13,9 +12,9 @@ import {
 	faFacebookF,
 } from '@fortawesome/free-brands-svg-icons';
 import IconLink, { CollapsableIconLink } from '../components/IconLink';
-import scrollToTop from '../hooks/scrollToTop';
 import { H2, H3 } from '../components/Headings';
 import { Link, Chip } from '../components/Toolkit';
+import Layout from '../components/Layout';
 import contact from '../data/contact';
 import media from '../data/media';
 import projects from '../data/projects';
@@ -286,11 +285,7 @@ const Education = styled.div`
 	}
 `;
 
-const ResumePage = ({ location }) => {
-	if (location.pathname === '/resume-full') {
-		scrollToTop();
-	}
-
+export const Resume = () => {
 	return (
 		<Container>
 			<Header>
@@ -439,8 +434,12 @@ const ResumePage = ({ location }) => {
 	);
 };
 
-const ResumePageWithRouter = withRouter((props) => (
-	<ResumePage location={props.location} />
-));
+const ResumePage = () => {
+	return (
+		<Layout>
+			<Resume />
+		</Layout>
+	);
+};
 
-export default ResumePageWithRouter;
+export default ResumePage;

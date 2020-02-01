@@ -1,13 +1,14 @@
 import React from 'react';
+import { Link } from 'gatsby';
+import { Location } from '@reach/router';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { HashLink } from 'react-router-hash-link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { Linebreak } from './Toolkit';
 import theme from '../styles/theme';
 
-const Anchor = styled(HashLink)`
+const Anchor = styled(Link)`
 	float: left;
 	margin-top: 0.5rem;
 
@@ -65,9 +66,16 @@ function createHeading(Level) {
 			const Heading = ({ id, className, children, linebreak, anchor }) => (
 				<Container id={id} className={className}>
 					{anchor && (
-						<Anchor className='anchor' to={anchor} smooth>
-							<FontAwesomeIcon icon={faLink} />
-						</Anchor>
+						<Location>
+							{({ location }) => (
+								<Anchor
+									className='anchor'
+									to={location.pathname + '/' + anchor}
+								>
+									<FontAwesomeIcon icon={faLink} />
+								</Anchor>
+							)}
+						</Location>
 					)}
 					<Level>{children}</Level>
 					{linebreak && <Linebreak className='linebreak' />}

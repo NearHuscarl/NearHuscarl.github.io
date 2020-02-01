@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 import styled from 'styled-components';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'gatsby';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
 import Nav from '../components/Nav';
@@ -32,11 +32,7 @@ const Subtitle = styled.h2`
 	font-weight: 500;
 `;
 
-function Header({ location }) {
-	if (location.pathname === '/resume-full') {
-		return null;
-	}
-
+function Header() {
 	const [showMenu, setShowMenu] = React.useState(false);
 
 	return (
@@ -69,8 +65,4 @@ function Header({ location }) {
 	);
 }
 
-const HeaderWithRouter = withRouter((props) => (
-	<Header location={props.location} />
-));
-
-export default HeaderWithRouter;
+export default Header;

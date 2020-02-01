@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import onThi247Logo from '../../public/images/logo-onthi247.png';
-import football365Logo from '../../public/images/logo-football365.png';
-import flutterLoginLogo from '../../public/images/preview-flutter-login.png';
-import edictionaryLogo from '../../public/images/logo-edictionary.png';
-import castlevaniaLogo from '../../public/images/logo-castlevania.png';
-import shellScriptLogo from '../../public/images/shell-script.jpg';
+import onThi247Logo from '../assets/images/logo-onthi247.png';
+import football365Logo from '../assets/images/logo-football365.png';
+import flutterLoginLogo from '../assets/images/preview-flutter-login.png';
+import edictionaryLogo from '../assets/images/logo-edictionary.png';
+import castlevaniaLogo from '../assets/images/logo-castlevania.png';
+import shellScriptLogo from '../assets/images/shell-script.jpg';
 
 export const propjectProps = PropTypes.shape({
 	image: PropTypes.string.isRequired,

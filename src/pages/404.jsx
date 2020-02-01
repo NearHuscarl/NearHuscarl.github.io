@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import sample from 'lodash/sample';
 import { Link } from '../components/Toolkit';
+import Layout from '../components/Layout';
 import theme from '../styles/theme';
 
 // TODO: add life advices and jokes generator from reddit (askreddit)
@@ -47,7 +48,9 @@ function getRandomQuote() {
 }
 
 const Container = styled.main`
-	min-height: calc(100vh - 11rem - 8rem - ${theme.pageContainerVertPadding} * 2);
+	min-height: calc(
+		100vh - 11rem - 8rem - ${theme.pageContainerVertPadding} * 2
+	);
 	padding: 2rem;
 	display: flex;
 	flex-direction: column;
@@ -75,12 +78,14 @@ const Container = styled.main`
 `;
 
 const NotFoundPage = () => (
-	<Container>
-		<h1>404</h1>
-		<h2>Page not found :(</h2>
-		<p>{getRandomQuote()}</p>
-		<Link to='/'>Go home</Link>
-	</Container>
+	<Layout>
+		<Container>
+			<h1>404</h1>
+			<h2>Page not found :(</h2>
+			<p>{getRandomQuote()}</p>
+			<Link to='/'>Go home</Link>
+		</Container>
+	</Layout>
 );
 
 export default NotFoundPage;

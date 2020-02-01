@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import styled from 'styled-components';
 import { faGithub, faHtml5 } from '@fortawesome/free-brands-svg-icons';
 import { faBalanceScale, faFilePdf } from '@fortawesome/free-solid-svg-icons';
@@ -73,20 +73,31 @@ const Row = styled.div`
 	}
 `;
 
-function Footer({ location }) {
-	if (location.pathname === '/resume-full') {
-		return null;
-	}
+const getResumePdfUrl = () => {
+	const data = useStaticQuery(graphql`
+		{
+			file(name: { eq: "resume" }, extension: { eq: "pdf" }) {
+				publicURL
+			}
+		}
+	`);
+	return data.file.publicURL;
+};
 
+function Footer() {
 	return (
 		<Container className='--hide-from-pdf'>
 			<Row gap={0.8}>
 				<Link to='/resume-full'>
 					<ExpandableIcon icon={faHtml5} text='Resumé in HTML' />
 				</Link>
-				<Link to='documents/resume.pdf'>
+				<a
+					rel='noopener noreferrer'
+					target='_blank'
+					href={getResumePdfUrl()}
+				>
 					<ExpandableIcon icon={faFilePdf} text='Resumé in PDF' />
-				</Link>
+				</a>
 			</Row>
 			<Row gap={1.2}>
 				<a href='https://github.com/NearHuscarl/portfolio/blob/master/LICENSE.md'>
@@ -104,8 +115,4 @@ function Footer({ location }) {
 	);
 }
 
-const FooterWithRouter = withRouter((props) => (
-	<Footer location={props.location} />
-));
-
-export default FooterWithRouter;
+export default Footer;
