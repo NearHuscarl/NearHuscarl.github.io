@@ -10,7 +10,7 @@ import Footer from '../layout/Footer';
 import PageContainer from './PageContainer';
 import SEO from './SEO';
 
-const Layout = ({ children }) => {
+const Layout = ({ title, children }) => {
 	return (
 		// TODO: pass props.noPadding when migrating to gatsby
 		// https://github.com/gatsbyjs/gatsby/issues/8787#issuecomment-427216043
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
 
 				return (
 					<>
-						<SEO />
+						<SEO title={title} />
 						<CSS />
 						<PageContainer>
 							{!isResumeFullPage && <Header />}
@@ -36,7 +36,12 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
+	title: PropTypes.string,
 	children: PropTypes.node.isRequired,
+};
+
+Layout.defaultProps = {
+	title: '',
 };
 
 export default Layout;

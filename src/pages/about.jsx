@@ -93,7 +93,7 @@ const Body = styled.div`
 
 export default function AboutPage() {
 	return (
-		<Layout>
+		<Layout title='About'>
 			<Container>
 				<HeaderBackground />
 				<Header>

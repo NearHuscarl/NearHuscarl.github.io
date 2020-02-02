@@ -8,32 +8,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Helmet from 'react-helmet';
-import { useStaticQuery, graphql } from 'gatsby';
+import useSiteMetadata from '../hooks/useSiteMetadata';
 
 function SEO({ description, lang, meta, title }) {
-	const { site } = useStaticQuery(
-		graphql`
-			query {
-				site {
-					siteMetadata {
-						title
-						description
-						author
-					}
-				}
-			}
-		`,
-	);
-
-	const metaDescription = description || site.siteMetadata.description;
+	const siteMetadata = useSiteMetadata();
+	const metaDescription = description || siteMetadata.description;
+	const isIndexPage = title === '';
+	const effectiveTitle = isIndexPage ? siteMetadata.title : title;
 
 	return (
 		<Helmet
 			htmlAttributes={{
 				lang,
 			}}
-			title={title}
-			titleTemplate={`%s | ${site.siteMetadata.title}`}
+			title={effectiveTitle}
+			titleTemplate={!isIndexPage && `%s | ${siteMetadata.title}`}
 			meta={[
 				{
 					name: `description`,
@@ -57,7 +46,7 @@ function SEO({ description, lang, meta, title }) {
 				},
 				{
 					name: `twitter:creator`,
-					content: site.siteMetadata.author,
+					content: siteMetadata.author,
 				},
 				{
 					name: `twitter:title`,

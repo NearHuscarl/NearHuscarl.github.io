@@ -436,7 +436,7 @@ export const Resume = () => {
 
 const ResumePage = () => {
 	return (
-		<Layout>
+		<Layout title='Resumé'>
 			<Resume />
 		</Layout>
 	);

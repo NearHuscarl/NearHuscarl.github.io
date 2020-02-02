@@ -78,7 +78,7 @@ const Container = styled.main`
 `;
 
 const NotFoundPage = () => (
-	<Layout>
+	<Layout title='404'>
 		<Container>
 			<h1>404</h1>
 			<h2>Page not found :(</h2>

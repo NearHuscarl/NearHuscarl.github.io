@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 
 const ResumeFullPage = () => {
 	return (
-		<Layout>
+		<Layout title='Resumé HTML'>
 			<Resume />
 		</Layout>
 	);
