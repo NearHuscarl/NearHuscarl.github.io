@@ -1,7 +1,31 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import theme, { colors } from './theme';
-import { maxWidth } from './util';
+import { maxWidth, opacity } from './util';
+
+const sbTrackColor = theme.primaryDark;
+const sbThumbColor = opacity(colors.grey[100], 0.85);
+const CustomScrollbar = createGlobalStyle`
+	/* Currently there is no cross-platform support for custom css scrollbar */
+	* {
+		/* Firefox */
+		/* https://stackoverflow.com/a/54101063/9449426 */
+		scrollbar-width: thin;
+		scrollbar-color: ${sbThumbColor} ${sbTrackColor};
+
+		/* Chromium */
+		/* https://stackoverflow.com/a/53739309/9449426 */
+		::-webkit-scrollbar {
+			width: .8rem;
+		}
+		::-webkit-scrollbar-track-piece  {
+			background-color: ${sbTrackColor};
+		}
+		::-webkit-scrollbar-thumb:vertical {
+			background-color: ${sbThumbColor};
+		}
+	}
+`;
 
 const Global = createGlobalStyle`
 	*,
@@ -15,7 +39,9 @@ const Global = createGlobalStyle`
 	html {
 		box-sizing: border-box;
 		font-size: 62.5%; /* 10px/16px -> 1rem = 10px */
+	}
 
+	body {
 		background-image: linear-gradient(
 			to bottom right,
             ${theme.primary},
@@ -104,6 +130,7 @@ export default function CSS() {
 	return (
 		<>
 			<Global />
+			<CustomScrollbar />
 		</>
 	);
 }

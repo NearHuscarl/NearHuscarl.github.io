@@ -22,7 +22,7 @@ function SEO({ description, lang, meta, title }) {
 				lang,
 			}}
 			title={effectiveTitle}
-			titleTemplate={!isIndexPage && `%s | ${siteMetadata.title}`}
+			titleTemplate={isIndexPage ? '' : `%s | ${siteMetadata.title}`}
 			meta={[
 				{
 					name: `description`,
