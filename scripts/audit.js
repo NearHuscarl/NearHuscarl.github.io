@@ -4,6 +4,7 @@ const { promisify } = require('util');
 const lighthouse = require('lighthouse');
 const chromeLauncher = require('chrome-launcher');
 const server = require('./server.js');
+const config = require('./desktop-config.js');
 
 const writeFileAsync = promisify(fs.writeFile);
 
@@ -68,17 +69,19 @@ async function execAuditing() {
 	await new Promise((resolve) => server.listen('9000', resolve));
 	console.log('App is listening on port 9000');
 
-	await launchChromeAndRunLighthouse('http://localhost:9000', opts).then(
-		async (results) => {
-			const categories = Object.keys(results.categories);
+	await launchChromeAndRunLighthouse(
+		'http://localhost:9000',
+		opts,
+		config,
+	).then(async (results) => {
+		const categories = Object.keys(results.categories);
 
-			for (const category of categories) {
-				await createBadgeConfig(results.categories[category]);
-			}
+		for (const category of categories) {
+			await createBadgeConfig(results.categories[category]);
+		}
 
-			await new Promise((resolve) => server.close(resolve));
-		},
-	);
+		await new Promise((resolve) => server.close(resolve));
+	});
 }
 
 async function main() {
