@@ -1,4 +1,5 @@
 import React from 'react';
+import Img from 'gatsby-image';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import theme from '../styles/theme';
@@ -20,8 +21,8 @@ const Card = styled.div`
 		border-top-right-radius: inherit;
 		border-top-left-radius: inherit;
 		/* height / width = 0.6 */
-		width: 30rem;
-		height: 18rem;
+		/* width: 30rem;
+		height: 18rem; */
 		object-fit: cover;
 	}
 
@@ -49,7 +50,7 @@ export default function ProjectCard({ image, title, link, technology }) {
 			rel='noopener noreferrer'
 		>
 			<Card>
-				<img src={image} alt='project preview' />
+				<Img fixed={image} alt='project preview' />
 				<div className='info'>
 					<h3>{title}</h3>
 					<p className='tech'>{technology.join(', ')}</p>
@@ -60,7 +61,8 @@ export default function ProjectCard({ image, title, link, technology }) {
 }
 
 ProjectCard.propTypes = {
-	image: PropTypes.string.isRequired,
+	// eslint-disable-next-line react/forbid-prop-types
+	image: PropTypes.object.isRequired,
 	title: PropTypes.string.isRequired,
 	technology: PropTypes.arrayOf(PropTypes.string).isRequired,
 	link: PropTypes.string.isRequired,

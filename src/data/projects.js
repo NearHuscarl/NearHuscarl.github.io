@@ -1,10 +1,4 @@
 import PropTypes from 'prop-types';
-import onThi247Logo from '../assets/images/logo-onthi247.png';
-import football365Logo from '../assets/images/logo-football365.png';
-import flutterLoginLogo from '../assets/images/preview-flutter-login.png';
-import edictionaryLogo from '../assets/images/logo-edictionary.png';
-import castlevaniaLogo from '../assets/images/logo-castlevania.png';
-import shellScriptLogo from '../assets/images/shell-script.jpg';
 
 export const propjectProps = PropTypes.shape({
 	image: PropTypes.string.isRequired,
@@ -18,7 +12,7 @@ export const propjectProps = PropTypes.shape({
 
 const projects = [
 	{
-		image: onThi247Logo,
+		image: 'logo-onthi247.png',
 		title: 'OnThi247',
 		technologies: ['React', 'SCSS'],
 		tags: ['Web', 'Front-end'],
@@ -27,7 +21,7 @@ const projects = [
 		link: 'https://github.com/NearHuscarl/onthi247',
 	},
 	{
-		image: football365Logo,
+		image: 'logo-football365.png',
 		title: 'Football365',
 		technologies: ['React', 'SCSS', 'Webpack', 'Firebase', 'Heroku'],
 		tags: ['Web', 'Front-end'],
@@ -37,7 +31,7 @@ const projects = [
 		link: 'https://github.com/NearHuscarl/football-site',
 	},
 	{
-		image: flutterLoginLogo,
+		image: 'preview-flutter-login.png',
 		title: 'Flutter Login',
 		technologies: ['Flutter', 'Dart'],
 		tags: ['UI', 'Animation'],
@@ -46,7 +40,7 @@ const projects = [
 		link: 'https://github.com/NearHuscarl/flutter_login',
 	},
 	{
-		image: edictionaryLogo,
+		image: 'logo-edictionary.png',
 		title: 'EDictionary',
 		technologies: ['C#', 'WPF', 'MVVM', 'SQLite'],
 		tags: ['Desktop'],
@@ -55,7 +49,7 @@ const projects = [
 		link: 'https://github.com/NearHuscarl/EDictionary',
 	},
 	{
-		image: castlevaniaLogo,
+		image: 'logo-castlevania.png',
 		title: 'Castlevania',
 		technologies: ['C++', 'DirectX 9', 'Xml'],
 		tags: ['Game'],
@@ -64,7 +58,7 @@ const projects = [
 		link: 'https://github.com/NearHuscarl/Castlevania',
 	},
 	{
-		image: shellScriptLogo,
+		image: 'shell-script.jpg',
 		title: 'Termite Color Switcher',
 		technologies: ['Shell'],
 		tags: ['Linux', 'Script'],
