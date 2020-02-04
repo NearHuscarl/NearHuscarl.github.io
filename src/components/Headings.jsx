@@ -1,4 +1,5 @@
 import React from 'react';
+import kebabCase from 'lodash/kebabCase';
 import { Link } from 'gatsby';
 import { Location } from '@reach/router';
 import PropTypes from 'prop-types';
@@ -34,13 +35,11 @@ const headingProps = {
 	id: PropTypes.string,
 	children: PropTypes.node.isRequired,
 	linebreak: PropTypes.bool,
-	anchor: PropTypes.string,
 };
 
 const headingDefaultProps = {
 	className: null,
 	id: null,
-	anchor: '',
 	linebreak: false,
 };
 
@@ -53,6 +52,11 @@ const Container = styled.div`
 	&:hover .linebreak::before {
 		width: 100%;
 	}
+
+	h3,
+	h4 {
+		margin-bottom: 1rem;
+	}
 `;
 
 function createHeading(Level) {
@@ -63,24 +67,27 @@ function createHeading(Level) {
 		case 'h4':
 		case 'h5':
 		case 'h6': {
-			const Heading = ({ id, className, children, linebreak, anchor }) => (
-				<Container id={id} className={className}>
-					{anchor && (
-						<Location>
-							{({ location }) => (
-								<Anchor
-									className='anchor'
-									to={location.pathname + '/' + anchor}
-								>
-									<FontAwesomeIcon icon={faLink} />
-								</Anchor>
-							)}
-						</Location>
-					)}
-					<Level>{children}</Level>
-					{linebreak && <Linebreak className='linebreak' />}
-				</Container>
-			);
+			const Heading = ({ id, className, children, linebreak }) => {
+				const anchor = kebabCase(id);
+				return (
+					<Container id={anchor} className={className}>
+						{anchor && (
+							<Location>
+								{({ location }) => (
+									<Anchor
+										className='anchor'
+										to={location.pathname + '/#' + anchor}
+									>
+										<FontAwesomeIcon icon={faLink} />
+									</Anchor>
+								)}
+							</Location>
+						)}
+						<Level>{children}</Level>
+						{linebreak && <Linebreak className='linebreak' />}
+					</Container>
+				);
+			};
 
 			Heading.propTypes = headingProps;
 			Heading.defaultProps = headingDefaultProps;

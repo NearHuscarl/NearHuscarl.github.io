@@ -38,6 +38,7 @@ const Card = styled.div`
 		color: ${theme.greyDark2};
 		text-align: right;
 		max-width: 14rem;
+		font-size: 1rem;
 	}
 `;
 

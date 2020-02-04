@@ -12,6 +12,7 @@ const Intro = styled.header`
 	padding: 4rem;
 	background-color: ${theme.greyLight1};
 	height: 70vh;
+	max-height: 60rem;
 
 	display: flex;
 	flex-direction: column;
@@ -24,8 +25,6 @@ const Intro = styled.header`
 	}
 
 	h1 {
-		/* remove normalize default */
-		margin-top: 0;
 		color: ${theme.secondaryColors[500]};
 
 		text-shadow: 1px 1px 2px ${opacity(theme.greyDark2, 0.25)};
@@ -39,6 +38,11 @@ const Intro = styled.header`
 	h2 {
 		/* background-color: ${theme.greyDark3}; */
 		color: ${theme.greyDark1};
+
+		p {
+			font-size: inherit;
+			margin: 0;
+		}
 
 		.delimiter {
 			display: none;

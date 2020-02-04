@@ -1,11 +1,11 @@
 import React from 'react';
-import { Resume } from './resume';
+import { ResumeContent } from './resume';
 import Layout from '../components/Layout';
 
 const ResumeFullPage = () => {
 	return (
 		<Layout title='Resumé HTML'>
-			<Resume />
+			<ResumeContent />
 		</Layout>
 	);
 };

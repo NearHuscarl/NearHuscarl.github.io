@@ -1,0 +1,59 @@
+import ProjectPreview, { ProjectGrid } from '../components/ProjectPreview';
+import SkillGrid from '../components/SkillGrid';
+import projects from '../data/projects';
+
+## Summary
+
+Senior at UIT, perfectionist, have great attention to details, love coding and
+open source. Very eager to learn new trending frameworks and technologies.
+Technologies used: `React`, `SCSS`, `Webpack`, `Gulp`, `Flutter`, `Git`. Depend
+on the project's requirement, I can seek to learn new technology quickly and
+integrate to the team's workflow.
+
+## Skills
+
+### Frameworks and Libraries
+
+-  ReactJs
+-  Webpack
+-  Gulp
+-  Bootstrap
+-  Flutter
+-  WPF
+
+### Languages
+
+-  JavaScript
+-  TypeScript
+-  SCSS
+-  Dart
+-  CSS
+-  C#
+-  Python
+-  Bash
+
+### Databases
+
+-  Firebase
+-  Cloud Firestore
+-  SQLite
+
+### Version Control
+
+-  Git
+
+## Personal Projects
+
+<ProjectGrid>
+	{projects.map((p) => (
+		<ProjectPreview key={p.title} project={p} />
+	))}
+</ProjectGrid>
+
+## Education
+
+### Software Engineering
+
+[University of Information Technology](https://en.uit.edu.vn)
+
+**06/2016 - Present**

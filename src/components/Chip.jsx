@@ -38,23 +38,23 @@ const radialOutAnimation = (backgroundColor, color, duration = '0.3s') => {
 	`;
 };
 
-const getColor = ({ tech }) => {
-	switch (tech) {
-		case 'js':
+const getColor = ({ children }) => {
+	switch (children) {
+		case 'JavaScript':
 			return radialOutAnimation(colors.yellow['400'], colors.grey['900']);
-		case 'ts':
+		case 'TypeScript':
 			return radialOutAnimation(colors.lightBlue['800'], theme.white);
-		case 'scss':
+		case 'SCSS':
 			return radialOutAnimation(colors.pink['700'], theme.white);
-		case 'dart':
+		case 'Dart':
 			return radialOutAnimation(colors.lightBlue['400'], colors.blue['900']);
-		case 'css':
+		case 'CSS':
 			return radialOutAnimation(colors.deepPurple['500'], theme.white);
-		case 'cs':
+		case 'C#':
 			return radialOutAnimation(colors.purple['500'], theme.white);
-		case 'py':
+		case 'Python':
 			return radialOutAnimation(colors.indigo['500'], theme.white);
-		case 'bash':
+		case 'Bash':
 			return radialOutAnimation(colors.blueGrey['900'], theme.white);
 		default:
 			return radialOutAnimation(theme.primary, theme.white);

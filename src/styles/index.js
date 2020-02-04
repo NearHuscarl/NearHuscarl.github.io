@@ -87,6 +87,14 @@ const Global = createGlobalStyle`
 		color: ${colors.red[400]};
 	}
 
+	p {
+		font-size: 1.5rem;
+
+		&:not(:last-child) {
+			margin-bottom: 2rem;
+		}
+	}
+
 	/* typography */
 	body {
 		color: ${theme.greyDark2};

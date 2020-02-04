@@ -25,11 +25,12 @@ const HeaderLogo = styled.div`
 `;
 const Title = styled.h1`
 	font-size: 2rem;
-	margin-bottom: 0;
+	margin: 0;
 `;
 const Subtitle = styled.h2`
 	font-size: 1.5rem;
 	font-weight: 500;
+	margin: 0;
 `;
 
 function Header() {
