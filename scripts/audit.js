@@ -99,7 +99,7 @@ async function execAuditing(route) {
 }
 
 async function main() {
-	// shell.exec('yarn build');
+	shell.exec('yarn build');
 
 	const routes = await getRoutes();
 	const reports = {};
@@ -111,6 +111,7 @@ async function main() {
 		reports[route] = await execAuditing(route);
 	}
 
+	// calculate average scores for each category from all routes
 	const scores = {};
 	const categoryIds = Object.keys(reports['/']);
 
@@ -131,7 +132,7 @@ async function main() {
 		const badgeConfig = {
 			schemaVersion: 1,
 			label: reports['/'][categoryId].title,
-			message: trimTrailing0(score / routes.length).toString(),
+			message: trimTrailing0((score * 100) / routes.length).toString(),
 			color: getColor(score),
 		};
 
