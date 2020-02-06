@@ -86,7 +86,7 @@ async function execAuditing(route) {
 	const opts = { output: 'html', chromeFlags: [] };
 
 	return launchChromeAndRunLighthouse(
-		`http://near.netlify.com${route}`,
+		`https://near.netlify.com${route}`,
 		opts,
 		desktopConfig,
 	).then((results) => {
