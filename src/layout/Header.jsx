@@ -42,7 +42,7 @@ function Header() {
 		// https://www.sejda.com/developers#html-pdf-api-options
 		<Container className='--hide-from-pdf'>
 			<HeaderLogo>
-				<Link to='/'>
+				<Link aria-label='Logo' to='/'>
 					<Logo />
 				</Link>
 				<div>

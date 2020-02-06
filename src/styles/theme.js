@@ -11,6 +11,7 @@ const theme = {
 	secondary: colors.cyan[500],
 	secondaryColors: colors.cyan,
 	tertiary: colors.green[500],
+	greyLight0: colors.grey[50],
 	greyLight1: colors.grey[100],
 	greyLight2: colors.grey[200],
 	greyLight3: colors.grey[300],

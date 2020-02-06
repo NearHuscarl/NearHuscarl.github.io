@@ -135,7 +135,7 @@ const ResumeHeader = () => {
 			<h2>Software Engineer Undergraduate</h2>
 			<ul className='contact'>
 				<li>
-					<IconLink icon={faEnvelope} href={'mailto:' + contact.email}>
+					<IconLink icon={faEnvelope} aria-label='mail' href={'mailto:' + contact.email}>
 						{contact.email}
 					</IconLink>
 				</li>
@@ -143,38 +143,40 @@ const ResumeHeader = () => {
 				<li>
 					<IconLink
 						icon={faMapMarkerAlt}
+						aria-label='location'
 						href={`https://www.google.com/maps/place/${contact.location}`}
 					>
 						{contact.location}
 					</IconLink>
 				</li>
 				<li>
-					<IconLink icon={faGlobe} href={media.website}>
+					<IconLink icon={faGlobe} aria-label='website' href={media.website}>
 						{chopSchema(media.website)}
 					</IconLink>
 				</li>
 			</ul>
 			<ul className='media'>
 				<li>
-					<CollapsableIconLink icon={faGithub} href={media.github}>
+					<CollapsableIconLink icon={faGithub} aria-label='github' href={media.github}>
 						{chopSchema(media.github)}
 					</CollapsableIconLink>
 				</li>
 				<li>
-					<CollapsableIconLink icon={faLinkedin} href={media.linkedIn}>
+					<CollapsableIconLink icon={faLinkedin} aria-label='linkedin' href={media.linkedIn}>
 						{chopSchema(media.linkedIn)}
 					</CollapsableIconLink>
 				</li>
 				<li>
 					<CollapsableIconLink
 						icon={faStackOverflow}
+						aria-label='stackoverflow'
 						href={media.stackoverflow}
 					>
 						{chopSchema(media.stackoverflow)}
 					</CollapsableIconLink>
 				</li>
 				<li>
-					<CollapsableIconLink icon={faFacebookF} href={media.facebook}>
+					<CollapsableIconLink icon={faFacebookF} aria-label='facebook' href={media.facebook}>
 						{chopSchema(media.facebook)}
 					</CollapsableIconLink>
 				</li>

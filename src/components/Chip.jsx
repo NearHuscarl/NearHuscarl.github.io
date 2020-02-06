@@ -63,6 +63,7 @@ const getColor = ({ children }) => {
 
 export default styled.div`
 	background-color: ${theme.greyLight2};
+	color: hsla(0, 0%, 42%, 1);
 	font-size: 1.4rem;
 	font-weight: 600;
 	padding: 0.3rem 2rem;

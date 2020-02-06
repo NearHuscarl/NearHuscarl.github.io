@@ -35,7 +35,7 @@ const Card = styled.div`
 	}
 
 	.tech {
-		color: ${theme.greyDark2};
+		color: ${theme.greyDark3};
 		text-align: right;
 		max-width: 14rem;
 		font-size: 1rem;

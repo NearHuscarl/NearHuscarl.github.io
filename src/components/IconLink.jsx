@@ -72,7 +72,13 @@ const Container = styled.div`
 	}
 `;
 
-export default function IconLink({ icon, href, children, className }) {
+export default function IconLink({
+	icon,
+	href,
+	children,
+	className,
+	'aria-label': ariaLabel,
+}) {
 	const [animated, setAnimated] = React.useState(false);
 
 	return (
@@ -86,7 +92,7 @@ export default function IconLink({ icon, href, children, className }) {
 			onAnimationEnd={() => setAnimated(() => false)}
 			animated={animated}
 		>
-			<a href={href}>
+			<a href={href} aria-label={ariaLabel}>
 				<FontAwesomeIcon icon={icon} />
 			</a>{' '}
 			<a className='label' href={href}>
@@ -101,10 +107,12 @@ IconLink.propTypes = {
 	href: PropTypes.string.isRequired,
 	children: PropTypes.node.isRequired,
 	className: PropTypes.node,
+	'aria-label': PropTypes.string,
 };
 
 IconLink.defaultProps = {
 	className: null,
+	'aria-label': null,
 };
 
 export const CollapsableIconLink = styled(IconLink)`

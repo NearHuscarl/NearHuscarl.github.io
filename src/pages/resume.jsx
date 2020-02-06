@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link, Chip } from '../components/Toolkit';
 import Layout from '../components/Layout';
 import theme from '../styles/theme';
-import { maxWidth } from '../styles/util';
+import { maxWidth, opacity, darken } from '../styles/util';
 import ResumeHeader from '../components/ResumeHeader';
 import MDXProvider from '../components/MDXProvider';
 import Resume from '../content/resume.mdx';
@@ -45,7 +45,8 @@ const Body = styled.div`
 	}
 `;
 const Strong = styled.strong`
-	color: ${theme.primaryColors[700]};
+	color: ${darken(theme.secondaryColors[700], 5)};
+	text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], .3)};
 	font-size: 1.4rem;
 	font-weight: 600;
 `;

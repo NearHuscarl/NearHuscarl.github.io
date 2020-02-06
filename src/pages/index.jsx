@@ -5,12 +5,12 @@ import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
 import { Linebreak } from '../components/Toolkit';
 import theme from '../styles/theme';
-import { opacity, maxWidth } from '../styles/util';
+import { opacity, maxWidth, darken } from '../styles/util';
 import Layout from '../components/Layout';
 
 const Intro = styled.header`
 	padding: 4rem;
-	background-color: ${theme.greyLight1};
+	background-color: ${theme.greyLight0};
 	height: 70vh;
 	max-height: 60rem;
 
@@ -25,19 +25,14 @@ const Intro = styled.header`
 	}
 
 	h1 {
-		color: ${theme.secondaryColors[500]};
-
-		text-shadow: 1px 1px 2px ${opacity(theme.greyDark2, 0.25)};
+		color: ${darken(theme.secondaryColors[500], 6.5)};
+		text-shadow: 1px 2px 10px ${opacity(theme.secondaryColors[500], 0.25)};
 		transition: all 0.25s;
-
-		&:hover {
-			text-shadow: 1px 2px 10px ${opacity(theme.secondaryColors[500], 0.25)};
-		}
 	}
 
 	h2 {
 		/* background-color: ${theme.greyDark3}; */
-		color: ${theme.greyDark1};
+		color: ${theme.greyDark2};
 
 		p {
 			font-size: inherit;

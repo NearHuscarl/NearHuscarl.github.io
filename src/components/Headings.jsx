@@ -9,7 +9,7 @@ import { faLink } from '@fortawesome/free-solid-svg-icons';
 import { Linebreak } from './Toolkit';
 import theme from '../styles/theme';
 
-const Anchor = styled(Link)`
+const Anchor = styled(Link).attrs(() => ({ 'aria-label': 'anchor' }))`
 	float: left;
 	margin-top: 0.5rem;
 

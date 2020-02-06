@@ -18,6 +18,10 @@ const NavContainer = styled.nav`
 		${maxWidth(900)} {
 			padding-right: 0;
 		}
+
+		a {
+			text-shadow: none;
+		}
 	}
 
 	${maxWidth(490)} {

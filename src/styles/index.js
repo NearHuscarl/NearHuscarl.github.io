@@ -1,7 +1,7 @@
 import React from 'react';
 import { createGlobalStyle } from 'styled-components';
 import theme, { colors } from './theme';
-import { maxWidth, opacity } from './util';
+import { maxWidth, opacity, darken } from './util';
 
 const sbTrackColor = theme.primaryDark;
 const sbThumbColor = opacity(colors.grey[100], 0.85);
@@ -60,7 +60,8 @@ const Global = createGlobalStyle`
 	}
 
 	a {
-		color: ${theme.secondary};
+		color: ${darken(theme.secondaryColors[700], 5)};
+		text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], 0.3)};
 		text-decoration: none;
 		transition: color .2s;
 
@@ -68,6 +69,7 @@ const Global = createGlobalStyle`
 		&:focus,
 		&:active {
 			color: ${theme.primary};
+			text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.primary, 0.3)};
 			outline: none;
 		}
 	}

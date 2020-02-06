@@ -5,6 +5,7 @@ import chopSchema from '../helpers/chopSchema';
 import { H3 } from './Headings';
 import { Link } from './Toolkit';
 import theme from '../styles/theme';
+import { darken, opacity } from '../styles/util';
 
 const Container = styled.article`
 	font-size: 1.35rem;
@@ -14,7 +15,8 @@ const Title = styled(H3)`
 	margin-right: 1rem;
 `;
 const Date = styled.span`
-	color: ${theme.primaryColors[700]};
+	color: ${darken(theme.secondaryColors[700], 5)};
+	text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], 0.3)};
 	font-weight: 600;
 `;
 
