@@ -4,6 +4,7 @@ import sample from 'lodash/sample';
 import { Link } from '../components/Toolkit';
 import Layout from '../components/Layout';
 import theme from '../styles/theme';
+import { opacity, darken } from '../styles/util';
 
 // TODO: add life advices and jokes generator from reddit (askreddit)
 const lifeAdvices = [
@@ -56,13 +57,14 @@ const Container = styled.main`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	background-color: ${theme.greyLight1};
+	background-color: ${theme.greyLight0};
 
 	h1 {
 		margin: 0;
 		line-height: 1;
 		font-weight: 500;
-		color: ${theme.primary};
+		color: ${darken(theme.primary, 16)};
+		text-shadow: 0 0 .75rem ${opacity(theme.primary, .75)};
 	}
 
 	p {
@@ -74,6 +76,7 @@ const Container = styled.main`
 	a {
 		font-size: 2rem;
 		font-weight: 500;
+		text-shadow: none;
 	}
 `;
 
@@ -82,6 +85,7 @@ const NotFoundPage = () => (
 		<Container>
 			<h1>404</h1>
 			<h2>Page not found :(</h2>
+			{/* TODO: add svg 404 image */}
 			<p>{getRandomQuote()}</p>
 			<Link to='/'>Go home</Link>
 		</Container>

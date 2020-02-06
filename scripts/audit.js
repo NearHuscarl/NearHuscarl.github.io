@@ -216,8 +216,6 @@ async function updateAuditReadme(reports, avgScores) {
 }
 
 async function main() {
-	shell.exec('yarn build');
-
 	const routes = await getRoutes();
 	const reports = {};
 
