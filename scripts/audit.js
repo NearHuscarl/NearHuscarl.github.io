@@ -191,7 +191,8 @@ async function updateAuditReadme(reports, avgScores) {
 
 		for (const category of categories) {
 			const { title, score } = reports[route][category];
-			await append(`| ${title} | ${score * 100} |`);
+			const name = `${getEmoij(title)} ${title}`;
+			await append(`| ${name} | ${score * 100} |`);
 		}
 		await append('');
 		await append(
