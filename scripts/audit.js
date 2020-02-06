@@ -131,6 +131,25 @@ function getAverageScores(reports) {
 	return scores;
 }
 
+function getEmoij(title) {
+	if (title === 'Accessibility') {
+		return ':wheelchair:';
+	}
+	if (title === 'Best Practices') {
+		return ':heavy_check_mark:';
+	}
+	if (title === 'Performance') {
+		return ':zap:';
+	}
+	if (title === 'Progressive Web App') {
+		return ':iphone:';
+	}
+	if (title === 'SEO') {
+		return ':loudspeaker:';
+	}
+	return '';
+}
+
 async function updateAuditReadme(reports, avgScores) {
 	const routes = Object.keys(reports).sort((a, b) => {
 		// index first, 404 last, the rest is in alphabetical ordered
@@ -176,7 +195,7 @@ async function updateAuditReadme(reports, avgScores) {
 		}
 		await append('');
 		await append(
-			`[Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/${getHtmlReportFile(
+			`:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/${getHtmlReportFile(
 				route,
 			)})`,
 		);
@@ -190,7 +209,8 @@ async function updateAuditReadme(reports, avgScores) {
 
 	for (const category of categories) {
 		const { title, score } = avgScores[category];
-		await append(`| ${title} | ${trimTrailing0(score * 100).toString()} |`);
+		const name = `${getEmoij(title)} ${title}`;
+		await append(`| ${name} | ${trimTrailing0(score * 100).toString()} |`);
 	}
 	await append('');
 }
