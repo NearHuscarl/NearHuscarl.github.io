@@ -13,6 +13,8 @@ const writeFileAsync = promisify(fs.writeFile);
 const readdirAsync = promisify(fs.readdir);
 const appendFileAsync = promisify(fs.appendFile);
 
+const BASE_URL = 'https://near.netlify.com';
+
 function removeFilenameExtension(path) {
 	return path.replace(/\.[^/.]+$/, '');
 }
@@ -86,7 +88,7 @@ async function execAuditing(route) {
 	const opts = { output: 'html', chromeFlags: [] };
 
 	return launchChromeAndRunLighthouse(
-		`https://near.netlify.com${route}`,
+		BASE_URL + route,
 		opts,
 		desktopConfig,
 	).then((results) => {
@@ -98,7 +100,7 @@ async function execAuditing(route) {
 			scoreReport[id] = { title, score };
 		});
 
-		writeFile(`audit/${getHtmlReportFile(route)}`, report);
+		writeFile(`src/assets/audits/${getHtmlReportFile(route)}`, report);
 		return scoreReport;
 	});
 }
@@ -196,7 +198,7 @@ async function updateAuditReadme(reports, avgScores) {
 		}
 		await append('');
 		await append(
-			`:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/${getHtmlReportFile(
+			`:page_with_curl: [Full Report](${BASE_URL}/audits/${getHtmlReportFile(
 				route,
 			)})`,
 		);

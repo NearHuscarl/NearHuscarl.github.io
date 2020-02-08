@@ -1,6 +1,6 @@
 # Lighthouse Reports
 
-Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/fe5f02d4e16a2df3244a3c43aee0b3ed05e5e885)
+Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/42f10b4d9f489b7bf9c76e307798f3bcecc24ced)
 
 ## [`near.netlify.com`](https://near.netlify.com)
 
@@ -12,7 +12,7 @@ Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/f
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/report.html)
+:page_with_curl: [Full Report](https://near.netlify.com/audits/report.html)
 
 ## [`near.netlify.com/about`](https://near.netlify.com/about)
 
@@ -24,7 +24,7 @@ Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/f
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/report-about.html)
+:page_with_curl: [Full Report](https://near.netlify.com/audits/report-about.html)
 
 ## [`near.netlify.com/resume`](https://near.netlify.com/resume)
 
@@ -36,7 +36,7 @@ Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/f
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/report-resume.html)
+:page_with_curl: [Full Report](https://near.netlify.com/audits/report-resume.html)
 
 ## [`near.netlify.com/resume-full`](https://near.netlify.com/resume-full)
 
@@ -48,7 +48,7 @@ Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/f
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/report-resume-full.html)
+:page_with_curl: [Full Report](https://near.netlify.com/audits/report-resume-full.html)
 
 ## [`near.netlify.com/404`](https://near.netlify.com/404)
 
@@ -60,7 +60,7 @@ Reported at commit [`fe5f02d`](https://github.com/NearHuscarl/portfolio/commit/f
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://htmlpreview.github.io/?https://github.com/NearHuscarl/portfolio/blob/master/audit/report-404.html)
+:page_with_curl: [Full Report](https://near.netlify.com/audits/report-404.html)
 
 ## Average Score
 
