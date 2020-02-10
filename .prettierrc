@@ -1,9 +1,18 @@
 {
 	"singleQuote": true,
+	"quoteProps": "consistent",
 	"jsxSingleQuote": true,
 	"useTabs": true,
 	"jsxBracketSameLine": false,
 	"trailingComma": "all",
 	"arrowParens": "always",
-	"bracketSpacing": true
+	"bracketSpacing": true,
+	"overrides": [
+		{
+			"files": ".eslintrc.js",
+			"options": {
+				"quoteProps": "preserve"
+			}
+		}
+	]
 }

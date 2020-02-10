@@ -1,7 +1,3 @@
-/* eslint-disable no-await-in-loop */
-/* eslint-disable no-restricted-syntax */
-/* eslint-disable import/no-extraneous-dependencies */
-const shell = require('shelljs');
 const fs = require('fs');
 const fetch = require('node-fetch');
 const { promisify } = require('util');
@@ -183,6 +179,8 @@ async function updateAuditReadme(reports, avgScores) {
 	await append(`Reported at commit [\`${commitRef}\`](${commitUrl})`);
 	await append('');
 
+	/* eslint-disable no-restricted-syntax */
+	/* eslint-disable no-await-in-loop */
 	for (const route of routes) {
 		const url = rootUrl + route.replace(/^\/$/, '');
 
