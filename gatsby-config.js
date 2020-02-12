@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/camelcase */
+
 require('dotenv').config({
 	path: '.env.public',
 });
@@ -9,6 +11,8 @@ module.exports = {
 		author: `@nearhuscarl`,
 	},
 	plugins: [
+		`gatsby-plugin-typescript`,
+		`gatsby-plugin-graphql-codegen`,
 		`gatsby-plugin-react-helmet`,
 		{
 			resolve: `gatsby-source-filesystem`,

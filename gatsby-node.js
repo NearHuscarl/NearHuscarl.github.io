@@ -18,10 +18,10 @@ exports.onCreateDevServer = ({ app }) => {
 
 exports.createPages = async ({ graphql, actions }) => {
 	const { createPage } = actions;
-	const reportTemplate = path.resolve(`src/templates/report.jsx`);
+	const reportTemplate = path.resolve(`src/templates/report.tsx`);
 	const result = await graphql(
 		`
-			query {
+			query AuditFiles {
 				allFile(
 					filter: {
 						extension: { eq: "html" }
