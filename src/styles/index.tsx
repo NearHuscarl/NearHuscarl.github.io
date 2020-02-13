@@ -3,8 +3,8 @@ import { createGlobalStyle } from 'styled-components';
 import theme, { colors } from './theme';
 import { maxWidth, opacity, darken } from './util';
 
-const sbTrackColor = theme.primaryDark;
-const sbThumbColor = opacity(colors.grey[100], 0.85);
+const sbTrackColor = colors.blueGrey[300];
+const sbThumbColor = theme.white;
 const CustomScrollbar = createGlobalStyle`
 	/* Currently there is no cross-platform support for custom css scrollbar */
 	* {
@@ -44,8 +44,8 @@ const GlobalStyle = createGlobalStyle`
 	body {
 		background-image: linear-gradient(
 			to bottom right,
-            ${theme.primary},
-            ${theme.primaryDark}
+            ${colors.blueGrey[100]},
+            ${colors.blueGrey[300]}
 		);
 		min-height: 100vh;
 	}

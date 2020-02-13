@@ -16,7 +16,7 @@ import forceCast from '../helpers/forceCast';
 
 const Intro = styled.header`
 	padding: 4rem;
-	background-color: ${theme.greyLight0};
+	background-color: ${theme.greyLight2};
 	height: 70vh;
 	max-height: 60rem;
 
@@ -31,7 +31,7 @@ const Intro = styled.header`
 	}
 
 	h1 {
-		color: ${darken(theme.secondaryColors[500], 6.5)};
+		color: ${darken(theme.secondaryColors[500], 10)};
 		text-shadow: 1px 2px 10px ${opacity(theme.secondaryColors[500], 0.25)};
 		transition: all 0.25s;
 	}
@@ -63,6 +63,10 @@ const Portfolio = styled.section`
 	${maxWidth(775)} {
 		padding: 4rem 3.5rem;
 	}
+
+	${maxWidth(375)} {
+		padding: 2rem 1rem;
+	}
 `;
 const CardGrid = styled.div`
 	display: grid;
@@ -73,6 +77,20 @@ const CardGrid = styled.div`
 	& > a {
 		display: flex;
 		justify-content: center;
+	}
+
+	${maxWidth(375)} {
+		grid-template-columns: 1fr;
+		gap: 0;
+
+		/* 100% width in container with horizontal padding 1rem */
+		width: calc(100% + 2rem);
+		margin-left: -1rem;
+
+		& > a > *,
+		& > a > * > .gatsby-image-wrapper {
+			width: 100% !important;
+		}
 	}
 `;
 
