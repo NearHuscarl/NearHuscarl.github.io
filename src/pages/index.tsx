@@ -1,6 +1,7 @@
 import React from 'react';
 import { graphql, useStaticQuery } from 'gatsby';
 import styled from 'styled-components';
+import { motion, Variants } from 'framer-motion';
 import { FixedObject } from 'gatsby-image';
 import {
 	AllImagesQuery,
@@ -9,14 +10,16 @@ import {
 import ProjectCard from '../components/ProjectCard';
 import projects from '../data/projects';
 import { Linebreak } from '../components/Toolkit';
-import theme from '../styles/theme';
-import { opacity, maxWidth, darken } from '../styles/util';
+import theme, { colors } from '../styles/theme';
+import { opacity, maxWidth, darken, mix } from '../styles/util';
 import Layout from '../components/Layout';
 import forceCast from '../helpers/forceCast';
 
-const Intro = styled.header`
+const IntroBackground = styled.div`
+	background-color: ${theme.greyLight1};
+`;
+const Intro = motion.custom(styled.header`
 	padding: 4rem;
-	background-color: ${theme.greyLight2};
 	height: 70vh;
 	max-height: 60rem;
 
@@ -24,6 +27,7 @@ const Intro = styled.header`
 	flex-direction: column;
 	justify-content: center;
 	align-items: flex-start;
+	overflow: hidden;
 
 	${maxWidth(705)} {
 		align-items: center;
@@ -33,12 +37,15 @@ const Intro = styled.header`
 	h1 {
 		color: ${darken(theme.secondaryColors[500], 10)};
 		text-shadow: 1px 2px 10px ${opacity(theme.secondaryColors[500], 0.25)};
-		transition: all 0.25s;
+		z-index: 1;
+		transform: rotate(0); /* Create stacking context to hide the squares */
 	}
 
 	h2 {
 		/* background-color: ${theme.greyDark3}; */
 		color: ${theme.greyDark2};
+		z-index: 1;
+		transform: rotate(0);
 
 		p {
 			font-size: inherit;
@@ -56,7 +63,33 @@ const Intro = styled.header`
 			}
 		}
 	}
-`;
+`);
+
+type SquareProps = {
+	x: number;
+	y: number;
+	width?: number;
+	height?: number;
+	scale?: number;
+	angle?: number; // deg
+};
+const Square = motion.custom(styled.div<SquareProps>`
+	left: ${(p) => p.x}%;
+	top: ${(p) => p.y}%;
+	background: ${mix(theme.greyLight2, theme.greyLight3, 25)};
+	width: ${(p) => p.width}rem;
+	height: ${(p) => p.height}rem;
+	transform: rotate(${(p) => p.angle}deg) scale(${(p) => p.scale});
+	position: absolute;
+	z-index: 0;
+`);
+Square.defaultProps = {
+	width: 6,
+	height: 6,
+	scale: 1,
+	angle: 0,
+};
+
 const Portfolio = styled.section`
 	padding: 6rem 3rem;
 
@@ -127,20 +160,67 @@ const useFixedImages = (): FixedImages => {
 	return images;
 };
 
+const variants: Variants = {
+	hidden: {
+		x: -50,
+		opacity: 0,
+	},
+	visible: {
+		x: 0,
+		opacity: 1,
+		transition: {
+			staggerChildren: 0.25,
+			duration: 0.5,
+		},
+	},
+};
+
+function squareVariants(rotation: number, scale: number): any {
+	const v = {
+		initial: {
+			scale,
+			rotate: rotation - 90,
+		},
+		animate: {
+			scale,
+			rotate: rotation,
+			transition: {
+				duration: 1.25,
+			},
+		},
+	};
+	return v;
+}
+
 const HomePage = (): JSX.Element => {
 	const images = useFixedImages();
 
 	return (
 		<Layout>
 			<main>
-				<Intro>
-					<h1>Front-end Developer</h1>
-					<h2>
-						<p>Senior at University of Information Technology</p>
-						<p className='delimiter'>.</p>
-						<p>Looking for an internship in 2020</p>
-					</h2>
-				</Intro>
+				<IntroBackground>
+					<Intro
+						variants={variants}
+						initial='hidden'
+						animate='visible'
+						style={{ position: 'relative' }}
+					>
+						<motion.h1 variants={variants}>Near Huscarl</motion.h1>
+						<h2>
+							<motion.p variants={variants}>
+								Web developer, scripter, modder, gamer.
+							</motion.p>
+							<p className='delimiter'> </p>
+							<motion.p variants={variants}>
+								I write code to reduce human suffering.
+							</motion.p>
+							{/* Currently working at __ */}
+						</h2>
+						<Square x={75} y={10} {...squareVariants(35, 4)} />
+						<Square x={90} y={80} {...squareVariants(45, 2.5)} />
+						<Square x={15} y={80} {...squareVariants(10, 2)} />
+					</Intro>
+				</IntroBackground>
 				<Portfolio>
 					<h2 id='portfolio'>Portfolio</h2>
 					<Linebreak />

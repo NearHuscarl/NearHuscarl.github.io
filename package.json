@@ -19,6 +19,7 @@
     "@types/styled-components": "^4.4.2",
     "@types/tinycolor2": "^1.4.2",
     "babel-plugin-styled-components": "^1.10.7",
+    "framer-motion": "^1.9.0",
     "gatsby": "^2.19.7",
     "gatsby-image": "^2.2.39",
     "gatsby-plugin-graphql-codegen": "^2.2.2",
