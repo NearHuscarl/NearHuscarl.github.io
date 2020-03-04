@@ -48,7 +48,6 @@ const Body = styled.div`
 `;
 const Strong = styled.strong`
 	color: ${darken(theme.secondaryColors[700], 5)};
-	text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], 0.3)};
 	font-size: 1.4rem;
 	font-weight: 600;
 `;

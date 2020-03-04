@@ -16,7 +16,6 @@ const Title = styled(H3)`
 `;
 const Date = styled.span`
 	color: ${darken(theme.secondaryColors[700], 5)};
-	text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], 0.3)};
 	font-weight: 600;
 `;
 

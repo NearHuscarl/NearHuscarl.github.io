@@ -3,6 +3,7 @@ import { Location } from '@reach/router';
 import 'typeface-fira-code';
 import 'typeface-noto-sans';
 import 'typeface-quicksand';
+import 'typeface-lato';
 import CSS from '../styles/index';
 import Header from '../layout/Header';
 import Footer from '../layout/Footer';
