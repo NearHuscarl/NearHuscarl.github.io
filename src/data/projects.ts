@@ -10,13 +10,13 @@ export type Project = {
 
 const projects: Array<Project> = [
 	{
-		image: 'logo-onthi247.png',
-		title: 'OnThi247',
+		image: 'logo-nearacademy.png',
+		title: 'NearAcademy',
 		technologies: ['React', 'SCSS'],
 		tags: ['Web', 'Front-end'],
 		description: 'Front-end implementation of an online education webpage',
-		date: 'Nov-Dec 2019',
-		link: 'https://github.com/NearHuscarl/onthi247',
+		date: 'Nov-2019 Jan-2020',
+		link: 'https://github.com/NearHuscarl/nearacademy',
 	},
 	{
 		image: 'logo-football365.png',
