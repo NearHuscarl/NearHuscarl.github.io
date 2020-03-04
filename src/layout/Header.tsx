@@ -48,7 +48,7 @@ function Header(): JSX.Element {
 				</Link>
 				<div>
 					<Title>Near Huscarl</Title>
-					<Subtitle>Front-end Developer</Subtitle>
+					<Subtitle>Web Developer</Subtitle>
 				</div>
 			</HeaderLogo>
 			<MenuButton

@@ -70,7 +70,7 @@ export default function AboutPage(): JSX.Element {
 				<Header>
 					<IntroBox>
 						<h1>Near Huscarl</h1>
-						<h2>Front-end developer in the making</h2>
+						<h2>Web developer in the making</h2>
 					</IntroBox>
 				</Header>
 				<MDXProvider>
