@@ -1,5 +1,5 @@
 <div align="center">
-    <h1><a href='https://near.netlify.com'>Portfolio</a></h1>
+    <h1><a href='https://near.netlify.app'>Portfolio</a></h1>
     <strong>My personal portfolio written in React powered by Gatsby</strong>
     <br />
     <br />

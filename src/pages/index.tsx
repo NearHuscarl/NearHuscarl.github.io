@@ -175,8 +175,8 @@ const variants: Variants = {
 	},
 };
 
-function squareVariants(rotation: number, scale: number): any {
-	const v = {
+function squareVariants(rotation: number, scale: number): Variants {
+	const v: Variants = {
 		initial: {
 			scale,
 			rotate: rotation - 90,

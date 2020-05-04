@@ -9,7 +9,7 @@ const writeFileAsync = promisify(fs.writeFile);
 const readdirAsync = promisify(fs.readdir);
 const appendFileAsync = promisify(fs.appendFile);
 
-const BASE_URL = 'https://near.netlify.com';
+const BASE_URL = 'https://near.netlify.app';
 
 function removeFilenameExtension(path) {
 	return path.replace(/\.[^/.]+$/, '');

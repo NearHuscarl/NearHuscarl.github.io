@@ -2,7 +2,7 @@
 
 Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/42f10b4d9f489b7bf9c76e307798f3bcecc24ced)
 
-## [`near.netlify.com`](https://near.netlify.com)
+## [`near.netlify.com`](https://near.netlify.app)
 
 | Category | Score |
 |----------|------:|
@@ -12,21 +12,9 @@ Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/4
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://near.netlify.com/audits/report.html)
+:page_with_curl: [Full Report](https://near.netlify.app/audits/report.html)
 
-## [`near.netlify.com/about`](https://near.netlify.com/about)
-
-| Category | Score |
-|----------|------:|
-| :wheelchair: Accessibility | 100 |
-| :heavy_check_mark: Best Practices | 100 |
-| :zap: Performance | 100 |
-| :iphone: Progressive Web App | 73 |
-| :loudspeaker: SEO | 100 |
-
-:page_with_curl: [Full Report](https://near.netlify.com/audits/report-about.html)
-
-## [`near.netlify.com/resume`](https://near.netlify.com/resume)
+## [`near.netlify.com/about`](https://near.netlify.app/about)
 
 | Category | Score |
 |----------|------:|
@@ -36,9 +24,9 @@ Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/4
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://near.netlify.com/audits/report-resume.html)
+:page_with_curl: [Full Report](https://near.netlify.app/audits/report-about.html)
 
-## [`near.netlify.com/resume-full`](https://near.netlify.com/resume-full)
+## [`near.netlify.com/resume`](https://near.netlify.app/resume)
 
 | Category | Score |
 |----------|------:|
@@ -48,9 +36,21 @@ Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/4
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://near.netlify.com/audits/report-resume-full.html)
+:page_with_curl: [Full Report](https://near.netlify.app/audits/report-resume.html)
 
-## [`near.netlify.com/404`](https://near.netlify.com/404)
+## [`near.netlify.com/resume-full`](https://near.netlify.app/resume-full)
+
+| Category | Score |
+|----------|------:|
+| :wheelchair: Accessibility | 100 |
+| :heavy_check_mark: Best Practices | 100 |
+| :zap: Performance | 100 |
+| :iphone: Progressive Web App | 73 |
+| :loudspeaker: SEO | 100 |
+
+:page_with_curl: [Full Report](https://near.netlify.app/audits/report-resume-full.html)
+
+## [`near.netlify.com/404`](https://near.netlify.app/404)
 
 | Category | Score |
 |----------|------:|
@@ -60,7 +60,7 @@ Reported at commit [`42f10b4`](https://github.com/NearHuscarl/portfolio/commit/4
 | :iphone: Progressive Web App | 73 |
 | :loudspeaker: SEO | 100 |
 
-:page_with_curl: [Full Report](https://near.netlify.com/audits/report-404.html)
+:page_with_curl: [Full Report](https://near.netlify.app/audits/report-404.html)
 
 ## Average Score
 
