@@ -28,6 +28,13 @@ const CustomScrollbar = createGlobalStyle`
 `;
 
 const GlobalStyle = createGlobalStyle`
+	/* vietnamese */
+	@font-face {
+		font-family: 'Quicksand';
+		src: url(https://fonts.gstatic.com/s/quicksand/v21/6xK-dSZaM9iE8KbpRA_LJ3z8mH9BOJvgkP8o58m-wi40.woff2) format('woff2');
+		unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+	}
+
 	*,
 	*::before,
 	*::after {
@@ -61,7 +68,10 @@ const GlobalStyle = createGlobalStyle`
 
 	a {
 		color: ${darken(theme.secondaryColors[700], 5)};
-		/* text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(theme.secondaryColors[700], 0.3)}; */
+		/* text-shadow: 0.1rem 0.1rem 0.3rem ${opacity(
+			theme.secondaryColors[700],
+			0.3,
+		)}; */
 		text-decoration: none;
 		transition: color .2s;
 
