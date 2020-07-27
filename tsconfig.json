@@ -1,0 +1,24 @@
+{
+	"compilerOptions": {
+		"sourceMap": true, // allow sourcemap support
+		"strictNullChecks": true, // enable strict null checks as a best practice
+		"module": "es6", // specify module code generation
+		"jsx": "react", // use typescript to transpile jsx to js
+		"target": "es6", // specify ECMAScript target version
+		"allowJs": true, // allow a partial TypeScript and JavaScript codebase
+		"checkJs": false, // Type checking
+
+		// https://www.typescriptlang.org/docs/handbook/module-resolution.html#module-resolution-strategies
+		"moduleResolution": "Node",
+
+		// Allow using export/import default
+		// https://stackoverflow.com/a/54785103/9449426
+		"allowSyntheticDefaultImports": true,
+		"esModuleInterop": true,
+
+		// https://github.com/microsoft/TypeScript/issues/14538#issuecomment-559074255
+		"noEmit": true
+	},
+	"include": ["./src/**/*"],
+	"exclude": ["node_modules", "build", "./scripts/*.js"]
+}

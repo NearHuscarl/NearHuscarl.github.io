@@ -1,0 +1,25 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Debug audit",
+            "args": [
+                "${workspaceFolder}\\scripts\\audit.js"
+            ]
+        },
+        {
+            "type": "chrome",
+            "request": "attach",
+            "name": "Attach",
+            "url": "http://localhost:8080/*",
+            "webRoot": "${workspaceFolder}",
+            // https://stackoverflow.com/a/53319718/9449426
+            "port": 9222,
+        }
+    ]
+}
