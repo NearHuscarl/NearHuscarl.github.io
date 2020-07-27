@@ -74,7 +74,7 @@
     "build": "gatsby build",
     "dev": "gatsby develop",
     "format": "prettier --parser typescript --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "audit": "node scripts/audit.js",
