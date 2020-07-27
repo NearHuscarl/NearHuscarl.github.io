@@ -9,7 +9,9 @@ import {
 	faGithub,
 	faStackOverflow,
 	faLinkedin,
-	faFacebookF,
+	// TODO: wait until font-awesome has codesandbox icon
+	// https://github.com/FortAwesome/Font-Awesome/issues/14949
+	faCodepen,
 } from '@fortawesome/free-brands-svg-icons';
 import IconLink, { CollapsableIconLink } from './IconLink';
 import contact from '../data/contact';
@@ -193,11 +195,11 @@ const ResumeHeader = (): JSX.Element => {
 				</li>
 				<li>
 					<CollapsableIconLink
-						icon={faFacebookF}
-						aria-label='facebook'
-						href={media.facebook}
+						icon={faCodepen}
+						aria-label='codesandbox'
+						href={media.codesandbox}
 					>
-						{chopSchema(media.facebook)}
+						{chopSchema(media.codesandbox)}
 					</CollapsableIconLink>
 				</li>
 			</ul>
