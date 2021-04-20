@@ -10,6 +10,16 @@ export type Project = {
 
 const projects: Array<Project> = [
 	{
+		image: 'logo-sfd-profile-editor.png',
+		title: 'SFD Profile Editor',
+		technologies: ['React', 'Typescript', 'Material-UI', 'CRA'],
+		tags: ['Web Application', 'Front-end'],
+		description:
+			'An internal tool I created to generate C# code for my game script when editing the user profile in SFD',
+		date: 'Feb-Mar 2021',
+		link: 'https://github.com/NearHuscarl/SFD_Profile_Editor',
+	},
+	{
 		image: 'logo-nearacademy.png',
 		title: 'NearAcademy',
 		technologies: ['React', 'SCSS'],
@@ -17,16 +27,6 @@ const projects: Array<Project> = [
 		description: 'Front-end implementation of an online education webpage',
 		date: 'Nov-2019 Jan-2020',
 		link: 'https://github.com/NearHuscarl/nearacademy',
-	},
-	{
-		image: 'logo-football365.png',
-		title: 'Football365',
-		technologies: ['React', 'SCSS', 'Webpack', 'Firebase', 'Heroku'],
-		tags: ['Web', 'Front-end'],
-		description:
-			'Football site providing latest news, fixtures, results, standings',
-		date: 'Mar-Jun 2019',
-		link: 'https://github.com/NearHuscarl/football-site',
 	},
 	{
 		image: 'preview-flutter-login.png',
