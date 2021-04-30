@@ -7,9 +7,12 @@ import Layout from '../components/Layout';
 // no margin
 // no round border, box-shadow
 // Printer option:
-// - Scale: 80
-// - Margin: None
+// - Destination: Save as PDF (otherwise save as image and you can't click any link or select any texts)
 // - Pages: Custom -> 1
+// - Margin: None
+// - Paper Size: A4
+// - Scale: Custom -> 80
+// - Background graphics -> check
 const ResumeFullPage = (): JSX.Element => {
 	return (
 		<Layout title='Resumé HTML'>

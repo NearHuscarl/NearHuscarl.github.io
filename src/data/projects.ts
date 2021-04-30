@@ -15,7 +15,7 @@ const projects: Array<Project> = [
 		technologies: ['React', 'Typescript', 'Material-UI', 'CRA'],
 		tags: ['Web Application', 'Front-end'],
 		description:
-			'An internal tool I created to generate C# code for my game script when editing the user profile in SFD',
+			'An internal tool to generate C# code for my game script when editing the character profile in SFD',
 		date: 'Feb-Mar 2021',
 		link: 'https://github.com/NearHuscarl/SFD_Profile_Editor',
 	},
