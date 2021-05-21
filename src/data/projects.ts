@@ -12,11 +12,11 @@ const projects: Array<Project> = [
 	{
 		image: 'logo-sfd-profile-editor.png',
 		title: 'SFD Profile Editor',
-		technologies: ['React', 'Typescript', 'Material-UI', 'CRA'],
+		technologies: ['React', 'Redux', 'Typescript', 'Material-UI'],
 		tags: ['Web Application', 'Front-end'],
 		description:
 			'An internal tool to generate C# code for my game script when editing the character profile in SFD',
-		date: 'Feb-Mar 2021',
+		date: '02/2021 - 03/2021',
 		link: 'https://github.com/NearHuscarl/SFD_Profile_Editor',
 	},
 	{
@@ -25,7 +25,7 @@ const projects: Array<Project> = [
 		technologies: ['React', 'SCSS'],
 		tags: ['Web', 'Front-end'],
 		description: 'Front-end implementation of an online education webpage',
-		date: 'Nov-2019 Jan-2020',
+		date: '11/2019 - 01/2020',
 		link: 'https://github.com/NearHuscarl/nearacademy',
 	},
 	{
@@ -34,7 +34,7 @@ const projects: Array<Project> = [
 		technologies: ['Flutter', 'Dart'],
 		tags: ['UI', 'Animation'],
 		description: 'Login screen with cool animation effects',
-		date: 'Sep-Nov 2019',
+		date: '09/2019 - 11/2019',
 		link: 'https://github.com/NearHuscarl/flutter_login',
 	},
 	{
@@ -43,16 +43,16 @@ const projects: Array<Project> = [
 		technologies: ['C#', 'WPF', 'MVVM', 'SQLite'],
 		tags: ['Desktop'],
 		description: 'An english dictionary app written in C# and WPF',
-		date: 'May-Jul 2018',
+		date: '05/2018 - 07/2018',
 		link: 'https://github.com/NearHuscarl/EDictionary',
 	},
 	{
 		image: 'logo-castlevania.png',
 		title: 'Castlevania',
-		technologies: ['C++', 'DirectX 9', 'Xml'],
+		technologies: ['C++', 'DirectX', 'XML'],
 		tags: ['Game'],
 		description: 'A remake of Castlevania NES (Block 01)',
-		date: 'Oct 2018 - Feb 2019',
+		date: '10/2018 - 02/2019',
 		link: 'https://github.com/NearHuscarl/Castlevania',
 	},
 	{
@@ -62,7 +62,7 @@ const projects: Array<Project> = [
 		tags: ['Linux', 'Script'],
 		description:
 			'Utility script to manage and edit themes in termite terminal',
-		date: 'Mar 2018',
+		date: '03/2018',
 		link: 'https://github.com/NearHuscarl/termite-color-switcher',
 	},
 ];
